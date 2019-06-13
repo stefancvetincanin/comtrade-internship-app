@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>City page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <!-- jQuery -->
+  <script src="./bootstrap/jquery-3.3.1.min.js"></script>
+  <!-- Popper -->
+  <script src="./bootstrap/popper.min.js"></script>
+  <!-- BOOTSTRAP .css -->
+  <link rel="stylesheet" type="text/css" media="screen" href="./bootstrap/bootstrap.min.css" />
+  <!-- BOOTSTRAP .js -->
+  <script src="./bootstrap/bootstrap.min.js"></script>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300i,400,700&display=swap" rel="stylesheet">
+  <!-- Our sources -->
+  <link rel="stylesheet" type="text/css" media="screen" href="./css/city.css" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-fixed-top bg-primary mb-5">
+    <div class="container-fluid">
+      <a class="navbar-brand my-auto text-warning font-weight-bold" href="./index.html">BTA</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon">
+          <i class="fas fa-bars"></i>
+        </span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav nav nav-pills align-self-center text-uppercase ml-auto">
+          <li class="nav-item ml-4">
+            <a class="nav-link text-warning" href="./index.html">Home</a>
+          </li>
+          <li class="nav-item ml-4">
+            <a class="nav-link text-warning" href="./city.html">City</a>
+          </li>
+          <li class="nav-item ml-4">
+            <a class="nav-link text-warning" href="#">Accomodation</a>
+          </li>
+          <li class="nav-item ml-4 d-none">
+            <a class="nav-link text-warning" href="">Add Accomodation</a>
+          </li>
+        </ul>
+
+        <button id="btnLogin" type="button" class="btn btn-outline-warning ml-5 d-none" data-toggle="modal"
+          data-target="#loginModal">
+          Login
+        </button>
+        <div id="btnLogout" class="text-warning pl-4">
+          Hi, <span id="loggedUser"></span>
+          <button type="button" class="btn btn-outline-warning ml-3">
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <header id="main-header">
+      <div style="min-height:300px" class="row no-gutters">
+        <div style="height:100%" class="col-lg-5 align-items-stretch">
+          <img src="./media/images/house-1.jpeg" class="ing-fluid" alt="img1">
+        </div>
+        <div style="min-height:300px" class="col-lg-7">
+          <div class="d-flex flex-column h-100">
+            <div style="height:80%;background-color:#f5ba17" class="p-2">
+              <div class="d-flex flex-row align-items-center h-100">
+                <div class="col-lg-6 pt-5 h-100">
+                  <h1 class="h-25">Ime grada</h1>
+                  <p class="h-75 pr-5"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero recusandae architecto at ducimus nesciunt eveniet labore distinctio quaerat dolor enim?</p>
+                </div>
+                
+                <div style="background-color:#e0aa15" class="d-flex flex-column pt-2 col-lg-6  h-100">
+                  <div class="row h-50">
+                      <div class="container">
+                        <div id="date" class="row justify-content-center lead">
+                          12/06/2019
+                        </div>
+                        <div style="font-size:2.5rem" class="row justify-content-center">
+                          <span id="stringWeather">32</span>&#8451;				
+                        </div>							
+                        <div id="description" class="row justify-content-center">
+                          Oblacno			
+                        </div>	
+                      </div>
+                  </div>
+                  <div class="row h-50">
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                      <div class="carousel-inner">
+                        <div class="carousel-item active px-5">
+                          <p>Prvi dan Prvi dan Prvi dan Prvi dan Prvi dan</p>
+                        </div>
+                        <div class="carousel-item px-5">
+                          <p>Drugi dan Drugi dan Drugi dan Drugi dan Drugi</p>
+                        </div>
+                        <div class="carousel-item px-5">
+                          <p>Treci  Treci dan Treci dan Treci dan Treci dan</p>
+                        </div>
+                        <div class="carousel-item px-5">
+                          <p>Cetvrti dan Cetvrti dan Cetvrti dan Cetvrti dan</p>
+                        </div>
+                        <div class="carousel-item px-5">
+                          <p>Peti dan Peti dan Peti dan Peti dan Peti dan</p>
+                        </div>
+                      </div>
+                      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </div>
+                  </div> 
+                </div>
+              </div>
+            </div>
+
+            <div style="height:20%" class="d-flex flex-row  text-center">
+              <div style="background-color:#b8daff" class="tab-item p-1 d-flex justify-content-center" data-toggle="collapse" data-target="#accomodation">
+                  <!-- <i class="fas fa-home fa-2x d-block"></i> -->
+                <h4 class="align-self-center">Accomodation</h4> 
+              </div>
+              <div style="background-color:#f5c6cb" class="tab-item p-1 d-flex justify-content-center" data-toggle="collapse" data-target="#lifeInCity">
+                  <!-- <i class="fas fa-graduation-cap fa-2x d-block"></i> -->
+                  <h4 class="align-self-center">City Life</h4>             
+              </div>
+              <div style="background-color:#ffeeba" class="tab-item p-1 d-flex justify-content-center" data-toggle="collapse" data-target="#feedback">
+                  <!-- <i class="fas fa-envelope fa-2x d-block"></i> -->
+                  <h4 class="align-self-center">Feedback</h4> 
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Accomodations -->
+    <div style="background-color:#b8daff;" id="accomodation" class="collapse show">
+     
+      <div class="card card-body py-5">
+        <div class="text-white-py-5 clearfix">
+            <h2 class="d-inline-block float-left">Top Accomodations</h2>
+            <button class="btn btn-primary d-inline-block float-right" type="button">Show more..</button>   
+              <!-- <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, unde!</p> -->
+        </div>
+
+        <ul id="topAccomodations" class="list-group mt-3 mb-4">
+          <li class="list-group-item list-group-item-primary mb-1">
+            <a href="#">
+              <div class="row align-items-center text-center">
+                <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
+                  <img class="d-block mx-auto" src="./media/images/hotel-1.jpg" height="100px" alt="Barcelona">
+                </div>
+                <div class="col-lg-9 col-md-8 ml-3 col-sm-7">
+                  <div class="clearfix pl-4">
+                    <h1 id="nameAccomod" class="float-left">Hotel Ibis</h1>
+                    <div id="starsAccomod" class="float-right align-items-center">*****</div>
+                  </div>
+                  <p id="descriptionAccomod" class="text-left pl-4">
+                      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non voluptatibus
+                      fuga architecto beatae ipsam dicta itaque dolore corporis magni aut necessitatibus voluptatem,
+                      eveniet voluptate voluptatum.
+                  </p>
+                </div> 
+              </div>
+            </a>
+          </li>
+
+          <li class="list-group-item list-group-item-primary mb-1">
+            <a href="#">
+              <div class="row align-items-center text-center">
+                <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
+                  <img class="d-block mx-auto" src="./media/images/hotel-2.jpg" height="100px" alt="Barcelona">
+                </div>
+                <div class="col-lg-9 col-md-8 ml-3 col-sm-7">
+                  <div class="clearfix pl-4">
+                    <h1 id="nameAccomod" class="float-left">Hotel Ibis</h1>
+                    <div id="starsAccomod" class="float-right align-items-center">*****</div>
+                  </div>
+                  <p id="descriptionAccomod" class="text-left pl-4">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non voluptatibus
+                    fuga architecto beatae ipsam dicta itaque dolore corporis magni aut necessitatibus voluptatem,
+                    eveniet voluptate voluptatum.
+                  </p>
+                </div>
+              </div>
+            </a>
+          </li>
+
+          <li class="list-group-item list-group-item-primary mb-1">
+            <a href="#">
+              <div class="row align-items-center text-center">
+                <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
+                  <img class="d-block mx-auto" src="./media/images/hotel-3.jpg" height="100px" alt="Barcelona">
+                </div>
+                <div class="col-lg-9 col-md-8 ml-3 col-sm-7">
+                  <div class="clearfix pl-4">
+                    <h1 id="nameAccomod" class="float-left">Hotel Ibis</h1>
+                    <div id="starsAccomod" class="float-right align-items-center">*****</div>
+                  </div>
+                  <p id="descriptionAccomod" class="text-left pl-4">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non voluptatibus
+                    fuga architecto beatae ipsam dicta itaque dolore corporis magni aut necessitatibus voluptatem,
+                    eveniet voluptate voluptatum.
+                  </p>
+                </div>
+              </div>
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+      </div>
+
+    <!-- Life in city -->
+    <div id="lifeInCity" class="collapse">
+      <div class="card card-body py-5">
+        <h2>Life In City</h2>
+        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, unde!</p>
+      </div>
+    </div>
+
+
+    <!-- Feedback -->
+    <div id="feedback" class="collapse">
+      <div class="card card-body py-5">
+        <h2>Feedback</h2>
+        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, unde!</p>
+      </div>
+    </div>
+
+
+    <!-- FOOTER -->
+
+  </div>
+  
+  <script src="./js/city.js"></script>
+    <script>
+      $('.tab-item').click(function () {
+        $('.collapse').collapse('hide');
+      });
+
+      $('.carousel').carousel({
+        interval: 2000
+      });
+    </script>
+</body>
+
+</html>
