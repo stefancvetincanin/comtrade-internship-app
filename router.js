@@ -7,6 +7,7 @@ module.exports = function(express, baza) {
     baza.execQuery(`SELECT * FROM korisnici WHERE username = '${req.params['0']}' AND password = '${req.params['1']}'`, function(results) {
       console.log('Korisnik je:')
       console.log(results)
+      res.send(results)
     })
   })
 
@@ -14,6 +15,7 @@ module.exports = function(express, baza) {
   router.get('/cities', function (req, res) {
     baza.execQuery('SELECT * FROM grad', function(results) {
       console.log(results)
+      res.send(results)
     })
   })
 
