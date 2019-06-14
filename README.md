@@ -14,8 +14,10 @@ Na pocetku radnog dana uvek updateujemo master granu sa trenutnom verzijom:<br>
  - git merge master<br>
 <br>
 Proces kacenja svojih podataka:<br>
- - git add .<br>
- - git commit -a -m "tekst poruke commita (obavezan)"<br>
- - git push<br>
+<pre>
+ git add .
+ git commit -a -m "tekst poruke commita (obavezan)"
+ git push
+</pre>
 <br>
 Kad okacite najnoviju verziju svoje grane, otvorite pull request da je spojite sa masterom.<br>
