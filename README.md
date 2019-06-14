@@ -12,9 +12,10 @@ Na pocetku radnog dana uvek updateujemo master granu sa trenutnom verzijom:<br>
  git pull
 </pre>
 2. Preci na licnu granu i spojiti sa masterom:
+<code>
  - git checkout &lt;ime-grane&gt;
  - git merge master
-<br>
+ </code>
 Proces kacenja svojih podataka:<br>
 <pre>
  git add .
