@@ -1,4 +1,4 @@
-Moguci pozivi za API<br>
+<h2>Moguci pozivi za API</h2>
 Vraca korisnika sa navedenim korisnickim imenom i sifrom:
 <pre>
   fetch('/login/{username}/{password}')
