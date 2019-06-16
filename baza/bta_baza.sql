@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2019 at 01:23 PM
+-- Generation Time: Jun 16, 2019 at 11:31 PM
 -- Server version: 10.1.40-MariaDB
 -- PHP Version: 7.3.5
 
@@ -37,6 +37,13 @@ CREATE TABLE `feedback_grad` (
   `opis` text COLLATE utf8_unicode_ci NOT NULL,
   `datum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `feedback_grad`
+--
+
+INSERT INTO `feedback_grad` (`id`, `grad_id`, `korisnici_id`, `rating`, `naziv`, `opis`, `datum`) VALUES
+(1, 14, 2, '4', 'Obavezno probati masline.', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.', '2019-06-16 20:38:16');
 
 -- --------------------------------------------------------
 
@@ -221,6 +228,13 @@ CREATE TABLE `komentari_grad` (
   `text` text COLLATE utf8_unicode_ci NOT NULL,
   `datum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `komentari_grad`
+--
+
+INSERT INTO `komentari_grad` (`id`, `korisnici_id`, `feedback_grad_id`, `text`, `datum`) VALUES
+(1, 1, 1, 'Nulla imperdiet nisl eget nibh aliquam, ut luctus dui vehicula. In vitae auctor leo, faucibus laoreet lacus. Mauris mollis mattis congue.', '2019-06-16 21:07:32');
 
 -- --------------------------------------------------------
 
@@ -538,7 +552,7 @@ ALTER TABLE `znamenitosti`
 -- AUTO_INCREMENT for table `feedback_grad`
 --
 ALTER TABLE `feedback_grad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `feedback_hotel`
@@ -556,7 +570,7 @@ ALTER TABLE `grad`
 -- AUTO_INCREMENT for table `komentari_grad`
 --
 ALTER TABLE `komentari_grad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `komentari_hotel`
