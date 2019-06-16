@@ -30,6 +30,12 @@ baza.createPool(dbData)
 const router = require('./router')(express, baza)
 app.use(router)
 
+/***
+  ===============================
+    Funkcije za popunjavanje baze
+  ===============================
+***/
+
 // let brojac = 1
 // hotels.forEach(grad => {
 //   // console.log(grad.id)
