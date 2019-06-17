@@ -6,16 +6,21 @@ https://www.git-tower.com/blog/git-cheat-sheet<br>
 <br>
 Uvek radite na svojoj grani, nikad na masteru!<br>
 Na pocetku radnog dana uvek updateujemo master granu sa trenutnom verzijom:<br>
-1. Preci na master granu i povuci najnoviju verziju:<br>
- - git checkout master<br>
- - git pull<br>
-2. Preci na licnu granu i spojiti sa masterom:<br>
- - git checkout &lt;ime-grane&gt;<br>
- - git merge master<br>
-<br>
+1. Preci na master granu i povuci najnoviju verziju:
+<pre>
+ git checkout master
+ git pull
+</pre>
+2. Preci na licnu granu i spojiti sa masterom:
+<pre>
+ git checkout &lt;ime-grane&gt;
+ git merge master
+</pre>
 Proces kacenja svojih podataka:<br>
- - git add .<br>
- - git commit -a -m "tekst poruke commita (obavezan)"<br>
- - git push<br>
+<pre>
+ git add .
+ git commit -a -m "tekst poruke commita (obavezan)"
+ git push
+</pre>
 <br>
 Kad okacite najnoviju verziju svoje grane, otvorite pull request da je spojite sa masterom.<br>

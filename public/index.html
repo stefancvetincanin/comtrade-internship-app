@@ -37,14 +37,14 @@
           <li class="nav-item ml-4 d-none">
             <a class="nav-link text-warning" href="./index.html">Home</a>
           </li>
-          <li class="nav-item ml-4 d-none">
+          <li class="nav-item ml-4 d-none" id="cityLink">
             <a class="nav-link text-warning" href="./city.html">City</a>
           </li>
-          <li class="nav-item ml-4 d-none">
-            <a class="nav-link text-warning" href="#">Accomodation</a>
+          <li class="nav-item ml-4 d-none" id="accommodationLink">
+            <a class="nav-link text-warning" href="#">Accommodation</a>
           </li>
-          <li class="nav-item ml-4 d-none">
-            <a class="nav-link text-warning" href="">Add Accomodation</a>
+          <li class="nav-item ml-4 d-none" id="adminLink">
+            <a class="nav-link text-warning" href="">Add Accommodation</a>
           </li>
         </ul>
 
@@ -65,7 +65,7 @@
   <div class="container">
     <!-- Search -->
     <div class="input-group">
-      <input class="form-control" type="text" placeholder="Search" disabled>
+      <input id="search" class="form-control" type="text" placeholder="Search" disabled>
       <div class="input-group-append">
         <button class="btn btn-outline-secondary disabled" type="button"><i class="fas fa-search"></i></button>
       </div>
@@ -89,16 +89,16 @@
           <form>
             <div class="form-group">
               <label for="username">Username</label>
-              <input type="text" class="form-control" placeholder="Username">
+              <input type="text" id="user" class="form-control" placeholder="Username">
             </div>
             <div class="form-group">
               <label for="password">Pasword</label>
-              <input type="password" class="form-control" placeholder="Password">
+              <input type="password" id="pass" class="form-control" placeholder="Password">
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-primary" data-dismiss="modal">
+          <button class="btn btn-primary" id="loginBtn" data-dismiss="modal">
             Login
           </button>
         </div>
@@ -106,12 +106,12 @@
     </div>
   </div>
 
-
-
-  <script src="js/index.js"></script>
   <script>
     $('#loginModal').modal('show');
   </script>
+  
+  <script src="js/index.js"></script>
+
 </body>
 
 </html>
