@@ -1,6 +1,7 @@
 module.exports = function(express, baza) {
   const router = express.Router()
 
+  // json web token - jwt
   // login funkcija
   router.get('/login/*/*', function (req, res) {
     // console.log(req.params)
@@ -8,6 +9,18 @@ module.exports = function(express, baza) {
       // console.log('Korisnik je:')
       // console.log(results)
       res.send(results)
+    })
+  })
+
+  // login funkcija, pravilan metod
+  router.post('/login', function (req, res) {
+    baza.execQuery(`SELECT id, username, ime, prezime, admin, slika FROM korisnici WHERE username = '${req.body.username}' AND password = '${req.body.password}'`, function (results) {
+      if(results.length > 0) {
+        res.send(results)
+      }
+      else {
+        res.send({'msg': 'User not found'})
+      }
     })
   })
 

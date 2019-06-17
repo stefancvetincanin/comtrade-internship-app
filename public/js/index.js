@@ -51,6 +51,22 @@ function login() {
             });
 }
 
+function postLogin () {
+    let loginBody = {
+        username: "superadmin",
+        password: "password"
+    }
+    let loginOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(loginBody)
+    }
+    fetch('/login', loginOptions)
+        .then(res => res.json())
+        .then(res => console.log(res))
+}
 
 let cityArr;
 
