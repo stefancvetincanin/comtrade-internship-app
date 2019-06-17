@@ -331,6 +331,9 @@
             placeat magnam doloremque! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui hic repudiandae repellendus doloribus recusandae modi labore possimus, unde consequuntur ipsa?</p>
         </div>
         <div class="clearfix mb-4">
+          <a id="addComment" href="#comment">
+            <button type="button" class=" btn btn-primary float-right mx-1">Add comment</button>
+          </a>
           <button id="btnFooterToggle" type="button" class="btn btn-primary float-right">Show-hide comments</button>
         </div>
         
@@ -397,21 +400,7 @@
 </div>
   
   <script src="./js/city.js"></script>
-    <script>
-      $('.tab-item').click(function () {
-        $('.collapse').collapse('hide');
-      });
-
-      $('.carousel').carousel({
-        interval: 2000
-      });
-      
-      $('body').on('load', $(".commentGroup").hide());
-
-      $("#btnFooterToggle").click(function(){
-        $(".commentGroup").toggle();
-      });
-    </script>
+    
 </body>
 
 </html>
