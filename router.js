@@ -1,6 +1,7 @@
 module.exports = function(express, baza) {
   const router = express.Router()
 
+  // json web token - jwt
   // login funkcija
   router.get('/login/*/*', function (req, res) {
     // console.log(req.params)
