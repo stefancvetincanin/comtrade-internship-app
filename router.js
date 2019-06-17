@@ -19,6 +19,14 @@ module.exports = function(express, baza) {
     })
   })
 
+  // nabavi grad sa trazenim id-em
+  router.get('/city/*', function (req, res) {
+    baza.execQuery(`SELECT * FROM grad WHERE id = '${req.params[0]}'`, function(results) {
+      // console.log(results)
+      res.send(results)
+    })
+  })
+
   // nabavi spisak hotela u nekom gradu, gde je req.params id grada u kome se nalaze
   router.get('/hotels/*', function (req, res) {
     // console.log(req.params)
