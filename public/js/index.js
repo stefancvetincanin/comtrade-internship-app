@@ -50,3 +50,15 @@ function login() {
             });
 }
 
+let loginBody = {
+    user: "superadmin",
+    pass: "password"
+}
+
+const loginOptions = {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(loginBody)
+}

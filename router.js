@@ -12,6 +12,11 @@ module.exports = function(express, baza) {
     })
   })
 
+  // login funkcija, pravilan metod
+  router.post('/login', function (req, res) {
+    console.log(req.params)
+  })
+
   // nabavi spisak svih gradova
   router.get('/cities', function (req, res) {
     baza.execQuery('SELECT * FROM grad', function(results) {

@@ -11,9 +11,10 @@ Na pocetku radnog dana uvek updateujemo master granu sa trenutnom verzijom:<br>
  git checkout master
  git pull
 </pre>
-2. Preci na licnu granu i spojiti sa masterom:
+2. Preci na licnu granu, pullovati najnoviju verziju nje i spojiti sa masterom:
 <pre>
  git checkout &lt;ime-grane&gt;
+ git pull
  git merge master
 </pre>
 Proces kacenja svojih podataka:<br>
