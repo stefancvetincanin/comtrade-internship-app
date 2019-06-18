@@ -12,11 +12,16 @@ module.exports = function(express, baza) {
     })
   })
 
-  // login funkcija, pravilan metod
+  // Work in Progress - login funkcija, pravilan metod
   router.post('/login', function (req, res) {
     baza.execQuery(`SELECT id, username, ime, prezime, admin, slika FROM korisnici WHERE username = ${mysql.escape(req.body.username)} AND password = ${mysql.escape(req.body.password)}`, function (results) {
       if(results.length > 0) {
         res.send(results)
+        const tokenRnd = Math.floor(Math.random() * (100000000 - 10000000)) + 10000000
+        const token = String(tokenRnd) + results[0].username
+        baza.execQuery(`INSERT INTO login_tabela(korisnici_id, web_token) VALUES (${mysql.escape(results[0].id)}, ${mysql.escape(token)})`, function (results) {
+
+        })
       }
       else {
         res.send({'msg': 'User not found'})

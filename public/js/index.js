@@ -51,6 +51,7 @@ function login() {
             });
 }
 
+// pocetak rada na bezbednom loginu preko tokena
 function postLogin () {
     let loginBody = {
         username: "superadmin",

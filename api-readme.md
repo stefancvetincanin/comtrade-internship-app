@@ -15,6 +15,10 @@ Vraca sve hotele u zeljenom gradu, preko navedenog id-a grada:
 <pre>
   fetch('/hotels/{id}')
 </pre>
+Vraca hotel preko navedenog id-a hotela:
+<pre>
+  fetch('/hotel/{id}')
+</pre>
 Vraca sve znamenitosti u nekom gradu, preko navedenog id-a grada:
 <pre>
   fetch('/attractions/{id}')
