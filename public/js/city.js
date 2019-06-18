@@ -22,16 +22,17 @@ fetch(`/city/${id}`)
         res[0].slika
       }" class="ing-fluid" alt="${res[0].ime}">`)
   );
+
 // prikaz imena grada i opisa, sve se odnosi na jedan grad
 fetch(`/city/${id}`)
   .then(res => res.json())
   .then(
-    res =>
+    res => 
       (document.getElementById(
         "city-description"
       ).innerHTML = `<h1 class="h-25">${res[0].ime}</h1><p class="h-75 pr-3">${
         res[0].opis
-      }</p>`)
+      }</p>`)   
   );
 // prikaz hotela u tom gradu
 
@@ -41,7 +42,7 @@ fetch(`/hotels/${id}`)
   .then(res => {
     res.forEach(element => {
       display += `<li class="list-group-item list-group-item-primary mb-1">
-        <a href="accommodation.html?hotel-id=${element.id}">
+        <a href="accommodation.html?hotel-id=${element.id}&grad-id=${id}">
           <div class="row align-items-center text-center">
             <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
               <img class="d-block mx-auto" src="${

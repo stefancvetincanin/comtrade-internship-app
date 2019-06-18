@@ -103,62 +103,31 @@
           <div style="height:100%;background-color:#f5ba17" class="p-4">
             <div class="row">
               <div>
-                <h3>Ime grada</h3>
-                <h1>Naziv hotela</h1>
-                <div id="starsAccomod" class="align-items-center">*****</div>
-                <p class="h-25 ">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
-                  recusandae architecto at ducimus nesciunt eveniet labore
-                  distinctio quaerat dolor enim?
-                </p>
-                <button
-                  class="btn btn-primary d-inline-block mb-3"
-                  type="button"
-                  data-toggle="modal"
-                  data-target="#addFeed"
-                >
-                  Dodaj feed...
-                </button>
+                <h3 id="city-name"></h3>
+                <div id="hotel-description">
+                  
                 </div>
+              </div>
             </div>
             <div class="row align-items-center h-100">
               <div class="col-lg-5  h-100">
                 
-                <div
-                  id="carouselExampleControls"
-                  class="carousel slide"
-                  data-ride="carousel"
-                >
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                   <div class="carousel-inner">
                     <div class="carousel-item active ">
                       <div class="card col-lg-12 bg-light mb-4 px-4 py-3">
                         <div class="row card-body">
                           <div class="col-4">
-                            <img
-                              src="./media/images/nikola.png"
-                              class="rounded-circle"
-                              height="75px"
-                              alt=""
-                            />
+                            <img src="./media/images/nikola.png" class="rounded-circle" height="75px" alt=""/>
                           </div>
                           <div class="col-8">
                             <h4>Username</h4>
                             <div class="">
-                              <span class=""
-                                ><i class="text-warning fa fa-star"></i
-                              ></span>
-                              <span class=""
-                                ><i class="text-warning fa fa-star"></i
-                              ></span>
-                              <span class=""
-                                ><i class="text-warning fa fa-star"></i
-                              ></span>
-                              <span class=""
-                                ><i class="text-warning fa fa-star"></i
-                              ></span>
-                              <span class=""
-                                ><i class="text-warning fa fa-star"></i
-                              ></span>
+                              <span class=""><i class="text-warning fa fa-star"></i></span>
+                              <span class=""><i class="text-warning fa fa-star"></i></span>
+                              <span class=""><i class="text-warning fa fa-star"></i></span>
+                              <span class=""><i class="text-warning fa fa-star"></i></span>
+                              <span class=""><i class="text-warning fa fa-star"></i></span>
                             </div>
                           </div>
                         </div>
@@ -171,12 +140,7 @@
                         </div>
                         <div class="row justify-content-center">
                           <div class="w-50">
-                            <button
-                              class="btn btn-warning btn-block text-white"
-                              type="button"
-                              data-toggle="modal"
-                              data-target="#modalFeedback"
-                            >
+                            <button class="btn btn-warning btn-block text-white" type="button" data-toggle="modal" data-target="#modalFeedback">
                               More
                             </button>
                           </div>
@@ -187,12 +151,7 @@
                       <div class="card col-lg-12 bg-light mb-4 px-4 py-3">
                         <div class="row card-body">
                           <div class="col-4">
-                            <img
-                              src="./media/images/nikola.png"
-                              class="rounded-circle"
-                              height="75px"
-                              alt=""
-                            />
+                            <img src="./media/images/nikola.png" class="rounded-circle" height="75px" alt="" />
                           </div>
                           <div class="col-8">
                             <h4>Username</h4>
@@ -719,15 +678,6 @@
       <!-- FOOTER -->
     </div>
 
-    <script src="./js/city.js"></script>
-    <script>
-      $(".tab-item").click(function() {
-        $(".collapse").collapse("hide");
-      });
-
-      $(".carousel").carousel({
-        interval: 10000
-      });
-    </script>
+    <script src="./js/accommodation.js"></script>
   </body>
 </html>
