@@ -6,3 +6,7 @@
 #cityList li a:visited {
   text-decoration: none; 
 }
+.cityMainImg {
+  width: 100%;
+  object-fit: cover;
+}
