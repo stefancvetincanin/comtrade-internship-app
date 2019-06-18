@@ -12,15 +12,18 @@ function getParameter(paramName) {
   }
   return null;
 }
+
 let id = getParameter("grad-id");
+
 // ovaj fectch prikazuje sliku grada
 fetch(`/city/${id}`)
   .then(res => res.json())
   .then(
-    res =>
-      (document.getElementById("city-img").innerHTML = `<img src="${
+    res => {
+      document.getElementById("city-img").innerHTML = `<img src="${
         res[0].slika
-      }" class="ing-fluid" alt="${res[0].ime}">`)
+      }" class="ing-fluid" alt="${res[0].ime}">`
+    }
   );
 
 // prikaz imena grada i opisa, sve se odnosi na jedan grad
@@ -34,8 +37,8 @@ fetch(`/city/${id}`)
         res[0].opis
       }</p>`)   
   );
-// prikaz hotela u tom gradu
 
+// prikaz hotela u tom gradu
 let display = "";
 fetch(`/hotels/${id}`)
   .then(res => res.json())
@@ -64,6 +67,7 @@ fetch(`/hotels/${id}`)
       document.getElementById("topAccomodations").innerHTML = display;
     });
   });
+
 let displayAttr = "";
 fetch(`/attractions/${id}`)
   .then(res => res.json())
@@ -123,3 +127,36 @@ function stringDate(currDate) {
   return `${dd}/${mm}/${currDate.getFullYear()}`;
 }
 
+// weather
+
+// Event listeners
+document.addEventListener('DOMContentLoaded', getData);
+
+const apiKey = '4557aae956939ce49a2fe6d480b1d84d';
+
+const desc = document.getElementById('description');
+const string = document.getElementById('stringWeather');
+    // const humidity = document.getElementById('humidity');
+    // const pressure = document.getElementById('pressure');
+    // const wind = document.getElementById('wind');
+
+function getData() {
+  fetch(`/city/${id}`)
+  .then(res => res.json())
+  .then(res => {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${res[0].ime},${res[0].country_code}&units=metric&APPID=${apiKey}`)
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      print(data);
+    }) 
+  });
+}
+
+function print(data) {    
+  desc.innerHTML = data.weather[0].description;
+  string.innerHTML = `${data.main.temp.toFixed(1)}&nbsp;`; 
+    //humidity.textContent = `${weather.main.humidity} %`;
+    //pressure.textContent = `${weather.main.pressure} mbar`;
+    //wind.textContent = `${weather.wind.speed} m/s`
+}
