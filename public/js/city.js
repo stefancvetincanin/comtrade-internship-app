@@ -16,8 +16,7 @@ let id = getParameter("grad-id");
 // ovaj fectch prikazuje sliku grada
 fetch(`/city/${id}`)
   .then(res => res.json())
-  .then(
-    res =>
+  .then(res =>
       (document.getElementById("city-img").innerHTML = `<img src="${
         res[0].slika
       }" class="ing-fluid" alt="${res[0].ime}">`)
@@ -26,12 +25,16 @@ fetch(`/city/${id}`)
 fetch(`/city/${id}`)
   .then(res => res.json())
   .then(
-    res =>
+    res => {
       (document.getElementById(
         "city-description"
-      ).innerHTML = `<h1 class="h-25">${res[0].ime}</h1><p class="h-75 pr-3">${
+      ).innerHTML = `<h1 class="cityHeadline" >${res[0].ime}</h1><p class="cityText pr-3"  id="content">${
         res[0].opis
-      }</p>`)
+      }</p>`
+      
+      )
+      minimizedElements();
+    }
   );
 // prikaz hotela u tom gradu
 
@@ -122,3 +125,43 @@ function stringDate(currDate) {
   return `${dd}/${mm}/${currDate.getFullYear()}`;
 }
 
+//less and more text
+function minimizedElements () {
+let minimized_elements = $("#content");
+console.log(minimized_elements.value);
+
+     minimized_elements.each(function() {
+       let t = $(this).text();
+       if (t.length < 200) return;
+
+       $(this).html(
+         t.slice(0, 200) +
+           '<span>... </span><a href="#" class="more">More</a>' +
+           '<span style="display:none;">' +
+           t.slice(300, t.length) +
+           ' <a href="#" class="less">Less</a></span>'
+       );
+     });
+
+     $("a.more", minimized_elements).click(function(event) {
+       event.preventDefault();
+       $(this)
+         .hide()
+         .prev()
+         .hide();
+       $(this)
+         .next()
+         .show();
+     });
+
+     $("a.less", minimized_elements).click(function(event) {
+       event.preventDefault();
+       $(this)
+         .parent()
+         .hide()
+         .prev()
+         .show()
+         .prev()
+         .show();
+     });
+    };
