@@ -1,26 +1,4 @@
-let display = '';
-fetch('/cities')
-  .then(res => res.json())
-  .then(res => {
-      res.forEach(element => {
-        display += `<li class="list-group-item list-group-item-primary mb-1">
-                <a href="city.html?grad-id=${element.id}">
-                  <div class="row align-items-center text-center">
-                  <div class="col-lg-12">
-                          <img class="cityMainImg" src="${element.slika}" height="100px" alt="${element.ime}">
-                      </div>
-                      <div class="col-lg-12">
-                          <h1 class="text-center">${element.ime}</h1>
-                          <p id="descriptionCity" class="text-left">${element.opis}</p>
-                      </div>
-                  </div>   
-                </a>     
-              </li>`
-              document.getElementById('cityList').innerHTML = display;
-      });
-  });
 
-  
 let user = JSON.parse(sessionStorage.getItem('loggedUser'));
 
 if (user) {
