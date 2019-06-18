@@ -136,9 +136,9 @@ const apiKey = '4557aae956939ce49a2fe6d480b1d84d';
 
 const desc = document.getElementById('description');
 const string = document.getElementById('stringWeather');
-    // const humidity = document.getElementById('humidity');
-    // const pressure = document.getElementById('pressure');
-    // const wind = document.getElementById('wind');
+const humidity = document.getElementById('humidity');
+const pressure = document.getElementById('pressure');
+const wind = document.getElementById('wind');
 
 function getData() {
   fetch(`/city/${id}`)
@@ -156,7 +156,7 @@ function getData() {
 function print(data) {    
   desc.innerHTML = data.weather[0].description;
   string.innerHTML = `${data.main.temp.toFixed(1)}&nbsp;`; 
-    //humidity.textContent = `${weather.main.humidity} %`;
-    //pressure.textContent = `${weather.main.pressure} mbar`;
-    //wind.textContent = `${weather.wind.speed} m/s`
+  humidity.textContent = `${data.main.humidity} %`;
+  pressure.textContent = `${data.main.pressure} mbar`;
+  wind.textContent = `${data.wind.speed} m/s`
 }
