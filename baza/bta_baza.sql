@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 18, 2019 at 09:52 AM
+-- Generation Time: Jun 18, 2019 at 01:25 PM
 -- Server version: 10.1.40-MariaDB
 -- PHP Version: 7.3.5
 
@@ -43,7 +43,16 @@ CREATE TABLE `feedback_grad` (
 --
 
 INSERT INTO `feedback_grad` (`id`, `grad_id`, `korisnici_id`, `rating`, `naziv`, `opis`, `datum`) VALUES
-(1, 14, 2, '4', 'Obavezno probati masline.', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.', '2019-06-16 20:38:16');
+(1, 14, 2, '4', 'Obavezno probati masline.', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.', '2019-06-16 20:38:16'),
+(2, 15, 2, '3', 'Lorem ipsum dolor sit amet.', 'Nulla ac ipsum vel magna lobortis varius vel nec libero. Curabitur sagittis non nunc vel sollicitudin. Sed eu pretium nisl. Ut sollicitudin enim quam, rhoncus gravida ligula maximus eget. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.', '2019-06-18 08:02:36'),
+(3, 16, 2, '5', 'Ut sollicitudin enim quam.', 'Nulla ac ipsum vel magna lobortis varius vel nec libero. Curabitur sagittis non nunc vel sollicitudin. Sed eu pretium nisl. Ut sollicitudin enim quam, rhoncus gravida ligula maximus eget.', '2019-06-18 08:03:55'),
+(4, 17, 1, '5', 'Ut sollicitudin enim quam.', 'Nulla ac ipsum vel magna lobortis varius vel nec libero. Curabitur sagittis non nunc vel sollicitudin. Sed eu pretium nisl. Ut sollicitudin enim quam, rhoncus gravida ligula maximus eget. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.', '2019-06-18 08:04:16'),
+(5, 18, 3, '3', 'Ut sollicitudin enim quam.', 'Vivamus faucibus nisi sed mi vehicula aliquet. Maecenas imperdiet sapien id pharetra efficitur. Nullam nisl sem, elementum vitae metus eu, pretium condimentum urna. In efficitur molestie consequat. Praesent congue viverra augue, quis euismod nisi cursus nec.', '2019-06-18 08:15:01'),
+(6, 19, 4, '2', 'Lorem ipsum text.', 'Vivamus faucibus nisi sed mi vehicula aliquet. Maecenas imperdiet sapien id pharetra efficitur. Nullam nisl sem, elementum vitae metus eu, pretium condimentum urna. In efficitur molestie consequat. Praesent congue viverra augue, quis euismod nisi cursus nec.', '2019-06-18 08:15:58'),
+(7, 20, 5, '5', 'Ut sollicitudin enim quam.', 'Vivamus faucibus nisi sed mi vehicula aliquet. Maecenas imperdiet sapien id pharetra efficitur. Nullam nisl sem, elementum vitae metus eu, pretium condimentum urna. In efficitur molestie consequat. Praesent congue viverra augue, quis euismod nisi cursus nec.', '2019-06-18 08:16:15'),
+(8, 21, 3, '5', 'The city of light.', 'Aenean elementum malesuada erat, condimentum pellentesque turpis condimentum non. Cras condimentum libero eget felis porttitor porta. Mauris tempor elit non elit tincidunt, a ultricies ex scelerisque. Pellentesque et nisi a erat pulvinar consectetur. Nam in gravida odio, non posuere diam. Nullam non dictum ante.', '2019-06-18 08:16:48'),
+(9, 22, 5, '3', 'Ut sollicitudin enim quam.', 'Aenean elementum malesuada erat, condimentum pellentesque turpis condimentum non. Cras condimentum libero eget felis porttitor porta. Mauris tempor elit non elit tincidunt, a ultricies ex scelerisque. Pellentesque et nisi a erat pulvinar consectetur. Nam in gravida odio, non posuere diam. Nullam non dictum ante. ', '2019-06-18 08:17:23'),
+(10, 23, 4, '4', 'Lorem ipsum text.', 'Aenean elementum malesuada erat, condimentum pellentesque turpis condimentum non. Cras condimentum libero eget felis porttitor porta. Mauris tempor elit non elit tincidunt, a ultricies ex scelerisque. Pellentesque et nisi a erat pulvinar consectetur. Nam in gravida odio, non posuere diam. Nullam non dictum ante. ', '2019-06-18 08:17:39');
 
 -- --------------------------------------------------------
 
@@ -235,7 +244,16 @@ CREATE TABLE `komentari_grad` (
 --
 
 INSERT INTO `komentari_grad` (`id`, `korisnici_id`, `feedback_grad_id`, `text`, `datum`) VALUES
-(1, 1, 1, 'Nulla imperdiet nisl eget nibh aliquam, ut luctus dui vehicula. In vitae auctor leo, faucibus laoreet lacus. Mauris mollis mattis congue.', '2019-06-16 21:07:32');
+(1, 1, 1, 'Nulla imperdiet nisl eget nibh aliquam, ut luctus dui vehicula. In vitae auctor leo, faucibus laoreet lacus. Mauris mollis mattis congue.', '2019-06-16 21:07:32'),
+(2, 2, 2, 'Aenean elementum malesuada erat, condimentum pellentesque turpis condimentum non. Cras condimentum libero eget felis porttitor porta. Mauris tempor elit non elit tincidunt, a ultricies ex scelerisque.', '2019-06-18 08:22:22'),
+(3, 3, 3, 'Aenean elementum malesuada erat, condimentum pellentesque turpis condimentum non. Cras condimentum libero eget felis porttitor porta. Mauris tempor elit non elit tincidunt, a ultricies ex scelerisque.', '2019-06-18 08:22:31'),
+(4, 4, 4, 'Aenean elementum malesuada erat, condimentum pellentesque turpis condimentum non. Cras condimentum libero eget felis porttitor porta. Mauris tempor elit non elit tincidunt, a ultricies ex scelerisque.', '2019-06-18 08:22:44'),
+(5, 5, 5, 'Aenean elementum malesuada erat, condimentum pellentesque turpis condimentum non. Cras condimentum libero eget felis porttitor porta. Mauris tempor elit non elit tincidunt, a ultricies ex scelerisque.', '2019-06-18 08:26:00'),
+(6, 1, 6, 'Aenean elementum malesuada erat, condimentum pellentesque turpis condimentum non. Cras condimentum libero eget felis porttitor porta. Mauris tempor elit non elit tincidunt, a ultricies ex scelerisque.', '2019-06-18 08:26:08'),
+(7, 2, 7, 'Aenean elementum malesuada erat, condimentum pellentesque turpis condimentum non. Cras condimentum libero eget felis porttitor porta. Mauris tempor elit non elit tincidunt, a ultricies ex scelerisque.', '2019-06-18 08:26:15'),
+(8, 3, 8, 'Aenean elementum malesuada erat, condimentum pellentesque turpis condimentum non. Cras condimentum libero eget felis porttitor porta. Mauris tempor elit non elit tincidunt, a ultricies ex scelerisque.', '2019-06-18 08:26:21'),
+(9, 4, 9, 'Aenean elementum malesuada erat, condimentum pellentesque turpis condimentum non. Cras condimentum libero eget felis porttitor porta. Mauris tempor elit non elit tincidunt, a ultricies ex scelerisque.', '2019-06-18 08:26:28'),
+(10, 5, 10, 'Aenean elementum malesuada erat, condimentum pellentesque turpis condimentum non. Cras condimentum libero eget felis porttitor porta.', '2019-06-18 08:26:38');
 
 -- --------------------------------------------------------
 
@@ -273,7 +291,29 @@ CREATE TABLE `korisnici` (
 
 INSERT INTO `korisnici` (`id`, `username`, `password`, `ime`, `prezime`, `admin`, `slika`) VALUES
 (1, 'superadmin', 'password', 'Bojan', 'Bojanic', 1, 'https://randomuser.me/api/portraits/men/11.jpg'),
-(2, 'pepe', 'password', 'Petar', 'Petrovic', 0, 'https://randomuser.me/api/portraits/men/12.jpg');
+(2, 'pepe', 'password', 'Petar', 'Petrovic', 0, 'https://randomuser.me/api/portraits/men/12.jpg'),
+(3, 'jojo', 'password', 'Jovana', 'Jovanovic', 0, 'https://randomuser.me/api/portraits/women/68.jpg'),
+(4, 'scrummaster', 'password', 'Dragan', 'Draganic', 0, 'https://randomuser.me/api/portraits/men/68.jpg'),
+(5, 'direktor', 'password', 'Milica', 'Milivojevic', 1, 'https://randomuser.me/api/portraits/women/49.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `login_tabela`
+--
+
+CREATE TABLE `login_tabela` (
+  `id` int(11) NOT NULL,
+  `korisnici_id` int(11) NOT NULL,
+  `web_token` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `login_tabela`
+--
+
+INSERT INTO `login_tabela` (`id`, `korisnici_id`, `web_token`) VALUES
+(1, 1, '32106340superadmin');
 
 -- --------------------------------------------------------
 
@@ -532,6 +572,13 @@ ALTER TABLE `korisnici`
   ADD UNIQUE KEY `username` (`username`);
 
 --
+-- Indexes for table `login_tabela`
+--
+ALTER TABLE `login_tabela`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `korisnici_id` (`korisnici_id`);
+
+--
 -- Indexes for table `slike_hotela`
 --
 ALTER TABLE `slike_hotela`
@@ -553,7 +600,7 @@ ALTER TABLE `znamenitosti`
 -- AUTO_INCREMENT for table `feedback_grad`
 --
 ALTER TABLE `feedback_grad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `feedback_hotel`
@@ -571,7 +618,7 @@ ALTER TABLE `grad`
 -- AUTO_INCREMENT for table `komentari_grad`
 --
 ALTER TABLE `komentari_grad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `komentari_hotel`
@@ -583,7 +630,13 @@ ALTER TABLE `komentari_hotel`
 -- AUTO_INCREMENT for table `korisnici`
 --
 ALTER TABLE `korisnici`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `login_tabela`
+--
+ALTER TABLE `login_tabela`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `znamenitosti`
@@ -628,6 +681,12 @@ ALTER TABLE `komentari_grad`
 ALTER TABLE `komentari_hotel`
   ADD CONSTRAINT `komentari_hotel_ibfk_1` FOREIGN KEY (`feedback_hotel_id`) REFERENCES `feedback_hotel` (`id`),
   ADD CONSTRAINT `komentari_hotel_ibfk_2` FOREIGN KEY (`korisnici_id`) REFERENCES `korisnici` (`id`);
+
+--
+-- Constraints for table `login_tabela`
+--
+ALTER TABLE `login_tabela`
+  ADD CONSTRAINT `login_tabela_ibfk_1` FOREIGN KEY (`korisnici_id`) REFERENCES `korisnici` (`id`);
 
 --
 -- Constraints for table `slike_hotela`

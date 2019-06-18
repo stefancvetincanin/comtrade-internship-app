@@ -36,15 +36,15 @@ app.use(router)
   ===============================
 ***/
 
-// let brojac = 1
+// let brojacId = 1
 // hotels.forEach(grad => {
 //   // console.log(grad.id)
 //   grad[Object.keys(grad)[1]].forEach(hotel => {
 //     // console.log(hotel.img);
 //     // console.log(brojac)
-//     baza.execQuery(`INSERT INTO slike_hotela(id, hotel_id, url_slike) VALUES (${mysql.escape(brojac)}, ${mysql.escape(brojac)}, ${mysql.escape(hotel.img)})`, function (results) {
+//     baza.execQuery(`INSERT INTO slike_hotela(id, hotel_id, url_slike) VALUES (${mysql.escape(brojacId)}, ${mysql.escape(brojac)}, ${mysql.escape(hotel.img)})`, function (results) {
 //     })
-//     brojac++
+//     brojacId++
 //   })
 // })
 
