@@ -5,13 +5,13 @@ git cheat sheet:<br>
 https://www.git-tower.com/blog/git-cheat-sheet<br>
 <br>
 Uvek radite na svojoj grani, nikad na masteru!<br>
-Na pocetku radnog dana uvek updateujemo master granu sa trenutnom verzijom:<br>
+Na pocetku radnog dana uvek updateujemo lokalnu master granu sa remote verzijom:<br>
 1. Preci na master granu i povuci najnoviju verziju:
 <pre>
  git checkout master
  git pull
 </pre>
-2. Preci na licnu granu, pullovati najnoviju verziju nje i spojiti sa masterom:
+2. Preci na licnu granu, povuci najnoviju verziju nje i spojiti sa masterom:
 <pre>
  git checkout &lt;ime-grane&gt;
  git pull
