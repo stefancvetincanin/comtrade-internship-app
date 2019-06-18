@@ -20,7 +20,7 @@ const dbData = {
   user: 'root',
   password: '',
   database: 'bta_baza',
-  connectionLimit: 1000,
+  connectionLimit: 10000,
   debug: false
 }
 
@@ -36,18 +36,48 @@ app.use(router)
   ===============================
 ***/
 
-// let brojacId = 1
+// dodavanje slike u slike hotela, jedna po hotelu
+// let brojacIdSlike = 1
+// let brojacHotel = 1
 // hotels.forEach(grad => {
 //   // console.log(grad.id)
 //   grad[Object.keys(grad)[1]].forEach(hotel => {
 //     // console.log(hotel.img);
 //     // console.log(brojac)
-//     baza.execQuery(`INSERT INTO slike_hotela(id, hotel_id, url_slike) VALUES (${mysql.escape(brojacId)}, ${mysql.escape(brojac)}, ${mysql.escape(hotel.img)})`, function (results) {
+//     baza.execQuery(`INSERT INTO slike_hotela(id, hotel_id, url_slike) VALUES (${mysql.escape(brojacIdSlike)}, ${mysql.escape(brojacIdSlike)}, ${mysql.escape(hotel.img)})`, function (results) {
 //     })
-//     brojacId++
+//     brojacIdSlike++
 //   })
 // })
 
+// dodavanje slika u slike hotela, 5 po hotelu
+// let brojacIdSlike = 451
+// let brojacHotel = 91
+// hotels[9].moscow.forEach(hotel => {
+//   for (let index = 0; index < 5; index++) {
+//     // console.log(hotel.images[index])
+//     baza.execQuery(`INSERT INTO slike_hotela(id, hotel_id, url_slike) VALUES (${mysql.escape(brojacIdSlike)}, ${mysql.escape(brojacHotel)}, ${mysql.escape(hotel.images[index])})`, function (results) {
+//     })
+//     brojacIdSlike++
+//   }
+//   brojacHotel++
+// })
+
+//dodavanje slike u hotel u polje url_slike
+// let brojacIdSlike = 1
+// // let brojacHotel = 1
+// hotels.forEach(grad => {
+//   // console.log(grad.id)
+//   grad[Object.keys(grad)[1]].forEach(hotel => {
+//     // console.log(hotel.img);
+//     // console.log(brojac)
+//     baza.execQuery(`UPDATE hotel SET url_slike=${mysql.escape(hotel.img)} WHERE id = ${mysql.escape(brojacIdSlike)}`, function (results) {
+//     })
+//     brojacIdSlike++
+//   })
+// })
+
+// dodavanje hotela
 // let brojac = 1
 // hotels.forEach(grad => {
 //   grad[Object.keys(grad)[1]].forEach(hotel => {
@@ -57,23 +87,16 @@ app.use(router)
 //   })
 // })
 
-// console.log(hotels[Object.keys(hotels)[0]])
-
-// cities.forEach(element => {
-//   element.things_to_do.forEach(znamen => {
-//     console.log(element.id)
-//     console.log(znamen.name)
-//   })
-// });
-
-// cities.forEach(element => {
-//   element.things_to_do.forEach(znamen => {
-//     baza.execQuery(`INSERT INTO znamenitosti(grad_id, naziv, slika, opis, latitude, longitude) VALUES (${mysql.escape(element.id)}, ${mysql.escape(znamen.name)}, ${mysql.escape(znamen.img)}, ${mysql.escape(znamen.description)}, ${mysql.escape(znamen.lat)}, ${mysql.escape(znamen.lng)})`, function(results) {
+// dodavanje znamenitosti
+// cities.forEach(grad => {
+//   grad.things_to_do.forEach(znamen => {
+//     baza.execQuery(`INSERT INTO znamenitosti(grad_id, naziv, slika, opis, latitude, longitude) VALUES (${mysql.escape(grad.id)}, ${mysql.escape(znamen.name)}, ${mysql.escape(znamen.img)}, ${mysql.escape(znamen.description)}, ${mysql.escape(znamen.lat)}, ${mysql.escape(znamen.lng)})`, function(results) {
 //       console.log(results)
 //     })
 //   })
 // })
 
+// dodavanje gradova
 // cities.forEach(element => {
 //   baza.execQuery(`INSERT INTO grad(ime, opis, slika, latitude, longitude) VALUES (${mysql.escape(element.city_name)}, ${mysql.escape(element.description)}, ${mysql.escape(element.img)}, ${mysql.escape(element.lat)}, ${mysql.escape(element.lng)})`, function(results) {
 //     console.log(results)

@@ -43,7 +43,7 @@
       {
         "name": "Retiro",
         "description": "This historic district can’t be missed. Loop around Retiro Park – once the royal family’s private garden, it’s full of lavish monuments and tree-lined avenues. People-watch on Paseo del Prado boulevard, filled with joggers, street vendors and locals, then spend a few hours exploring El Prado Museum’s important collection of paintings.",
-        "img": "https://q-ak.bstatic.com/xdata/images/district/max550/52827.webp?k=50825d772a0c23978cb7325f54a3f501acca6214ea50e8ef967652909eeabbe4&o=",
+        "img": "https://q-ak.bstatic.com/xdata/images/district/max1024x768/52827.webp?k=50825d772a0c23978cb7325f54a3f501acca6214ea50e8ef967652909eeabbe4&o=",
         "lat": 40.408065,
         "lng": -3.693607
       }
@@ -95,14 +95,14 @@
       {
         "name": "Aventino",
         "description": "Aventino is known for its medieval churches. The Bocca della Verità (the 'mouth of truth') is right at the entrance to Santa Maria in Cosmedin church. The Rose Garden contains 1100 varieties of roses, and nearby you’ll find Circus Maximus, an ancient Roman chariot-racing stadium.",
-        "img": "https://r-ak.bstatic.com/xdata/images/district/max550/48322.webp?k=5bb9a09026f8ab3d3f7386b54483bd38ff8f2b426688599863c6687b3cb7423d&o=",
+        "img": "https://r-ak.bstatic.com/xdata/images/district/max1024x768/48322.webp?k=5bb9a09026f8ab3d3f7386b54483bd38ff8f2b426688599863c6687b3cb7423d&o=",
         "lat": 41.882497,
         "lng": 12.468885
       },
       {
         "name": "Trastevere",
         "description": "Trastevere is filled with narrow, winding streets. Piazza di Santa Maria in Trastevere has plenty of lively pubs, restaurants and clubs. Head to the lookout at Piazzale Garibaldi on Janiculum Hill for a city vista, or shop for clothes and accessories on Viale Trastevere. On Sundays, visit Porta Portese flea market.",
-        "img": "https://q-ak.bstatic.com/xdata/images/district/max550/38908.webp?k=605e24238436186e0891217524e3b896cdd8f232c05245d72ebc8ac6f5953043&o=",
+        "img": "https://q-ak.bstatic.com/xdata/images/district/max1024x768/38908.webp?k=605e24238436186e0891217524e3b896cdd8f232c05245d72ebc8ac6f5953043&o=",
         "lat": 41.891179,
         "lng": 12.459316
       }
@@ -147,7 +147,7 @@
       {
         "name": "Oud Zuid",
         "description": "The 'Old South' is Amsterdam’s most elegant neighborhood, with a mix of commercial and residential areas. The luxurious PC Hooftstraat features designer-label clothing and accessories, and a stroll along the Northern Amstel Canal will take you to one of the many parks in the area.",
-        "img": "https://q-ak.bstatic.com/xdata/images/district/max550/44390.webp?k=fbd6d7855ae6973b8236dd3ebcb36e9d1d2739563c114ddde644672fbb8f9114&o=",
+        "img": "https://q-ak.bstatic.com/xdata/images/district/max1024x768/44390.webp?k=fbd6d7855ae6973b8236dd3ebcb36e9d1d2739563c114ddde644672fbb8f9114&o=",
         "lat": 52.350295,
         "lng": 4.858702
       }
@@ -199,14 +199,14 @@
       {
         "name": "Ciutat Vella",
         "description": "Ciutat Vella ('Old City') is comprised of several neighborhoods: Barri Gòtic, Raval, El Born and Barceloneta (all in more detail in separate descriptions). As a whole, the district’s characteristic features include narrow, winding streets that reach from Las Ramblas to the coast.",
-        "img": "https://r-ak.bstatic.com/xdata/images/district/max550/54819.webp?k=80d0f712430fd3125a34e5835e55befd19c05338b751f8b396b1c9997d10b581&o=",
+        "img": "https://r-ak.bstatic.com/xdata/images/district/max1024x768/54819.webp?k=80d0f712430fd3125a34e5835e55befd19c05338b751f8b396b1c9997d10b581&o=",
         "lat": 41.376873,
         "lng": 2.163100
       },
       {
         "name": "Eixample",
         "description": "L’Eixample’s large, grid-like avenues (modeled after New York) are easy to navigate. Passeig de Gràcia (in the center) is a tourist hot-spot, with Gaudí's Casa Batlló and La Pedrera, as well as Puig i Cadafalch's Casa Amatller within easy reach. Carrer Balmes is a safe and tolerant area for all kinds of travelers.",
-        "img": "https://q-ak.bstatic.com/xdata/images/district/max550/37908.webp?k=52ec38815dc1e3a1a3bd716bcd21161e635ad6322f63b46421ab87c19449ba74&o=",
+        "img": "https://q-ak.bstatic.com/xdata/images/district/max1024x768/37908.webp?k=52ec38815dc1e3a1a3bd716bcd21161e635ad6322f63b46421ab87c19449ba74&o=",
         "lat": 41.393511,
         "lng": 2.147176
       }
@@ -251,7 +251,7 @@
       {
         "name": "Leopoldstadt",
         "description": "This district features two of Vienna’s biggest draws in one place: the Prater Park and its giant Ferris Wheel. A fairly traditional neighborhood, with many synagogues and kosher shops that cater to the largely Jewish population. On Saturdays, visit the bustling Karmeliter Market for food and contemporary art.",
-        "img": "https://q-ak.bstatic.com/xdata/images/district/max550/45737.webp?k=1af7d85387fdd3f8ce3aa23a4c56927d1cd97e51ab528d0dcee323e6fab79f6a&o=",
+        "img": "https://q-ak.bstatic.com/xdata/images/district/max1024x768/45737.webp?k=1af7d85387fdd3f8ce3aa23a4c56927d1cd97e51ab528d0dcee323e6fab79f6a&o=",
         "lat": 48.203859,
         "lng": 16.392258
       }
@@ -302,7 +302,7 @@
       {
         "name": "Charlottenburg",
         "description": "This arty district is home to affluent city-dwellers. There’s a bucolic feel to the lush grounds of the Charlottenburg Palace, which houses a collection of opulent treasures. Kaiser-Wilhelm Memorial Church is a haunting place to spend an afternoon, followed by a splurge at KaDeWe – Continental Europe’s largest department store.",
-        "img": "https://q-ak.bstatic.com/xdata/images/district/max550/44402.webp?k=ccf8f672e3533ba7fe512b9c31be3cd51f378c664ac7c5582d29d717d13a671f&o=",
+        "img": "https://q-ak.bstatic.com/xdata/images/district/max1024x768/44402.webp?k=ccf8f672e3533ba7fe512b9c31be3cd51f378c664ac7c5582d29d717d13a671f&o=",
         "lat": 52.515641,
         "lng": 13.276044
       }
@@ -353,7 +353,7 @@
       {
         "name": "Kensington",
         "description": "Kensington is a mix of residential and commercial areas that ooze class. Stretching from Old Brompton Road to Kensington High Street, you’ll find bistros, cafés and boutiques galore. Stop to admire Kensington Palace, or visit the nearby Victoria and Albert and Natural History Museums. The streets around Holland Park are perfect for walking.",
-        "img": "https://q-ak.bstatic.com/xdata/images/district/max550/37892.webp?k=66e78f2e313551fb1d1fefe698b69d3f7c9ef4d763e006f0286220f129917d63&o=",
+        "img": "https://q-ak.bstatic.com/xdata/images/district/max1024x768/37892.webp?k=66e78f2e313551fb1d1fefe698b69d3f7c9ef4d763e006f0286220f129917d63&o=",
         "lat": 51.495929,
         "lng": -0.210027
       }
@@ -404,7 +404,7 @@
       {
         "name": "1st arr.",
         "description": "Many visitors head straight for the Louvre, but it's worth exploring the other landmarks, museums, shops, restaurants and bars that make up this small district on the right bank of the River Seine. The area also includes the western part of the Île de la Cité. Don’t miss the Orangerie Museum, Sainte Chapelle or the Palais Royal Gardens.",
-        "img": "https://q-ak.bstatic.com/xdata/images/district/max550/42035.webp?k=8e4c3ad81d68dc89dd78ba64740f0294de8d4f7ac832df63445667fbd5e65b2a&o=",
+        "img": "https://q-ak.bstatic.com/xdata/images/district/max1024x768/42035.webp?k=8e4c3ad81d68dc89dd78ba64740f0294de8d4f7ac832df63445667fbd5e65b2a&o=",
         "lat": 48.862012,
         "lng": 2.327166
       }
@@ -455,7 +455,7 @@
       {
         "name": "Old City Sultanahmet",
         "description": "Begin your adventure in Sultanahmet Square, gateway to the historic centre. In Topkapi Palace, Byzantine artefacts sparkle through the display cases as light beams in. Hagia Sophia’s mosaics are time worn, reflecting the history of a space that has been both mosque and church across 1.5 millennia. Zany bars and cosy cafes beckon you.",
-        "img": "https://q-ak.bstatic.com/xdata/images/district/max550/37938.webp?k=73a06465b3e8f8da218b73fc465a05433cdf0f4771ebbb6726047bb8b2ff3361&o=",
+        "img": "https://q-ak.bstatic.com/xdata/images/district/max1024x768/37938.webp?k=73a06465b3e8f8da218b73fc465a05433cdf0f4771ebbb6726047bb8b2ff3361&o=",
         "lat": 41.006602,
         "lng": 28.968433
       }
@@ -506,7 +506,7 @@
       {
         "name": "Zamoskvorechye",
         "description": "Wind back your pocket watch and get lost in Soviet-era glamour. Zamoskvorechye’s faded beauty comes into focus as you wind through the streets. Every turn reveals dramatic neo-classical architecture. The State Tretyakov Gallery is an essential stop for lovers of fine art, consistently ranked among Russia’s best collections.",
-        "img": "https://q-ak.bstatic.com/xdata/images/district/max550/46846.webp?k=548f9f8a568b744104b7467ab35e56502108cb9ad25153383e155d212b4b2056&o=",
+        "img": "https://q-ak.bstatic.com/xdata/images/district/max1024x768/46846.webp?k=548f9f8a568b744104b7467ab35e56502108cb9ad25153383e155d212b4b2056&o=",
         "lat": 55.735018,
         "lng": 37.599375
       }
