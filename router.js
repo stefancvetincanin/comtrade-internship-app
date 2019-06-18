@@ -5,7 +5,7 @@ module.exports = function(express, baza) {
   // login funkcija
   router.get('/login/*/*', function (req, res) {
     // console.log(req.params)
-    baza.execQuery(`SELECT id, username, ime, prezime, admin, slika FROM korisnici WHERE username = '${req.params['0']}' AND password = '${req.params['1']}'`, function(results) {
+    baza.execQuery(`SELECT id, username, ime, prezime, admin, slika FROM korisnici WHERE username = ${mysql.escape(req.params['0'])} AND password = ${mysql.escape(req.params['1'])}`, function(results) {
       // console.log('Korisnik je:')
       // console.log(results)
       res.send(results)
@@ -14,7 +14,7 @@ module.exports = function(express, baza) {
 
   // login funkcija, pravilan metod
   router.post('/login', function (req, res) {
-    baza.execQuery(`SELECT id, username, ime, prezime, admin, slika FROM korisnici WHERE username = '${req.body.username}' AND password = '${req.body.password}'`, function (results) {
+    baza.execQuery(`SELECT id, username, ime, prezime, admin, slika FROM korisnici WHERE username = ${mysql.escape(req.body.username)} AND password = ${mysql.escape(req.body.password)}`, function (results) {
       if(results.length > 0) {
         res.send(results)
       }
@@ -34,7 +34,7 @@ module.exports = function(express, baza) {
 
   // nabavi grad sa trazenim id-em
   router.get('/city/*', function (req, res) {
-    baza.execQuery(`SELECT * FROM grad WHERE id = '${req.params[0]}'`, function(results) {
+    baza.execQuery(`SELECT * FROM grad WHERE id = ${mysql.escape(req.params[0])}`, function(results) {
       // console.log(results)
       res.send(results)
     })
@@ -43,7 +43,16 @@ module.exports = function(express, baza) {
   // nabavi spisak hotela u nekom gradu, gde je req.params id grada u kome se nalaze
   router.get('/hotels/*', function (req, res) {
     // console.log(req.params)
-    baza.execQuery(`SELECT * FROM hotel INNER JOIN slike_hotela ON hotel.id = slike_hotela.hotel_id WHERE grad_id='${req.params['0']}'`, function(results) {
+    baza.execQuery(`SELECT * FROM hotel INNER JOIN slike_hotela ON hotel.id = slike_hotela.hotel_id WHERE grad_id=${mysql.escape(req.params['0'])}`, function(results) {
+      // console.log(results)
+      res.send(results)
+    })
+  })
+
+  // nabavi hotel gde je req.params id hotela
+  router.get('/hotel/*', function (req, res) {
+    // console.log(req.params)
+    baza.execQuery(`SELECT * FROM hotel INNER JOIN slike_hotela ON hotel.id = slike_hotela.hotel_id WHERE hotel.id=${mysql.escape(req.params['0'])}`, function(results) {
       // console.log(results)
       res.send(results)
     })
@@ -52,7 +61,7 @@ module.exports = function(express, baza) {
   // nabavi spisak znamenitosti u nekom gradu, gde je req.params id grada u kome se nalaze
   router.get('/attractions/*', function (req, res) {
     // console.log(req.params)
-    baza.execQuery(`SELECT * FROM znamenitosti WHERE grad_id='${req.params['0']}'`, function(results) {
+    baza.execQuery(`SELECT * FROM znamenitosti WHERE grad_id=${mysql.escape(req.params['0'])}`, function(results) {
       // console.log(results)
       res.send(results)
     })
@@ -61,7 +70,7 @@ module.exports = function(express, baza) {
   // nabavi sav feedback za neki grad, gde je req.params id relevantnog grada
   router.get('/feedback-grad/*', function (req, res) {
     // console.log(req.params)
-    baza.execQuery(`SELECT korisnici.username, korisnici.ime, korisnici.prezime, korisnici.slika, feedback_grad.rating, feedback_grad.naziv, feedback_grad.opis, feedback_grad.datum FROM feedback_grad INNER JOIN korisnici on feedback_grad.korisnici_id = korisnici.id WHERE feedback_grad.grad_id = '${req.params['0']}'`, function(results) {
+    baza.execQuery(`SELECT korisnici.username, korisnici.ime, korisnici.prezime, korisnici.slika, feedback_grad.rating, feedback_grad.naziv, feedback_grad.opis, feedback_grad.datum FROM feedback_grad INNER JOIN korisnici on feedback_grad.korisnici_id = korisnici.id WHERE feedback_grad.grad_id = ${mysql.escape(req.params['0'])}`, function(results) {
       // console.log(results)
       res.send(results)
     })
@@ -72,7 +81,7 @@ module.exports = function(express, baza) {
     // console.log(req.params)
     baza.execQuery(`SELECT korisnici.username, korisnici.ime, korisnici.prezime, korisnici.slika, komentari_grad.text, komentari_grad.datum
     FROM komentari_grad INNER JOIN korisnici on korisnici.id = komentari_grad.korisnici_id 
-    WHERE komentari_grad.feedback_grad_id = '${req.params['0']}'`, function(results) {
+    WHERE komentari_grad.feedback_grad_id = ${mysql.escape(req.params['0'])}`, function(results) {
       // console.log(results)
       res.send(results)
     })
