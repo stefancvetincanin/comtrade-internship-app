@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 18, 2019 at 11:13 AM
+-- Generation Time: Jun 18, 2019 at 01:25 PM
 -- Server version: 10.1.40-MariaDB
 -- PHP Version: 7.3.5
 
@@ -299,6 +299,25 @@ INSERT INTO `korisnici` (`id`, `username`, `password`, `ime`, `prezime`, `admin`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `login_tabela`
+--
+
+CREATE TABLE `login_tabela` (
+  `id` int(11) NOT NULL,
+  `korisnici_id` int(11) NOT NULL,
+  `web_token` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `login_tabela`
+--
+
+INSERT INTO `login_tabela` (`id`, `korisnici_id`, `web_token`) VALUES
+(1, 1, '32106340superadmin');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `slike_hotela`
 --
 
@@ -553,6 +572,13 @@ ALTER TABLE `korisnici`
   ADD UNIQUE KEY `username` (`username`);
 
 --
+-- Indexes for table `login_tabela`
+--
+ALTER TABLE `login_tabela`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `korisnici_id` (`korisnici_id`);
+
+--
 -- Indexes for table `slike_hotela`
 --
 ALTER TABLE `slike_hotela`
@@ -607,6 +633,12 @@ ALTER TABLE `korisnici`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `login_tabela`
+--
+ALTER TABLE `login_tabela`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `znamenitosti`
 --
 ALTER TABLE `znamenitosti`
@@ -649,6 +681,12 @@ ALTER TABLE `komentari_grad`
 ALTER TABLE `komentari_hotel`
   ADD CONSTRAINT `komentari_hotel_ibfk_1` FOREIGN KEY (`feedback_hotel_id`) REFERENCES `feedback_hotel` (`id`),
   ADD CONSTRAINT `komentari_hotel_ibfk_2` FOREIGN KEY (`korisnici_id`) REFERENCES `korisnici` (`id`);
+
+--
+-- Constraints for table `login_tabela`
+--
+ALTER TABLE `login_tabela`
+  ADD CONSTRAINT `login_tabela_ibfk_1` FOREIGN KEY (`korisnici_id`) REFERENCES `korisnici` (`id`);
 
 --
 -- Constraints for table `slike_hotela`
