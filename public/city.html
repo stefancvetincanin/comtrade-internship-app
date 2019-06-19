@@ -73,12 +73,12 @@
         <div style="min-height:300px" class="col-lg-12">
           <div class="d-flex flex-column">
             <div class="p-2 dataDiv">
-              <div class="d-flex flex-row align-items-center h-100">
-                <div class="col-lg-8 col-md-8 col-6 pt-4 h-100" id="city-description">
+              <div class="row d-flex flex-row align-items-center h-100 divContentWraper">
+                <div class="col-lg-8 col-md-12 pt-4 h-100  flex-column flex-row d-flex" id="city-description">
                   
                 </div>
                 
-                <div style="background-color:#e0aa15" class="d-flex flex-column pt-2 col-lg-4 col-md-4 col-6 h-100">
+                <div style="background-color:#e0aa15" class="d-flex flex-column flex-row pt-2 col-lg-4 col-md-12h-100">
                   <div class="row h-50">
                       <div class="container justify-content-center">
                         <div id="date" class="row justify-content-center lead mb-2">
@@ -153,15 +153,15 @@
             <div style="height:20%" class="d-flex flex-row  text-center">
               <div style="background-color:#b8daff" class="tab-item p-1 d-flex justify-content-center" data-toggle="collapse" data-target="#accomodation">
                   <!-- <i class="fas fa-home fa-2x d-block"></i> -->
-                <h4 class="align-self-center">Accomodation</h4> 
+                <h4 class="align-self-center tabHeadline tabHeadline">Accommodation</h4> 
               </div>
               <div style="background-color:#f5c6cb" class="tab-item p-1 d-flex justify-content-center" data-toggle="collapse" data-target="#lifeInCity">
                   <!-- <i class="fas fa-graduation-cap fa-2x d-block"></i> -->
-                  <h4 class="align-self-center">City Life</h4>             
+                  <h4 class="align-self-center tabHeadline">City Life</h4>             
               </div>
               <div style="background-color:#ffeeba" class="tab-item p-1 d-flex justify-content-center" data-toggle="collapse" data-target="#feedback">
                   <!-- <i class="fas fa-envelope fa-2x d-block"></i> -->
-                  <h4 class="align-self-center">Feedback</h4> 
+                  <h4 class="align-self-center tabHeadline">Feedback</h4> 
               </div>
             </div>
             
@@ -174,8 +174,8 @@
     <div style="background-color:#b8daff;" id="accomodation" class="collapse show">
       <div class="card card-body py-5">
         <div class="text-white-py-5 clearfix">
-            <h2 class="d-inline-block float-left">Accomodations</h2>
-            <button class="btn btn-primary d-inline-block float-right" type="button">Show more..</button>   
+            <h2 class="d-inline-block float-left cardBodyHeadline">Accomodations</h2>
+            <input id="moreBtn" class="btn btn-primary d-inline-block float-right showMoreAcc" type="button" value="Show more..."/>
               <!-- <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, unde!</p> -->
         </div>
         <ul id="topAccomodations" class="list-group mt-3 mb-4">
@@ -188,7 +188,7 @@
     <div id="lifeInCity" class="collapse">
         <div class="card card-body py-5">
             <div class="text-white-py-5 clearfix">
-                <h2 class="d-inline-block float-left">Top Attractions</h2>
+                <h2 class="d-inline-block float-left cardBodyHeadline">Top Attractions</h2>
                 <button class="btn btn-primary d-inline-block float-right" type="button">Show more..</button>   
                   <!-- <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, unde!</p> -->
             </div>
@@ -202,7 +202,7 @@
     <!-- Feedback -->
     <div id="feedback" class="collapse">
       <div class="card card-body py-5">
-        <h2>Feedback</h2>
+        <h2 class="cardBodyHeadline">Feedback</h2>
         <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, unde!</p>
   
     <div class="container">

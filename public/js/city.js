@@ -13,41 +13,60 @@ function getParameter(paramName) {
   return null;
 }
 
+let count = 0;
+document.getElementById('moreBtn').addEventListener('click', function(){
+  count++
+  if(count%2 !== 0){
+    document.getElementById("moreBtn").value="Show less..";
+    Array.from(document.getElementsByClassName("moreClass")).forEach(
+      (element) => {
+        element.setAttribute("style", "display:block");
+      }
+    );
+  } else {
+    document.getElementById("moreBtn").value="Show more..";
+    Array.from(document.getElementsByClassName("moreClass")).forEach(
+      (element) => {
+        element.setAttribute("style", "display:none");
+      }
+    );
+  }
+});
+
+
 let id = getParameter("grad-id");
 
 // ovaj fectch prikazuje sliku grada
 fetch(`/city/${id}`)
   .then(res => res.json())
-  .then(res =>
-    (document.getElementById("city-img").innerHTML = `<img src="${
+  .then(
+    res =>
+      (document.getElementById("city-img").innerHTML = `<img src="${
         res[0].slika
       }" class="ing-fluid" alt="${res[0].ime}">`)
-
   );
 
 // prikaz imena grada i opisa, sve se odnosi na jedan grad
 fetch(`/city/${id}`)
   .then(res => res.json())
-  .then(
-    res => {
-      (document.getElementById(
-          "city-description"
-        ).innerHTML = `<h1 class="cityHeadline" >${res[0].ime}</h1><p class="cityText pr-3"  id="content">${
-        res[0].opis
-      }</p>`
-
-      )
-      minimizedElements();
-    }
-  );
+  .then(res => {
+    document.getElementById(
+      "city-description"
+    ).innerHTML = `<h1 class="cityHeadline" >${
+      res[0].ime
+    }</h1><p class="cityText pr-3"  id="content">${res[0].opis}</p>`;
+    minimizedElements();
+  });
 
 // prikaz hotela u tom gradu
+
 let display = "";
 fetch(`/hotels/${id}`)
   .then(res => res.json())
   .then(res => {
-    res.forEach(element => {
-      display += `<li class="list-group-item list-group-item-primary mb-1">
+    res.forEach((element , i) => {
+    let moreClass = i > 2 && "moreClass";
+    display += `<li class="list-group-item list-group-item-primary mb-1 ${moreClass}">
         <a href="accommodation.html?hotel-id=${element.id}&grad-id=${id}">
           <div class="row align-items-center text-center">
             <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
@@ -67,9 +86,9 @@ fetch(`/hotels/${id}`)
           </div>
         </a>
       </li>`;
-      document.getElementById("topAccomodations").innerHTML = display;
-    });
+    document.getElementById("topAccomodations").innerHTML = display;
   });
+});
 
 let displayAttr = "";
 fetch(`/attractions/${id}`)
@@ -98,35 +117,35 @@ fetch(`/attractions/${id}`)
     });
   });
 
-$(document).ready(function () {
-  $('.tab-item').click(function () {
-    $('.collapse').collapse('hide');
+$(document).ready(function() {
+  $(".tab-item").click(function() {
+    $(".collapse").collapse("hide");
   });
 
-  $('.carousel').carousel({
+  $(".carousel").carousel({
     interval: 2000
   });
 
-  $('body').on('load', $(".commentGroup").hide());
+  $("body").on("load", $(".commentGroup").hide());
 
-  $("#btnFooterToggle").click(function () {
+  $("#btnFooterToggle").click(function() {
     $(".commentGroup").toggle();
   });
 
-  $('#addComment').click(function () {
+  $("#addComment").click(function() {
     $(".commentGroup").toggle();
   });
 });
 
 //setting the date
 let currentDate = new Date();
-document.getElementById('date').textContent = stringDate(currentDate);
+document.getElementById("date").textContent = stringDate(currentDate);
 
 function stringDate(currDate) {
   let mm = currDate.getMonth() + 1;
-  mm = (mm < 10 ? `0${mm}` : mm);
+  mm = mm < 10 ? `0${mm}` : mm;
   let dd = currDate.getDate();
-  dd = (dd < 10 ? `0${dd}` : dd);
+  dd = dd < 10 ? `0${dd}` : dd;
   return `${dd}/${mm}/${currDate.getFullYear()}`;
 }
 
@@ -135,20 +154,20 @@ function minimizedElements() {
   let minimized_elements = $("#content");
   console.log(minimized_elements.value);
 
-  minimized_elements.each(function () {
+  minimized_elements.each(function() {
     let t = $(this).text();
     if (t.length < 200) return;
 
     $(this).html(
       t.slice(0, 200) +
-      '<span>... </span><a href="#" class="more">More</a>' +
-      '<span style="display:none;">' +
-      t.slice(300, t.length) +
-      ' <a href="#" class="less">Less</a></span>'
+        '<span>... </span><a href="#" class="more">More</a>' +
+        '<span style="display:none;">' +
+        t.slice(300, t.length) +
+        ' <a href="#" class="less">Less</a></span>'
     );
   });
 
-  $("a.more", minimized_elements).click(function (event) {
+  $("a.more", minimized_elements).click(function(event) {
     event.preventDefault();
     $(this)
       .hide()
@@ -159,7 +178,7 @@ function minimizedElements() {
       .show();
   });
 
-  $("a.less", minimized_elements).click(function (event) {
+  $("a.less", minimized_elements).click(function(event) {
     event.preventDefault();
     $(this)
       .parent()
@@ -169,36 +188,41 @@ function minimizedElements() {
       .prev()
       .show();
   });
-};
+}
+
 // weather
 
 // Event listeners
-document.addEventListener('DOMContentLoaded', getData);
+document.addEventListener("DOMContentLoaded", getData);
 
-const apiKey = '4557aae956939ce49a2fe6d480b1d84d';
+const apiKey = "4557aae956939ce49a2fe6d480b1d84d";
 
-const desc = document.getElementById('description');
-const string = document.getElementById('stringWeather');
-const humidity = document.getElementById('humidity');
-const pressure = document.getElementById('pressure');
-const wind = document.getElementById('wind');
+const desc = document.getElementById("description");
+const string = document.getElementById("stringWeather");
+const humidity = document.getElementById("humidity");
+const pressure = document.getElementById("pressure");
+const wind = document.getElementById("wind");
 
 function getData() {
   fetch(`/city/${id}`)
     .then(res => res.json())
     .then(res => {
-      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${res[0].ime},${res[0].country_code}&units=metric&APPID=${apiKey}`)
+      fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${res[0].ime},${
+          res[0].country_code
+        }&units=metric&APPID=${apiKey}`
+      )
         .then(res => res.json())
         .then(data => {
           console.log(data);
           print(data);
-        })
+        });
     });
 }
 
 function print(data) {
   desc.innerHTML = data.weather[0].description;
-  string.innerHTML = `${data.main.temp.toFixed(1)}&nbsp;`; 
+  string.innerHTML = `${data.main.temp.toFixed(1)}&nbsp;`;
   humidity.textContent = `${data.main.humidity} %`;
   pressure.textContent = `${data.main.pressure} mbar`;
   wind.textContent = `${data.wind.speed} m/s`;
