@@ -41,14 +41,23 @@ fetch(`/hotel/${idHotel}`)
 
     document.getElementById('hotel-image-1').src = `${res[0].url_slike}`;
     document.getElementById('hotel-image-1').alt = `${res[0].ime}`;
-    document.getElementById('hotel-image-2').src = `${res[0].url_slike}`;
     document.getElementById('hotel-image-2').alt = `${res[0].ime}`;
-    document.getElementById('hotel-image-3').src = `${res[0].url_slike}`;
     document.getElementById('hotel-image-3').alt = `${res[0].ime}`;
-    document.getElementById('hotel-image-4').src = `${res[0].url_slike}`;
     document.getElementById('hotel-image-4').alt = `${res[0].ime}`;
-    document.getElementById('hotel-image-5').src = `${res[0].url_slike}`;
     document.getElementById('hotel-image-5').alt = `${res[0].ime}`;
+    document.getElementById('hotel-image-6').alt = `${res[0].ime}`;
+
+    fetch(`/hotel-images/${idHotel}`)
+    .then(res => res.json())
+    .then(
+      res => {
+        console.log(res)
+        document.getElementById('hotel-image-2').src = `${res[0].url_slike}`;   
+        document.getElementById('hotel-image-3').src = `${res[1].url_slike}`;
+        document.getElementById('hotel-image-4').src = `${res[2].url_slike}`;
+        document.getElementById('hotel-image-5').src = `${res[3].url_slike}`;
+        document.getElementById('hotel-image-6').src = `${res[4].url_slike}`;
+      })
   }
 );
 
@@ -61,22 +70,19 @@ fetch(`/hotels/${idGrada}`)
     let mapiraniHoteli = [...res];
     mapiraniHoteli.length = 3;
     mapiraniHoteli.forEach(element => {
-      display += `<li class="list-group-item list-group-item-primary mb-1">
+      display += 
+      `<li class="list-group-item list-group-item-primary mb-1">
         <a href="accommodation.html?hotel-id=${element.id}&grad-id=${idGrada}">
           <div class="row align-items-center text-center">
             <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
-              <img class="d-block mx-auto" src="${
-                element.url_slike
-              }" height="100px" alt="${element.ime}">
+              <img class="d-block mx-auto" src="${element.url_slike}" height="100px" alt="${element.ime}">
             </div>
             <div class="col-lg-9 col-md-8 ml-3 col-sm-7">
               <div class="clearfix pl-4">
                 <h1 id="nameAccomod" class="float-left">${element.ime}</h1>
                 <div id="starsAccomod" class="float-right align-items-center">*****</div>
               </div>
-              <p id="descriptionAccomod" class="text-left pl-4">${
-                element.opis
-              }</p>
+              <p id="descriptionAccomod" class="text-left pl-4">${element.opis}</p>
             </div> 
           </div>
         </a>
@@ -84,3 +90,52 @@ fetch(`/hotels/${idGrada}`)
       document.getElementById("topAccomodations").innerHTML = display;
     });
 });
+
+let feedbackArray = []
+// dobavljanje komentara
+fetch(`/feedback-hotel/${idHotel}`)
+  .then(res => res.json())
+  .then(res => {
+    console.log(res)
+    feedbackArray = res
+    let feedbackDisplay = ''
+    feedbackArray.forEach((feedback, index) => {
+      feedbackDisplay += `
+      <div class="carousel-item ${index === 0 ? "active" : null}">
+        <div class="card col-lg-12 bg-light mb-4 px-4 py-3">
+          <div class="row card-body">
+            <div class="col-4">
+              <img src="${feedback.slika}" class="rounded-circle" height="75px" alt=""/>
+            </div>
+            <div class="col-8">
+              <h4>Username</h4>
+              <div class="">
+                <span class=""><i class="text-warning fa fa-star"></i></span>
+                <span class=""><i class="text-warning fa fa-star"></i></span>
+                <span class=""><i class="text-warning fa fa-star"></i></span>
+                <span class=""><i class="text-warning fa fa-star"></i></span>
+                <span class=""><i class="text-warning fa fa-star"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing
+              elit. Culpa at iusto obcaecati a dicta ipsam
+              laboriosam optio placeat magnam doloremque!
+            </p>
+          </div>
+          <div class="row justify-content-center">
+            <div class="w-50">
+              <button class="btn btn-warning btn-block text-white" type="button" data-toggle="modal" data-target="#modalFeedback">
+                More
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      `
+      })
+    // console.log(feedbackDisplay)
+    document.getElementById('feedback-display').innerHTML = feedbackDisplay
+  })
