@@ -200,6 +200,6 @@ function print(data) {
   desc.innerHTML = data.weather[0].description;
   string.innerHTML = `${data.main.temp.toFixed(1)}&nbsp;`; 
   humidity.textContent = `${data.main.humidity} %`;
-  pressure.textContent = `${data.main.pressure} mbar`;
+  pressure.textContent = `${data.main.pressure}`;
   wind.textContent = `${data.wind.speed} m/s`;
 }
