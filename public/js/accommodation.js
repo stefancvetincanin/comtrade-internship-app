@@ -143,280 +143,88 @@ fetch(`/feedback-hotel/${idHotel}`)
   })
 
 function prikaziFeedback(id) {
+  let filtriranFeedback = feedbackArray.filter(element => element.id === Number(id))
   document.getElementById('modalFeedback').innerHTML = `
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="row card-body">
-          <div class="col-4">
-            <img src="./media/images/nikola.png"
-              class="rounded-circle"
-              height="100px"
-              alt="user"
-            />
-          </div>
-          <div class="col-8">
-            <h4>Username</h4>
-            <div class="">
-              <span class=""
-                ><i class="text-warning fa fa-star"></i
-              ></span>
-              <span class=""
-                ><i class="text-warning fa fa-star"></i
-              ></span>
-              <span class=""
-                ><i class="text-warning fa fa-star"></i
-              ></span>
-              <span class=""
-                ><i class="text-warning fa fa-star"></i
-              ></span>
-              <span class=""
-                ><i class="text-warning fa fa-star"></i
-              ></span>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="row card-body">
+            <div class="col-4">
+              <img src="${filtriranFeedback[0].slika}" class="rounded-circle" height="100px" alt="user"/>
+            </div>
+            <div class="col-8">
+              <h4>${filtriranFeedback[0].ime} ${filtriranFeedback[0].prezime}</h4>
+              <div class="">
+                <span class=""
+                  ><i class="text-warning fa fa-star"></i
+                ></span>
+                <span class=""
+                  ><i class="text-warning fa fa-star"></i
+                ></span>
+                <span class=""
+                  ><i class="text-warning fa fa-star"></i
+                ></span>
+                <span class=""
+                  ><i class="text-warning fa fa-star"></i
+                ></span>
+                <span class=""
+                  ><i class="text-warning fa fa-star"></i
+                ></span>
+              </div>
             </div>
           </div>
-        </div>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Culpa at iusto obcaecati a dicta ipsam laboriosam optio
-            placeat magnam doloremque! Lorem ipsum dolor sit amet
-            consectetur, adipisicing elit. Qui hic repudiandae repellendus
-            doloribus recusandae modi labore possimus, unde consequuntur
-            ipsa?
-          </p>
-        </div>
-        <div class="clearfix mb-4">
-          <button
-            id="btnFooterToggle"
-            type="button"
-            class="btn btn-primary float-right"
-          >
-            Show-hide comments
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
           </button>
         </div>
-
-        <div class="commentGroup">
-          <ul class="list-group mb-1" id="commentList">
-            <li class="list-group-item list-group-item-warning clearfix">
-              <div class="div">
-                <div
-                  class="d-inline-block w-25 bg-primary text-white text-center mb-2 float-left"
-                >
-                  Username
-                </div>
-                <div class="float-right">
-                  Date
-                </div>
+        <div class="modal-body">
+          <div class="row">
+            <p>
+            ${filtriranFeedback[0].opis}
+            </p>
+          </div>
+          <div class="clearfix mb-4">
+            <button id="btnFooterToggle" type="button" class="btn btn-primary float-right">
+              Toggle comment
+            </button>
+          </div>
+          <div class="commentGroup">
+            <form class="w-100 p-0" id="forma-comment">
+              <div class="form-group justify-content-center">
+                <label for="comment">Message</label>
+                <textarea class="form-control" id="comment" rows="3"></textarea>
               </div>
-              <div class="d-inline-block w-100 text-dark">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Recusandae nesciunt harum, omnis accusamus neque quia
-                obcaecati et. Vitae, tempora reprehenderit?
+              <div class="clearfix">
+                <button type="button" class="btn btn-primary float-right">
+                  Send comment
+                </button>
               </div>
-            </li>
-            <li class="list-group-item list-group-item-warning clearfix">
-              <div class="div">
-                <div
-                  class="d-inline-block w-25 bg-primary text-white text-center mb-2 float-left"
-                >
-                  Username
+            </form>
+            <ul class="list-group mb-1" id="commentList">
+              <li class="list-group-item list-group-item-warning clearfix">
+                <div class="div">
+                  <div
+                    class="d-inline-block w-25 bg-primary text-white text-center mb-2 float-left"
+                  >
+                    Username
+                  </div>
+                  <div class="float-right">
+                    Date
+                  </div>
                 </div>
-                <div class="float-right">
-                  Date
+                <div class="d-inline-block w-100 text-dark">
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Recusandae nesciunt harum, omnis accusamus neque quia
+                  obcaecati et. Vitae, tempora reprehenderit?
                 </div>
-              </div>
-              <div class="d-inline-block w-100 text-dark">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Recusandae nesciunt harum, omnis accusamus neque quia
-                obcaecati et. Vitae, tempora reprehenderit?
-              </div>
-            </li>
-            <li class="list-group-item list-group-item-warning clearfix">
-              <div class="div">
-                <div
-                  class="d-inline-block w-25 bg-primary text-white text-center mb-2 float-left"
-                >
-                  Username
-                </div>
-                <div class="float-right">
-                  Date
-                </div>
-              </div>
-              <div class="d-inline-block w-100 text-dark">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Recusandae nesciunt harum, omnis accusamus neque quia
-                obcaecati et. Vitae, tempora reprehenderit?
-              </div>
-            </li>
-          </ul>
-          <form class="w-100 p-0">
-            <div class="form-group justify-content-center">
-              <label for="comment">Message</label>
-              <textarea
-                class="form-control"
-                id="comment"
-                rows="3"
-              ></textarea>
-            </div>
-
-            <div class="clearfix">
-              <button type="button" class="btn btn-primary float-right">
-                Send comment
-              </button>
-            </div>
-          </form>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  `
+    `
+  $('#btnFooterToggle').on('click', function() {
+    $('#forma-comment').slideToggle()
+  })
 }
-
-// <div class="modal-dialog modal-lg">
-//         <div class="modal-content">
-//           <div class="modal-header">
-//             <div class="row card-body">
-//               <div class="col-4">
-//                 <img
-//                   src="./media/images/nikola.png"
-//                   class="rounded-circle"
-//                   height="100px"
-//                   alt="user"
-//                 />
-//               </div>
-//               <div class="col-8">
-//                 <h4>Username</h4>
-//                 <div class="">
-//                   <span class=""
-//                     ><i class="text-warning fa fa-star"></i
-//                   ></span>
-//                   <span class=""
-//                     ><i class="text-warning fa fa-star"></i
-//                   ></span>
-//                   <span class=""
-//                     ><i class="text-warning fa fa-star"></i
-//                   ></span>
-//                   <span class=""
-//                     ><i class="text-warning fa fa-star"></i
-//                   ></span>
-//                   <span class=""
-//                     ><i class="text-warning fa fa-star"></i
-//                   ></span>
-//                 </div>
-//               </div>
-//             </div>
-//             <button
-//               type="button"
-//               class="close"
-//               data-dismiss="modal"
-//               aria-label="Close"
-//             >
-//               <span aria-hidden="true">&times;</span>
-//             </button>
-//           </div>
-//           <div class="modal-body">
-//             <div class="row">
-//               <p>
-//                 Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-//                 Culpa at iusto obcaecati a dicta ipsam laboriosam optio
-//                 placeat magnam doloremque! Lorem ipsum dolor sit amet
-//                 consectetur, adipisicing elit. Qui hic repudiandae repellendus
-//                 doloribus recusandae modi labore possimus, unde consequuntur
-//                 ipsa?
-//               </p>
-//             </div>
-//             <div class="clearfix mb-4">
-//               <button
-//                 id="btnFooterToggle"
-//                 type="button"
-//                 class="btn btn-primary float-right"
-//               >
-//                 Show-hide comments
-//               </button>
-//             </div>
-
-//             <div class="commentGroup">
-//               <ul class="list-group mb-1" id="commentList">
-//                 <li class="list-group-item list-group-item-warning clearfix">
-//                   <div class="div">
-//                     <div
-//                       class="d-inline-block w-25 bg-primary text-white text-center mb-2 float-left"
-//                     >
-//                       Username
-//                     </div>
-//                     <div class="float-right">
-//                       Date
-//                     </div>
-//                   </div>
-//                   <div class="d-inline-block w-100 text-dark">
-//                     Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-//                     Recusandae nesciunt harum, omnis accusamus neque quia
-//                     obcaecati et. Vitae, tempora reprehenderit?
-//                   </div>
-//                 </li>
-//                 <li class="list-group-item list-group-item-warning clearfix">
-//                   <div class="div">
-//                     <div
-//                       class="d-inline-block w-25 bg-primary text-white text-center mb-2 float-left"
-//                     >
-//                       Username
-//                     </div>
-//                     <div class="float-right">
-//                       Date
-//                     </div>
-//                   </div>
-//                   <div class="d-inline-block w-100 text-dark">
-//                     Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-//                     Recusandae nesciunt harum, omnis accusamus neque quia
-//                     obcaecati et. Vitae, tempora reprehenderit?
-//                   </div>
-//                 </li>
-//                 <li class="list-group-item list-group-item-warning clearfix">
-//                   <div class="div">
-//                     <div
-//                       class="d-inline-block w-25 bg-primary text-white text-center mb-2 float-left"
-//                     >
-//                       Username
-//                     </div>
-//                     <div class="float-right">
-//                       Date
-//                     </div>
-//                   </div>
-//                   <div class="d-inline-block w-100 text-dark">
-//                     Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-//                     Recusandae nesciunt harum, omnis accusamus neque quia
-//                     obcaecati et. Vitae, tempora reprehenderit?
-//                   </div>
-//                 </li>
-//               </ul>
-//               <form class="w-100 p-0">
-//                 <div class="form-group justify-content-center">
-//                   <label for="comment">Message</label>
-//                   <textarea
-//                     class="form-control"
-//                     id="comment"
-//                     rows="3"
-//                   ></textarea>
-//                 </div>
-
-//                 <div class="clearfix">
-//                   <button type="button" class="btn btn-primary float-right">
-//                     Send comment
-//                   </button>
-//                 </div>
-//               </form>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
