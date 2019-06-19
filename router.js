@@ -104,7 +104,7 @@ module.exports = function(express, baza) {
   // nabavi sav feedback za neki hotel, gde je req.params id relevantnog hotela
   router.get('/feedback-hotel/*', function (req, res) {
     // console.log(req.params)
-    baza.execQuery(`SELECT korisnici.username, korisnici.ime, korisnici.prezime, korisnici.slika, feedback_hotel.rating, feedback_hotel.naziv, feedback_hotel.opis, feedback_hotel.datum FROM feedback_hotel INNER JOIN korisnici on feedback_hotel.korisnici_id = korisnici.id WHERE feedback_hotel.hotel_id = ${mysql.escape(req.params['0'])}`, function(results) {
+    baza.execQuery(`SELECT korisnici.username, korisnici.ime, korisnici.prezime, korisnici.slika, feedback_hotel.id, feedback_hotel.rating, feedback_hotel.naziv, feedback_hotel.opis, feedback_hotel.datum FROM feedback_hotel INNER JOIN korisnici on feedback_hotel.korisnici_id = korisnici.id WHERE feedback_hotel.hotel_id = ${mysql.escape(req.params['0'])}`, function(results) {
       // console.log(results)
       res.send(results)
     })
