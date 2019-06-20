@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2019 at 12:33 PM
+-- Generation Time: Jun 20, 2019 at 01:22 PM
 -- Server version: 10.1.40-MariaDB
 -- PHP Version: 7.3.5
 
@@ -76,7 +76,15 @@ CREATE TABLE `feedback_hotel` (
 
 INSERT INTO `feedback_hotel` (`id`, `hotel_id`, `korisnici_id`, `rating`, `naziv`, `opis`, `datum`) VALUES
 (1, 1, 4, '4', 'Lorem ipsum.', 'Mauris posuere lorem ac varius placerat. Nullam turpis neque, molestie a mattis eu, molestie eu magna.', '2019-06-18 18:53:32'),
-(2, 1, 5, '3', 'Vestibulum nec tellus.', 'Nam sed nisl nec ex feugiat semper. Praesent neque est, semper et nisl sit amet, euismod tristique ipsum. Nulla finibus arcu id purus commodo egestas. Duis eu odio arcu.', '2019-06-18 18:55:23');
+(2, 1, 5, '3', 'Vestibulum nec tellus.', 'Nam sed nisl nec ex feugiat semper. Praesent neque est, semper et nisl sit amet, euismod tristique ipsum. Nulla finibus arcu id purus commodo egestas. Duis eu odio arcu.', '2019-06-18 18:55:23'),
+(3, 1, 3, '5', 'Nas prvi feedback.', 'Cemu ovo sluzi, a pritom i ne radi?', '2019-06-20 10:28:18'),
+(4, 2, 4, '3', 'Lorem.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pretium metus et dolor eleifend accumsan. Vivamus porta sagittis posuere. In egestas at dolor eu pretium. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.', '2019-06-20 10:31:28'),
+(5, 3, 4, '4', 'Lorem ipsum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pretium metus et dolor eleifend accumsan. Vivamus porta sagittis posuere. In egestas at dolor eu pretium. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.', '2019-06-20 10:34:00'),
+(6, 4, 1, '2', 'Lorem ipsum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pretium metus et dolor eleifend accumsan. Vivamus porta sagittis posuere. In egestas at dolor eu pretium. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.', '2019-06-20 10:35:37'),
+(7, 6, 3, '1', 'Drugi probni feedback.', 'Etiam bibendum commodo ligula sed tincidunt. Fusce commodo dignissim velit, et mollis augue facilisis non. Fusce lorem ipsum, faucibus vitae metus id, consequat elementum urna. Vestibulum tincidunt, neque nec eleifend lacinia, sem diam pretium tellus, eget ornare justo erat blandit arcu.', '2019-06-20 10:40:04'),
+(8, 6, 4, '4', 'Lorem ipsum.', 'Etiam bibendum commodo ligula sed tincidunt. Fusce commodo dignissim velit, et mollis augue facilisis non. Fusce lorem ipsum, faucibus vitae metus id, consequat elementum urna. Vestibulum tincidunt, neque nec eleifend lacinia, sem diam pretium tellus, eget ornare justo erat blandit arcu.', '2019-06-20 10:40:31'),
+(9, 10, 1, '4', 'Lorem ipsum.', 'Etiam bibendum commodo ligula sed tincidunt. Fusce commodo dignissim velit, et mollis augue facilisis non. Fusce lorem ipsum, faucibus vitae metus id, consequat elementum urna. Vestibulum tincidunt, neque nec eleifend lacinia, sem diam pretium tellus, eget ornare justo erat blandit arcu.', '2019-06-20 10:44:21'),
+(10, 10, 1, '1', 'Lorem.', 'Etiam bibendum commodo ligula sed tincidunt. Fusce commodo dignissim velit, et mollis augue facilisis non. Fusce lorem ipsum, faucibus vitae metus id, consequat elementum urna.', '2019-06-20 10:44:37');
 
 -- --------------------------------------------------------
 
@@ -284,7 +292,10 @@ CREATE TABLE `komentari_hotel` (
 --
 
 INSERT INTO `komentari_hotel` (`id`, `korisnici_id`, `feedback_hotel_id`, `text`, `datum`) VALUES
-(1, 3, 1, 'Suspendisse sed porta nibh, nec auctor tellus. Suspendisse porttitor eleifend erat, quis viverra massa congue ac. Etiam ut nisi tortor. Nam ut pretium lectus.', '2019-06-18 19:05:33');
+(1, 3, 1, 'Suspendisse sed porta nibh, nec auctor tellus. Suspendisse porttitor eleifend erat, quis viverra massa congue ac. Etiam ut nisi tortor. Nam ut pretium lectus.', '2019-06-18 19:05:33'),
+(2, 1, 3, 'Ovo je nas prvi probni komentar.', '2019-06-20 11:13:46'),
+(3, 1, 3, 'U cast git slayera, drugi komentar.', '2019-06-20 11:14:19'),
+(4, 3, 4, 'Cemu ovo sluzi, a pritom i ne radi?', '2019-06-20 11:21:10');
 
 -- --------------------------------------------------------
 
@@ -1023,7 +1034,7 @@ ALTER TABLE `feedback_grad`
 -- AUTO_INCREMENT for table `feedback_hotel`
 --
 ALTER TABLE `feedback_hotel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `grad`
@@ -1041,7 +1052,7 @@ ALTER TABLE `komentari_grad`
 -- AUTO_INCREMENT for table `komentari_hotel`
 --
 ALTER TABLE `komentari_hotel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `korisnici`
