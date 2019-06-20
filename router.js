@@ -121,5 +121,20 @@ module.exports = function(express, baza) {
     })
   })
 
+  // okaci feedback za grad
+  router.post('/post-feedback-hotel', function (req, res) {
+    // console.log(req)
+    baza.execQuery(`INSERT INTO feedback_hotel(hotel_id, korisnici_id, rating, naziv, opis) VALUES (${mysql.escape(req.body.hotelId)}, ${mysql.escape(req.body.korisniciId)}, ${mysql.escape(req.body.rating)},${mysql.escape(req.body.naziv)}, ${mysql.escape(req.body.opis)})`, function(results) {
+      res.send({poslato:true})
+    })
+  })
+
+  // okaci komentar na feedback za grad
+  router.post('/post-comment-hotel', function (req, res) {
+    baza.execQuery(`INSERT INTO komentari_hotel(korisnici_id, feedback_hotel_id, text) VALUES (${mysql.escape(req.body.korisniciId)}, ${mysql.escape(req.body.feedbackId)}, ${mysql.escape(req.body.text)})`, function(results) {
+      res.send({poslato:true})
+    })
+  })
+
   return router
 }
