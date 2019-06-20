@@ -183,13 +183,13 @@ function prikaziFeedback(id) {
             ${filtriranFeedback[0].opis}
             </p>
           </div>
-          <div class="clearfix mb-4">
+          <div class="clearfix mb-3">
             <button id="btnFooterToggle" type="button" class="btn btn-primary float-right">
               Toggle comment
             </button>
           </div>
           <div class="commentGroup">
-            <form class="w-100 p-0" id="forma-comment">
+            <form class="w-100 p-0 mb-3 forma-comment" id="forma-comment">
               <div class="form-group justify-content-center">
                 <label for="comment">Message</label>
                 <textarea class="form-control" id="comment" rows="3"></textarea>
@@ -201,7 +201,7 @@ function prikaziFeedback(id) {
               </div>
             </form>
             <ul class="list-group mb-1" id="commentList">
-              <li class="list-group-item list-group-item-warning clearfix">
+              <!-- <li class="list-group-item list-group-item-warning clearfix">
                 <div class="div">
                   <div
                     class="d-inline-block w-25 bg-primary text-white text-center mb-2 float-left"
@@ -217,7 +217,7 @@ function prikaziFeedback(id) {
                   Recusandae nesciunt harum, omnis accusamus neque quia
                   obcaecati et. Vitae, tempora reprehenderit?
                 </div>
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>
@@ -227,4 +227,49 @@ function prikaziFeedback(id) {
   $('#btnFooterToggle').on('click', function() {
     $('#forma-comment').slideToggle()
   })
+  fetch(`/komentar-hotel/${id}`)
+    .then(res => res.json())
+    .then(res => {
+      console.log(res)
+      let displayComments = ''
+      res.forEach(comment => {
+        displayComments += `
+          <li class="list-group-item list-group-item-warning clearfix d-flex">
+            <div class="mr-3 align-self-center">
+              <img class="rounded-circle " src="${comment.slika}" alt="${comment.ime}" width="90%"/>
+            </div>
+            <div>
+              <div class="div">
+                <div
+                  class="d-inline-block w-25 bg-primary text-white text-center mb-2 float-left"
+                >
+                  ${comment.ime} ${comment.prezime}
+                </div>
+                <div class="float-right">
+                  <small>${comment.datum.substring(0, 10)} ${comment.datum.substring(11, 19)}</small>
+                </div>
+              </div>
+              <div class="d-inline-block w-100 text-dark">
+                ${comment.text}
+              </div>
+            </div>
+          </li>
+        `
+      })
+      document.getElementById('commentList').innerHTML = displayComments
+    })
 }
+
+
+// Forma za ostavljanje feedbacka za hotel
+let rating = ''
+
+$('#form-hotel-feedback input[type=radio]').on('change', function() {
+  rating = ($('input[name=rate]:checked').val())
+  alert("Rating je: " + rating)
+})
+
+$('#form-hotel-feedback').on('submit', function(e) {
+  e.preventDefault()
+  alert('Rating je: ' + rating)
+})
