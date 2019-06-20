@@ -13,37 +13,43 @@ function getParameter(paramName) {
   return null;
 }
 
+// f-ja za show more-show less
 let count = 0;
-document.getElementById('moreBtn').addEventListener('click', function(){
-  count++
+function moreLess (id, classname) {
+document.getElementById(id).addEventListener('click', function(){
+  console.log(count++);
   if(count%2 !== 0){
-    document.getElementById("moreBtn").value="Show less..";
-    Array.from(document.getElementsByClassName("moreClass")).forEach(
+    document.getElementById(id).value="Show less..";
+    Array.from(document.getElementsByClassName(classname)).forEach(
       (element) => {
         element.setAttribute("style", "display:block");
       }
     );
   } else {
-    document.getElementById("moreBtn").value="Show more..";
-    Array.from(document.getElementsByClassName("moreClass")).forEach(
+    document.getElementById(id).value="Show more..";
+    Array.from(document.getElementsByClassName(classname)).forEach(
       (element) => {
         element.setAttribute("style", "display:none");
       }
     );
   }
 });
+}
 
 
 let id = getParameter("grad-id");
 
-// ovaj fectch prikazuje sliku grada
-fetch(`/city/${id}`)
+  fetch(`/city/${id}`)
   .then(res => res.json())
   .then(
-    res =>
-      (document.getElementById("city-img").innerHTML = `<img src="${
+    res => {
+      document.getElementById("city-img").innerHTML = `<img src="${
         res[0].slika
-      }" class="ing-fluid" alt="${res[0].ime}">`)
+      }" class="ing-fluid" alt="${res[0].ime}">`;
+
+      document.getElementById('body').style.backgroundImage = `url(${res[0].slika})`;
+    }
+      
   );
 
 // prikaz imena grada i opisa, sve se odnosi na jedan grad
@@ -87,15 +93,19 @@ fetch(`/hotels/${id}`)
         </a>
       </li>`;
     document.getElementById("topAccomodations").innerHTML = display;
+   
   });
+  moreLess ("moreBtn","moreClass");
 });
 
+//prikaz atrakcija u gradu
 let displayAttr = "";
 fetch(`/attractions/${id}`)
   .then(res => res.json())
   .then(res => {
-    res.forEach(element => {
-      displayAttr += `<li class="list-group-item list-group-item-primary mb-1">
+    res.forEach((element, i)=> {
+      let moreClass1 = i > 2 && "moreClass1";
+      displayAttr += `<li class="list-group-item list-group-item-primary mb-1 ${moreClass1}">
           <div class="row align-items-center text-center">
             <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
               <img class="d-block mx-auto" src="${
@@ -115,6 +125,7 @@ fetch(`/attractions/${id}`)
       </li>`;
       document.getElementById("cityAttractions").innerHTML = displayAttr;
     });
+    moreLess("moreBtn1", "moreClass1");
   });
 
 $(document).ready(function() {

@@ -21,10 +21,11 @@
   <!-- Our sources -->
   <link rel="stylesheet" type="text/css" media="screen" href="./css/city.css" />
 
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+  
 </head>
 
-<body>
+<body id="body">
+  <div class="bodyWrapper">
   <nav class="navbar navbar-expand-md navbar-fixed-top bg-primary">
     <div class="container-fluid">
       <a class="navbar-brand my-auto text-warning font-weight-bold" href="./index.html">BTA</a>
@@ -137,7 +138,7 @@
             <div style="height:20%" class="d-flex flex-row  text-center">
               <div style="background-color:#b8daff" class="tab-item p-1 d-flex justify-content-center" data-toggle="collapse" data-target="#accomodation">
                   <!-- <i class="fas fa-home fa-2x d-block"></i> -->
-                <h4 class="align-self-center tabHeadline tabHeadline">Accommodation</h4> 
+                <h4 class="align-self-center tabHeadline">Accommodation</h4> 
               </div>
               <div style="background-color:#f5c6cb" class="tab-item p-1 d-flex justify-content-center" data-toggle="collapse" data-target="#lifeInCity">
                   <!-- <i class="fas fa-graduation-cap fa-2x d-block"></i> -->
@@ -159,7 +160,7 @@
       <div class="card card-body py-5">
         <div class="text-white-py-5 clearfix">
             <h2 class="d-inline-block float-left cardBodyHeadline">Accomodations</h2>
-            <input id="moreBtn" class="btn btn-primary d-inline-block float-right showMoreAcc" type="button" value="Show more..."/>
+            <input id="moreBtn" class="btn btn-primary d-inline-block float-right" type="button" value="Show more..."/>
               <!-- <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, unde!</p> -->
         </div>
         <ul id="topAccomodations" class="list-group mt-3 mb-4">
@@ -173,7 +174,7 @@
         <div class="card card-body py-5">
             <div class="text-white-py-5 clearfix">
                 <h2 class="d-inline-block float-left cardBodyHeadline">Top Attractions</h2>
-                <button class="btn btn-primary d-inline-block float-right" type="button">Show more..</button>   
+                <input id="moreBtn1"  class="btn btn-primary d-inline-block float-right" type="button" value="Show more..."/>   
                   <!-- <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, unde!</p> -->
             </div>
             <ul id="cityAttractions" class="list-group mt-3 mb-4">
@@ -410,7 +411,7 @@
   </div>
 </div>
 
-  
+  </div>
   
   <script src="./js/city.js"></script>
     
