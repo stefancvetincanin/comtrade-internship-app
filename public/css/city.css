@@ -1,3 +1,14 @@
+#body {
+  background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.bodyWrapper {
+  background-color: rgba(0,0,0,0.5);
+}
+
 #main-header img {
   width: 100%;
   height: 100%;
@@ -18,25 +29,29 @@
 }
 
 .dataDiv {
-  
-  background-color:#f5ba17;
+  background-color: #f5ba17;
+}
+
+.divContentWraper {
+  margin: 0px;
+  margin: 0px;
 }
 
 #accomodation .card-body {
-  background-color:#b8daff;
+  background-color: #b8daff;
 }
 
 #lifeInCity .card-body {
-  background-color:#f5c6cb;
+  background-color: #f5c6cb;
 }
 
 #feedback .card-body {
-  background-color:#ffeeba;
+  background-color: #ffeeba;
 }
 
 #topAccomodations li a:link,
 #topAccomodations li a:visited {
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 @media (min-width: 320px) {
@@ -52,34 +67,86 @@
     height: 15%;
   }
 
-  .acc {
-    font-size: 10px;
+  .tabHeadline {
+    font-size: 12px;
   }
+
+  .cardBodyHeadline {
+    font-size: 16px;
+  }
+
+  #nameAccomod {
+    font-size: 16px;
+  }
+  #descriptionAccomod {
+    display: none;
+  }
+  .moreClass {
+    display: none;
+  }
+  .moreClass1 {
+    display: none;
+  }
+
+  .cardBodyHeadline {
+    margin-bottom: 0px;
+    margin-top: 7px;
+}
 }
 
 @media (min-width: 576px) {
   .cityHeadline {
     font-size: 25px;
   }
+  .cardBodyHeadline {
+    font-size: 24px;
+  }
+  #nameAccomod {
+    font-size: 18px;
+  }
+  #descriptionAccomod {
+    display: block;
+    font-size: 14px;
+  }
 }
 
 @media (min-width: 768px) {
-  
+  .tabHeadline {
+    font-size: 18px;
+  }
+  .cardBodyHeadline {
+    font-size: 32px;
+    margin-top: 0px;
+  }
 }
 
 @media (min-width: 992px) {
-  
+  .cityHeadline {
+    font-size: 30px;
+  }
+
+  .cityText {
+    font-size: 16px;
+  }
+  .tabHeadline {
+    font-size: 24px;
+  }
+  #descriptionAccomod {
+    font-size: 16px;
+  }
 }
 
 @media (min-width: 1199px) {
-  .tab-item{
+  .tab-item {
     padding: 3em !important;
   }
 
   .dataDiv {
-    height:80%;
+    height: 80%;
   }
 }
 
-/* text-overflow: ellipsis;
-    overflow: hidden; */
+
+
+
+
