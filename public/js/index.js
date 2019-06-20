@@ -53,6 +53,7 @@ function getCities() {
     fetch('/cities')
         .then(res => res.json())
         .then(data => {
+            console.log(data)
             cityArr = data;
             $('#cityList').html(data.map(cityTemplate).join(''));
         });
