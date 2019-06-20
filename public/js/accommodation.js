@@ -1,4 +1,4 @@
-$('.tab-item').click(function () {
+$('.tab-item').click(function() {
   $('.collapse').collapse('hide');
 });
 
@@ -30,36 +30,36 @@ fetch(`/city/${idGrada}`)
 
 // prikaz imena hotela i opisa
 fetch(`/hotel/${idHotel}`)
-  .then(res => res.json())
-  .then(
-    res => {
-      document.getElementById('hotel-description').innerHTML =
-        `<h1 class='h-25'>${res[0].ime}</h1>
+.then(res => res.json())
+.then(
+  res => {
+    document.getElementById('hotel-description').innerHTML = 
+    `<h1 class='h-25'>${res[0].ime}</h1>
     <div id='starsAccomod' class='align-items-center'>*****</div>
     <p class='h-75 pr-3'>${res[0].opis}</p>
     <button class='btn btn-primary d-inline-block mb-3' type='button' data-toggle='modal' data-target='#addFeed'>Dodaj feed...</button>`;
 
-      document.getElementById('hotel-image-1').src = `${res[0].url_slike}`;
-      document.getElementById('hotel-image-1').alt = `${res[0].ime}`;
-      document.getElementById('hotel-image-2').alt = `${res[0].ime}`;
-      document.getElementById('hotel-image-3').alt = `${res[0].ime}`;
-      document.getElementById('hotel-image-4').alt = `${res[0].ime}`;
-      document.getElementById('hotel-image-5').alt = `${res[0].ime}`;
-      document.getElementById('hotel-image-6').alt = `${res[0].ime}`;
+    document.getElementById('hotel-image-1').src = `${res[0].url_slike}`;
+    document.getElementById('hotel-image-1').alt = `${res[0].ime}`;
+    document.getElementById('hotel-image-2').alt = `${res[0].ime}`;
+    document.getElementById('hotel-image-3').alt = `${res[0].ime}`;
+    document.getElementById('hotel-image-4').alt = `${res[0].ime}`;
+    document.getElementById('hotel-image-5').alt = `${res[0].ime}`;
+    document.getElementById('hotel-image-6').alt = `${res[0].ime}`;
 
-      fetch(`/hotel-images/${idHotel}`)
-        .then(res => res.json())
-        .then(
-          res => {
-            console.log(res)
-            document.getElementById('hotel-image-2').src = `${res[0].url_slike}`;
-            document.getElementById('hotel-image-3').src = `${res[1].url_slike}`;
-            document.getElementById('hotel-image-4').src = `${res[2].url_slike}`;
-            document.getElementById('hotel-image-5').src = `${res[3].url_slike}`;
-            document.getElementById('hotel-image-6').src = `${res[4].url_slike}`;
-          })
-    }
-  );
+    fetch(`/hotel-images/${idHotel}`)
+    .then(res => res.json())
+    .then(
+      res => {
+        console.log(res)
+        document.getElementById('hotel-image-2').src = `${res[0].url_slike}`;   
+        document.getElementById('hotel-image-3').src = `${res[1].url_slike}`;
+        document.getElementById('hotel-image-4').src = `${res[2].url_slike}`;
+        document.getElementById('hotel-image-5').src = `${res[3].url_slike}`;
+        document.getElementById('hotel-image-6').src = `${res[4].url_slike}`;
+      })
+  }
+);
 
 // prikaz hotela u tom gradu
 
@@ -70,8 +70,8 @@ fetch(`/hotels/${idGrada}`)
     let mapiraniHoteli = [...res];
     mapiraniHoteli.length = 3;
     mapiraniHoteli.forEach(element => {
-      display +=
-        `<li class="list-group-item list-group-item-primary mb-1">
+      display += 
+      `<li class="list-group-item list-group-item-primary mb-1">
         <a href="accommodation.html?hotel-id=${element.id}&grad-id=${idGrada}">
           <div class="row align-items-center text-center">
             <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
@@ -89,7 +89,7 @@ fetch(`/hotels/${idGrada}`)
       </li>`;
       document.getElementById("topAccomodations").innerHTML = display;
     });
-  });
+});
 
 let feedbackArray = []
 // Dovlacenje feedbacka
@@ -109,7 +109,7 @@ function nabaviFeedback() {
               <img src="${feedback.slika}" class="rounded-circle" height="75px" alt=""/>
             </div>
             <div class="col-8">
-              <h4>${feedback.ime} ${feedback.prezime}</h4>
+              <h4>Username</h4>
               <div class="">
                 <span class=""><i class="text-warning fa fa-star"></i></span>
                 <span class=""><i class="text-warning fa fa-star"></i></span>
@@ -123,7 +123,6 @@ function nabaviFeedback() {
             <p class="mb-0">
               ${feedback.opis}
             </p>
-            <small>${feedback.datum.substring(0, 10)} ${feedback.datum.substring(11, 19)}</small>
           </div>
           <div class="row justify-content-center">
             <div class="w-50">
@@ -135,7 +134,7 @@ function nabaviFeedback() {
         </div>
       </div>
       `
-    })
+      })
     // console.log(feedbackDisplay)
     document.getElementById('feedback-display').innerHTML = feedbackDisplay
     $('.prikazi-modal').on('click', function () {
@@ -301,3 +300,4 @@ $('#form-hotel-feedback').on('submit', function(e) {
         nabaviFeedback()
     })
 })
+
