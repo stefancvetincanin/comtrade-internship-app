@@ -104,7 +104,7 @@ $(document).ready(function () {
   });
 
   $('.carousel').carousel({
-    interval: 2000
+    interval: 3000
   });
 
   $('body').on('load', $(".commentGroup").hide());
@@ -175,7 +175,7 @@ function minimizedElements() {
 // Event listeners
 document.addEventListener('DOMContentLoaded', getData);
 
-const apiKey = '4557aae956939ce49a2fe6d480b1d84d';
+//const apiKey = '4557aae956939ce49a2fe6d480b1d84d';
 
 const desc = document.getElementById('description');
 const string = document.getElementById('stringWeather');
@@ -183,23 +183,37 @@ const humidity = document.getElementById('humidity');
 const pressure = document.getElementById('pressure');
 const wind = document.getElementById('wind');
 
+const weatherTemplate = (element, index) => {
+return `<div class="carousel-item ${index === 0 ? "active" : null} bg-info w-100">
+  <div class="row px-2 justify-content-center align-items-center mb-1 pt-5 text-white">
+    <div class="col-3"><img src="https://www.metaweather.com/static/img/weather/${element.weather_state_abbr}.svg" width="40"></div>
+    <div class="col-3 text-center">${element.weather_state_name}</div>
+    <div class="col-3">${element.min_temp.toFixed(0)}&#176;/${element.max_temp.toFixed(0)}&#176;</div> 
+  </div>
+  <div class="row justify-content-center align-middle mt-3"><p>${element.applicable_date}<p></div>
+</div>`;
+}
+
 function getData() {
   fetch(`/city/${id}`)
     .then(res => res.json())
     .then(res => {
-      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${res[0].ime},${res[0].country_code}&units=metric&APPID=${apiKey}`)
+      fetch(`https://proxy-requests.herokuapp.com/https://www.metaweather.com/api/location/${res[0].woeid}/`)
         .then(res => res.json())
         .then(data => {
-          console.log(data);
           print(data);
+          let fiveDays = [...data.consolidated_weather];
+          fiveDays.shift();
+          $('#carouselExampleControls .carousel-inner').html(fiveDays.map(weatherTemplate, 0).join(''));
         })
     });
 }
 
+
 function print(data) {
-  desc.innerHTML = data.weather[0].description;
-  string.innerHTML = `${data.main.temp.toFixed(1)}&nbsp;`; 
-  humidity.textContent = `${data.main.humidity} %`;
-  pressure.textContent = `${data.main.pressure}`;
-  wind.textContent = `${data.wind.speed} m/s`;
+  desc.innerHTML = data.consolidated_weather[0].weather_state_name;
+  string.innerHTML = `${data.consolidated_weather[0].the_temp.toFixed(1)}&nbsp;`; 
+  humidity.textContent = `${data.consolidated_weather[0].humidity} %`;
+  pressure.textContent = `${data.consolidated_weather[0].air_pressure.toFixed(0)}`;
+  wind.textContent = `${data.consolidated_weather[0].wind_speed.toFixed(0)} m/s`;
 }
