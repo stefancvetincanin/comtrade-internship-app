@@ -1,11 +1,10 @@
-$('.tab-item').click(function() {
-  $('.collapse').collapse('hide');
-});
+let idGrada = getParameter('grad-id');
+let idHotel = getParameter('hotel-id');
+let display = "";
+let feedbackArray = []
+let rating = ''
 
-$('.carousel').carousel({
-  interval: 10000
-});
-
+// funkcija za izvlacenje parametara iz adrese browsera
 function getParameter(paramName) {
   let searchString = window.location.search.substring(1),
     i,
@@ -20,79 +19,8 @@ function getParameter(paramName) {
   }
   return null;
 }
-let idGrada = getParameter('grad-id');
-let idHotel = getParameter('hotel-id');
 
-// prikaz imena grada
-fetch(`/city/${idGrada}`)
-  .then(res => res.json())
-  .then(res => document.getElementById('city-name').innerHTML = `${res[0].ime}`);
-
-// prikaz imena hotela i opisa
-fetch(`/hotel/${idHotel}`)
-.then(res => res.json())
-.then(
-  res => {
-    document.getElementById('hotel-description').innerHTML = 
-    `<h1 class='h-25'>${res[0].ime}</h1>
-    <div id='starsAccomod' class='align-items-center'>*****</div>
-    <p class='h-75 pr-3'>${res[0].opis}</p>
-    <button class='btn btn-primary d-inline-block mb-3' type='button' data-toggle='modal' data-target='#addFeed'>Dodaj feed...</button>`;
-
-    document.getElementById('hotel-image-1').src = `${res[0].url_slike}`;
-    document.getElementById('hotel-image-1').alt = `${res[0].ime}`;
-    document.getElementById('hotel-image-2').alt = `${res[0].ime}`;
-    document.getElementById('hotel-image-3').alt = `${res[0].ime}`;
-    document.getElementById('hotel-image-4').alt = `${res[0].ime}`;
-    document.getElementById('hotel-image-5').alt = `${res[0].ime}`;
-    document.getElementById('hotel-image-6').alt = `${res[0].ime}`;
-
-    fetch(`/hotel-images/${idHotel}`)
-    .then(res => res.json())
-    .then(
-      res => {
-        console.log(res)
-        document.getElementById('hotel-image-2').src = `${res[0].url_slike}`;   
-        document.getElementById('hotel-image-3').src = `${res[1].url_slike}`;
-        document.getElementById('hotel-image-4').src = `${res[2].url_slike}`;
-        document.getElementById('hotel-image-5').src = `${res[3].url_slike}`;
-        document.getElementById('hotel-image-6').src = `${res[4].url_slike}`;
-      })
-  }
-);
-
-// prikaz hotela u tom gradu
-
-let display = "";
-fetch(`/hotels/${idGrada}`)
-  .then(res => res.json())
-  .then(res => {
-    let mapiraniHoteli = [...res];
-    mapiraniHoteli.length = 3;
-    mapiraniHoteli.forEach(element => {
-      display += 
-      `<li class="list-group-item list-group-item-primary mb-1">
-        <a href="accommodation.html?hotel-id=${element.id}&grad-id=${idGrada}">
-          <div class="row align-items-center text-center">
-            <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
-              <img class="d-block mx-auto" src="${element.url_slike}" height="100px" alt="${element.ime}">
-            </div>
-            <div class="col-lg-9 col-md-8 ml-3 col-sm-7">
-              <div class="clearfix pl-4">
-                <h1 id="nameAccomod" class="float-left">${element.ime}</h1>
-                <div id="starsAccomod" class="float-right align-items-center">*****</div>
-              </div>
-              <p id="descriptionAccomod" class="text-left pl-4">${element.opis}</p>
-            </div> 
-          </div>
-        </a>
-      </li>`;
-      document.getElementById("topAccomodations").innerHTML = display;
-    });
-});
-
-let feedbackArray = []
-// Dovlacenje feedbacka
+// pocetno prikazivanje feedbacka na stranici
 function nabaviFeedback() {
   fetch(`/feedback-hotel/${idHotel}`)
   .then(res => res.json())
@@ -143,8 +71,7 @@ function nabaviFeedback() {
   })
 }
 
-nabaviFeedback()
-
+// funkcija ispisuje feedback u modalu
 function prikaziFeedbackModal(id) {
   let filtriranFeedback = feedbackArray.filter(element => element.id === Number(id))
   document.getElementById('modalFeedback').innerHTML = `
@@ -231,50 +158,126 @@ function prikaziFeedbackModal(id) {
       .then(res => res.json())
       .then(res => {
         if(res.poslato)
-        nabaviSpisakKomentara()
+        nabaviSpisakKomentara(id)
       })
   })
-  nabaviSpisakKomentara()
-  function nabaviSpisakKomentara() {
-    fetch(`/komentar-hotel/${id}`)
-    .then(res => res.json())
-    .then(res => {
-      console.log(res)
-      let displayComments = ''
-      res.forEach(comment => {
-        displayComments += `
-          <li class="list-group-item list-group-item-warning clearfix d-flex">
-            <div class="mr-3 align-self-center">
-              <img class="rounded-circle " src="${comment.slika}" alt="${comment.ime}" width="90px"/>
-            </div>
-            <div class="d-block w-100">
-              <div>
-                <div class="d-inline-block w-25 bg-primary text-white text-center mb-2 float-left">
-                  ${comment.ime} ${comment.prezime}
-                </div>
-                <div class="float-right">
-                  <small>${comment.datum.substring(0, 10)} ${comment.datum.substring(11, 19)}</small>
-                </div>
-              </div>
-              <div class="d-inline-block w-100 text-dark">
-                ${comment.text}
-              </div>
-            </div>
-          </li>
-        `
-      })
-      document.getElementById('commentList').innerHTML = displayComments
-    })
-  }
+  nabaviSpisakKomentara(id)
 }
 
+// funkcija nabavlja spisak komentara iz baze i prikazuje ih u modalu
+function nabaviSpisakKomentara(id) {
+  fetch(`/komentar-hotel/${id}`)
+  .then(res => res.json())
+  .then(res => {
+    console.log(res)
+    let displayComments = ''
+    res.forEach(comment => {
+      displayComments += `
+        <li class="list-group-item list-group-item-warning clearfix d-flex">
+          <div class="mr-3 align-self-center">
+            <img class="rounded-circle " src="${comment.slika}" alt="${comment.ime}" width="90px"/>
+          </div>
+          <div class="d-block w-100">
+            <div>
+              <div class="d-inline-block w-25 bg-primary text-white text-center mb-2 float-left">
+                ${comment.ime} ${comment.prezime}
+              </div>
+              <div class="float-right">
+                <small>${comment.datum.substring(0, 10)} ${comment.datum.substring(11, 19)}</small>
+              </div>
+            </div>
+            <div class="d-inline-block w-100 text-dark">
+              ${comment.text}
+            </div>
+          </div>
+        </li>
+      `
+    })
+    document.getElementById('commentList').innerHTML = displayComments
+  })
+}
+
+// sakrivanje tabova
+$('.tab-item').click(function() {
+  $('.collapse').collapse('hide');
+});
+
+// interval smena slika u slideru
+$('.carousel').carousel({
+  interval: 10000
+});
+
+nabaviFeedback()
+
+// prikazi ime grada
+fetch(`/city/${idGrada}`)
+  .then(res => res.json())
+  .then(res => document.getElementById('city-name').innerHTML = `${res[0].ime}`);
+
+// prikaz imena hotela i opisa pri load-u stranice
+fetch(`/hotel/${idHotel}`)
+.then(res => res.json())
+.then(
+  res => {
+    document.getElementById('hotel-description').innerHTML = 
+    `<h1 class='h-25'>${res[0].ime}</h1>
+    <div id='starsAccomod' class='align-items-center'>*****</div>
+    <p class='h-75 pr-3'>${res[0].opis}</p>
+    <button class='btn btn-primary d-inline-block mb-3' type='button' data-toggle='modal' data-target='#addFeed'>Dodaj feed...</button>`;
+
+    document.getElementById('hotel-image-1').src = `${res[0].url_slike}`;
+    document.getElementById('hotel-image-1').alt = `${res[0].ime}`;
+    document.getElementById('hotel-image-2').alt = `${res[0].ime}`;
+    document.getElementById('hotel-image-3').alt = `${res[0].ime}`;
+    document.getElementById('hotel-image-4').alt = `${res[0].ime}`;
+    document.getElementById('hotel-image-5').alt = `${res[0].ime}`;
+    document.getElementById('hotel-image-6').alt = `${res[0].ime}`;
+
+    fetch(`/hotel-images/${idHotel}`)
+    .then(res => res.json())
+    .then(
+      res => {
+        console.log(res)
+        document.getElementById('hotel-image-2').src = `${res[0].url_slike}`;   
+        document.getElementById('hotel-image-3').src = `${res[1].url_slike}`;
+        document.getElementById('hotel-image-4').src = `${res[2].url_slike}`;
+        document.getElementById('hotel-image-5').src = `${res[3].url_slike}`;
+        document.getElementById('hotel-image-6').src = `${res[4].url_slike}`;
+      })
+  }
+);
+
+// prikaz hotela u tom gradu
+fetch(`/hotels/${idGrada}`)
+  .then(res => res.json())
+  .then(res => {
+    let mapiraniHoteli = [...res];
+    mapiraniHoteli.length = 3;
+    mapiraniHoteli.forEach(element => {
+      display += 
+      `<li class="list-group-item list-group-item-primary mb-1">
+        <a href="accommodation.html?hotel-id=${element.id}&grad-id=${idGrada}">
+          <div class="row align-items-center text-center">
+            <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
+              <img class="d-block mx-auto" src="${element.url_slike}" height="100px" alt="${element.ime}">
+            </div>
+            <div class="col-lg-9 col-md-8 ml-3 col-sm-7">
+              <div class="clearfix pl-4">
+                <h1 id="nameAccomod" class="float-left">${element.ime}</h1>
+                <div id="starsAccomod" class="float-right align-items-center">*****</div>
+              </div>
+              <p id="descriptionAccomod" class="text-left pl-4">${element.opis}</p>
+            </div> 
+          </div>
+        </a>
+      </li>`;
+      document.getElementById("topAccomodations").innerHTML = display;
+    });
+});
 
 // Forma za ostavljanje feedbacka za hotel
-let rating = ''
-
 $('#form-hotel-feedback input[type=radio]').on('change', function() {
   rating = ($('input[name=rate]:checked').val())
-  // alert(rating)
 })
 
 $('#form-hotel-feedback').on('submit', function(e) {
