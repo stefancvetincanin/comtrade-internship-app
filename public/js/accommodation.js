@@ -38,35 +38,35 @@ function nabaviFeedback() {
       }
       if(!stringZvezdice)
         stringZvezdice = 'Nema ocena'
-      feedbackDisplay += `
-      <div class="carousel-item ${index === 0 ? "active" : null}">
-        <div class="card col-lg-12 bg-light mb-4 px-4 py-3 mx-auto">
-          <div class="row card-body">
-            <div class="col-md-4">
-              <img src="${feedback.slika}" class="rounded-circle" height="75px" alt=""/>
-            </div>
-            <div class="col-8">
-              <h4>Username</h4>
+        feedbackDisplay += `
+          <div class="carousel-item ${index === 0 ? "active" : null}">
+            <div class="card col-lg-12 bg-light mb-4 px-4 py-3 mx-auto">
+              <div class="row card-body">
+                <div class="col-md-4">
+                  <img src="${feedback.slika}" class="rounded-circle" height="75px" alt=""/>
+                </div>
+                <div class="col-8">
+                  <h4>Username</h4>
+                  <div>
+                    ${stringZvezdice}
+                  </div>
+                </div>
+              </div>
               <div>
-                ${stringZvezdice}
+                <p class="mb-0">
+                  ${feedback.opis}
+                </p>
+              </div>
+              <div class="row justify-content-center">
+                <div class="w-50">
+                  <button class="prikazi-modal btn btn-warning btn-block text-white mt-1" data-feedback-id=${feedback.id} type="button" data-toggle="modal" data-target="#modalFeedback">
+                    More
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-          <div>
-            <p class="mb-0">
-              ${feedback.opis}
-            </p>
-          </div>
-          <div class="row justify-content-center">
-            <div class="w-50">
-              <button class="prikazi-modal btn btn-warning btn-block text-white mt-1" data-feedback-id=${feedback.id} type="button" data-toggle="modal" data-target="#modalFeedback">
-                More
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      `
+          `
       })
     document.getElementById('feedback-display').innerHTML = feedbackDisplay
     $('.prikazi-modal').on('click', function () {
