@@ -13,32 +13,10 @@ function getParameter(paramName) {
   return null;
 }
 
-// f-ja za show more-show less
-let count = 0;
-function moreLess (id, classname) {
-document.getElementById(id).addEventListener('click', function(){
-  console.log(count++);
-  if(count%2 !== 0){
-    document.getElementById(id).value="Show less..";
-    Array.from(document.getElementsByClassName(classname)).forEach(
-      (element) => {
-        element.setAttribute("style", "display:block");
-      }
-    );
-  } else {
-    document.getElementById(id).value="Show more..";
-    Array.from(document.getElementsByClassName(classname)).forEach(
-      (element) => {
-        element.setAttribute("style", "display:none");
-      }
-    );
-  }
-});
-}
-
 
 let id = getParameter("grad-id");
 
+//prikaz fotografije grada i pozadina body-a
   fetch(`/city/${id}`)
   .then(res => res.json())
   .then(
@@ -63,6 +41,29 @@ fetch(`/city/${id}`)
     }</h1><p class="cityText pr-3"  id="content">${res[0].opis}</p>`;
     minimizedElements();
   });
+
+// f-ja za show more-show less hoteli i atrakcije
+let count = 0;
+function moreLess (id, classname) {
+document.getElementById(id).addEventListener('click', function(){
+  console.log(count++);
+  if(count%2 !== 0){
+    document.getElementById(id).value="Show less..";
+    Array.from(document.getElementsByClassName(classname)).forEach(
+      (element) => {
+        element.setAttribute("style", "display:block");
+      }
+    );
+  } else {
+    document.getElementById(id).value="Show more..";
+    Array.from(document.getElementsByClassName(classname)).forEach(
+      (element) => {
+        element.setAttribute("style", "display:none");
+      }
+    );
+  }
+});
+}
 
 // prikaz hotela u tom gradu
 
@@ -128,7 +129,11 @@ fetch(`/attractions/${id}`)
     moreLess("moreBtn1", "moreClass1");
   });
 
-$(document).ready(function() {
+
+
+ $(document).ready(function() {
+  
+  
   $(".tab-item").click(function() {
     $(".collapse").collapse("hide");
   });
