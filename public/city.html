@@ -188,117 +188,14 @@
     <div id="feedback" class="collapse">
       <div class="card card-body py-5">
         <h2 class="cardBodyHeadline">Feedback</h2>
-        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, unde!</p>
+        <button class='btn btn-primary d-inline-block mb-3' type='button' data-toggle='modal' data-target='#addFeed'>Dodaj feed...</button>
+
   
     <div class="container">
-      <div class="row">
-        <div class="card col-lg-4 col-md-6 col-sm-12 bg-light mb-4 px-4 py-3">
-          <div class="row card-body">
-            <div class="col-4">
-              <img src="./media/images/nikola.png" class="rounded-circle" height="75px" alt="">
-            </div>
-            <div class="col-8">
-              <h4>Username</h4>
-              <div class="">
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa at iusto obcaecati a dicta ipsam laboriosam optio
-              placeat magnam doloremque!</p>
-          </div>
-          <div class="row justify-content-center">
-            <div class="w-50">
-              <button class="btn btn-warning btn-block text-white" type="button" data-toggle="modal" data-target="#modalFeedback">More</button>
-            </div>
-          </div>
-        </div>
+      <div class="row" id="commentList">
         
-        <div class="card col-lg-4 col-md-6 col-sm-12 bg-light mb-4 px-4 py-3">
-          <div class="row card-body">
-            <div class="col-4">
-              <img src="./media/images/nikola.png" class="rounded-circle" height="75px" alt="">
-            </div>
-            <div class="col-8">
-              <h4>Username</h4>
-              <div class="">
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa at iusto obcaecati a dicta ipsam laboriosam optio
-              placeat magnam doloremque!</p>
-          </div>
-          <div class="row justify-content-center">
-            <div class="w-50">
-              <button class="btn btn-warning btn-block text-white" type="button">More</button>
-            </div>
-          </div>
-        </div>
         
-        <div class="card col-lg-4 col-md-6 col-sm-12 bg-light mb-4 px-4 py-3">
-          <div class="row card-body">
-            <div class="col-4">
-              <img src="./media/images/nikola.png" class="rounded-circle" height="75px" alt="">
-            </div>
-            <div class="col-8">
-              <h4>Username</h4>
-              <div class="">
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa at iusto obcaecati a dicta ipsam laboriosam optio
-              placeat magnam doloremque!</p>
-          </div>
-          <div class="row justify-content-center">
-            <div class="w-50">
-              <button class="btn btn-warning btn-block text-white" type="button">More</button>
-            </div>
-          </div>
-        </div>
         
-        <div class="card col-lg-4 col-md-6 col-sm-12 bg-light mb-4 px-4 py-3">
-          <div class="row card-body">
-            <div class="col-4">
-              <img src="./media/images/nikola.png" class="rounded-circle" height="75px" alt="">
-            </div>
-            <div class="col-8">
-              <h4>Username</h4>
-              <div class="">
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa at iusto obcaecati a dicta ipsam laboriosam optio
-              placeat magnam doloremque!</p>
-          </div>
-          <div class="row justify-content-center">
-            <div class="w-50">
-              <button class="btn btn-warning btn-block text-white" type="button">More</button>
-            </div>
-          </div>
-        </div> 
     </div>
   
 
@@ -315,98 +212,48 @@
 
 <div class="modal fade bd-example-modal-lg" id="modalFeedback" tabindex="-1" role="dialog"
   aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  
+</div>
+<!-- Modal za hotel feedback dodavanje -->
+<div class="modal fade bd-example-modal-lg" id="addFeed" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-          <div class="row card-body">
-            <div class="col-4">
-              <img src="./media/images/nikola.png" class="rounded-circle" height="100px" alt="user">
-            </div>
-            <div class="col-8">
-              <h4>Username</h4>
-              <div class="">
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-              </div>
-            </div>
+        <div class="row card-body">
+          <div class="col-8">
+            <h4>Username</h4>
           </div>
+        </div>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <div class="row">
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa at iusto obcaecati a dicta ipsam laboriosam optio
-            placeat magnam doloremque! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui hic repudiandae repellendus doloribus recusandae modi labore possimus, unde consequuntur ipsa?</p>
-        </div>
-        <div class="clearfix mb-4">
-          <a id="addComment" href="#comment">
-            <button type="button" class=" btn btn-primary float-right mx-1">Add comment</button>
-          </a>
-          <button id="btnFooterToggle" type="button" class="btn btn-primary float-right">Show-hide comments</button>
-        </div>
-        
-        <div class="commentGroup">
-          <ul class="list-group mb-1" id="commentList">
-            <li class="list-group-item list-group-item-warning clearfix">
-              <div class="div">
-                <div class="d-inline-block w-25 bg-primary text-white text-center mb-2 float-left">
-                  Username
-                </div>
-                <div class="float-right">
-                  Date
-                </div>
-              </div>
-              <div class="d-inline-block w-100 text-dark">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae nesciunt harum,
-                omnis accusamus neque quia obcaecati et. Vitae, tempora reprehenderit?
-              </div>
-            </li>
-            <li class="list-group-item list-group-item-warning clearfix">
-              <div class="div">
-                <div class="d-inline-block w-25 bg-primary text-white text-center mb-2 float-left">
-                  Username
-                </div>
-                <div class="float-right">
-                  Date
-                </div>
-              </div>
-              <div class="d-inline-block w-100 text-dark">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae nesciunt harum,
-                omnis accusamus neque quia obcaecati et. Vitae, tempora reprehenderit?
-              </div>
-            </li>
-            <li class="list-group-item list-group-item-warning clearfix">
-              <div class="div">
-                <div class="d-inline-block w-25 bg-primary text-white text-center mb-2 float-left">
-                  Username
-                </div>
-                <div class="float-right">
-                  Date
-                </div>
-              </div>
-              <div class="d-inline-block w-100 text-dark">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae nesciunt harum,
-                omnis accusamus neque quia obcaecati et. Vitae, tempora reprehenderit?
-              </div>
-            </li>
-          </ul>
-          <form class="w-100 p-0">
-            <div class="form-group justify-content-center">
-              <label for="comment">Message</label>
-              <textarea class="form-control" id="comment" rows="3"></textarea>
-            </div>
-
-            <div class="clearfix">
-              <button type="button" class="btn btn-primary float-right">Send comment</button>
-            </div>
-          </form>
-        </div>
+        <form class="w-100 p-0" id="form-hotel-feedback">
+          <div class="rate">
+            <input type="radio" id="star5" name="rate" value="5" required/>
+            <label for="star5" title="text">5 stars</label>
+            <input type="radio" id="star4" name="rate" value="4" required/>
+            <label for="star4" title="text">4 stars</label>
+            <input type="radio" id="star3" name="rate" value="3" required/>
+            <label for="star3" title="text">3 stars</label>
+            <input type="radio" id="star2" name="rate" value="2" required/>
+            <label for="star2" title="text">2 stars</label>
+            <input type="radio" id="star1" name="rate" value="1" required/>
+            <label for="star1" title="text">1 star</label>
+          </div>
+          <div class="form-group justify-content-center">
+            <input type="text" id="naziv-feedback-hotel" class="mb-3" required placeholder="Title">
+            <!-- <label for="comment">Message</label> -->
+            <textarea class="form-control" id="comment-feedback" rows="3" required minlength="20" maxlength="500"></textarea>
+          </div>
+          <div class="clearfix">
+            <button type="submit" class="btn btn-primary float-right">
+              Send comment
+            </button>
+          </div>
+        </form>
       </div>
-      
     </div>
   </div>
 </div>

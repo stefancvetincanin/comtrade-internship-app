@@ -1,3 +1,6 @@
+let feedbackArray = []
+let id = getParameter("grad-id");
+
 function getParameter(paramName) {
   let searchString = window.location.search.substring(1),
     i,
@@ -37,7 +40,6 @@ document.getElementById(id).addEventListener('click', function(){
 }
 
 
-let id = getParameter("grad-id");
 
   fetch(`/city/${id}`)
   .then(res => res.json())
@@ -163,7 +165,6 @@ function stringDate(currDate) {
 //less and more text
 function minimizedElements() {
   let minimized_elements = $("#content");
-  console.log(minimized_elements.value);
 
   minimized_elements.each(function() {
     let t = $(this).text();
@@ -248,3 +249,199 @@ function print(data) {
   pressure.textContent = `${data.consolidated_weather[0].air_pressure.toFixed(0)}`;
   wind.textContent = `${data.consolidated_weather[0].wind_speed.toFixed(0)} m/s`;
 }
+    
+
+
+
+/////////////////////////////////////////////////////////////
+
+
+
+
+// funkcija nabavlja spisak komentara iz baze i prikazuje ih u modalu
+function feedbackGrad(id) {
+  fetch(`/feedback-grad/${id}`)
+  .then(res => res.json())
+  .then(res => {
+    feedbackArray = res;
+    console.log(res)
+    let displayComments = ''
+    res.forEach(comment => {
+      displayComments += `
+      <div class="card col-lg-4 col-md-6 col-sm-12 bg-light mb-4 px-4 py-3">
+      <div class="row card-body">
+        <div class="col-4">
+          <img src="${comment.slika}" class="rounded-circle" height="75px" alt="">
+        </div>
+        <div class="col-8">
+          <h4>${comment.ime}</h4>
+          <div class="">
+            <span class=""><i class="text-warning fa fa-star"></i></span>
+            <span class=""><i class="text-warning fa fa-star"></i></span>
+            <span class=""><i class="text-warning fa fa-star"></i></span>
+            <span class=""><i class="text-warning fa fa-star"></i></span>
+            <span class=""><i class="text-warning fa fa-star"></i></span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <p>${comment.opis}</p>
+      </div>
+      <div class="row justify-content-center">
+        <div class="w-50">
+          <button class="btn btn-warning btn-block text-white prikazi-modal" type="button" data-toggle="modal" data-feedback-id=${comment.id} data-target="#modalFeedback">More</button>
+        </div>
+      </div>
+    </div>
+      `
+    })
+    document.getElementById('commentList').innerHTML = displayComments;
+    $('.prikazi-modal').on('click', function () {
+      prikaziFeedbackModal($(this).attr('data-feedback-id'))
+    })
+  })
+}
+// nabaviFeedback()
+
+// Forma za ostavljanje feedbacka za hotel
+
+$('#form-hotel-feedback input[type=radio]').on('change', function() {
+  rating = ($('input[name=rate]:checked').val())
+})
+
+$('#form-hotel-feedback').on('submit', function(e) {
+  e.preventDefault()
+  const feedbackBody = {
+    hotelId: idHotel,
+    korisniciId: Math.floor(Math.random() * (5 - 1)) + 1,
+    rating: rating,
+    naziv: $('#naziv-feedback-hotel').val(),
+    opis: $('#comment-feedback').val()
+  }
+  const feedbackOptions = {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(feedbackBody)
+  }
+  console.log(feedbackOptions)
+  fetch('/post-feedback-hotel', feedbackOptions)
+    .then(res => res.json())
+    .then(res => {
+      if(res.poslato)
+        $('#addFeed').modal('hide')
+        nabaviFeedback()
+    })
+})
+feedbackGrad(id)
+
+
+// funkcija ispisuje feedback u modalu
+function prikaziFeedbackModal(id) {
+  let filtriranFeedback = feedbackArray.filter(element => element.id === Number(id))
+  console.log(filtriranFeedback)
+  document.getElementById('modalFeedback').innerHTML = `
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+          <div class="row card-body">
+            <div class="col-4">
+              <img src="${filtriranFeedback[0].slika}" class="rounded-circle" height="100px" alt="user">
+            </div>
+            <div class="col-8">
+              <h4>${filtriranFeedback[0].ime}</h4>
+              <div class="">
+                <span class=""><i class="text-warning fa fa-star"></i></span>
+                <span class=""><i class="text-warning fa fa-star"></i></span>
+                <span class=""><i class="text-warning fa fa-star"></i></span>
+                <span class=""><i class="text-warning fa fa-star"></i></span>
+                <span class=""><i class="text-warning fa fa-star"></i></span>
+              </div>
+            </div>
+          </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <p>${filtriranFeedback[0].opis}</p>
+        </div>
+        <div class="clearfix mb-4">
+          <a id="addComment" href="#comment">
+            <button type="button" class=" btn btn-primary float-right mx-1">Add comment</button>
+          </a>
+          <button id="btnFooterToggle" type="button" class="btn btn-primary float-right">Show-hide comments</button>
+        </div>
+        
+        <div class="commentGroup">
+          <ul class="list-group mb-1" id="commentList">
+
+          //// ovde treba dinamicki upisati listu komentara za feedback grada
+
+
+            <li class="list-group-item list-group-item-warning clearfix">
+              <div class="div">
+                <div class="d-inline-block w-25 bg-primary text-white text-center mb-2 float-left">
+                  Username
+                </div>
+                <div class="float-right">
+                  Date
+                </div>
+              </div>
+              <div class="d-inline-block w-100 text-dark">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae nesciunt harum,
+                omnis accusamus neque quia obcaecati et. Vitae, tempora reprehenderit?
+              </div>
+            </li>
+
+
+
+          </ul>
+          <form class="w-100 p-0">
+            <div class="form-group justify-content-center">
+              <label for="comment">Message</label>
+              <textarea class="form-control" id="comment" rows="3"></textarea>
+            </div>
+
+            <div class="clearfix">
+              <button type="button" class="btn btn-primary float-right">Send comment</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+    `
+  $('#btnFooterToggle').on('click', function() {
+    $('#forma-comment').slideToggle()
+  })
+
+  // $('#forma-comment').on('submit', function(e){
+  //   e.preventDefault()
+  //   const commentBody = {
+  //     feedbackId: Number(id),
+  //     text: $('#comment-on-feedback').val(),
+  //     korisniciId: Math.floor(Math.random() * (5 - 1)) + 1
+  //   }
+  //   const commentOptions = {
+  //     method: 'POST',
+  //     headers: {'Content-Type': 'application/json'},
+  //     body: JSON.stringify(commentBody)
+  //   }
+  //   fetch('/post-comment-hotel', commentOptions)
+  //     .then(res => res.json())
+  //     .then(res => {
+  //       if(res.poslato)
+  //       feedbackGrad(id)
+  //     })
+  // })
+  // feedbackGrad(id)
+}
+
+
+
+
+
+
+
