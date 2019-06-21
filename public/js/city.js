@@ -16,31 +16,9 @@ function getParameter(paramName) {
   return null;
 }
 
-// f-ja za show more-show less
-let count = 0;
-function moreLess (id, classname) {
-document.getElementById(id).addEventListener('click', function(){
-  console.log(count++);
-  if(count%2 !== 0){
-    document.getElementById(id).value="Show less..";
-    Array.from(document.getElementsByClassName(classname)).forEach(
-      (element) => {
-        element.setAttribute("style", "display:block");
-      }
-    );
-  } else {
-    document.getElementById(id).value="Show more..";
-    Array.from(document.getElementsByClassName(classname)).forEach(
-      (element) => {
-        element.setAttribute("style", "display:none");
-      }
-    );
-  }
-});
-}
 
 
-
+//prikaz fotografije grada i pozadina body-a
   fetch(`/city/${id}`)
   .then(res => res.json())
   .then(
@@ -66,12 +44,36 @@ fetch(`/city/${id}`)
     minimizedElements();
   });
 
+// f-ja za show more-show less hoteli i atrakcije
+let count = 0;
+function moreLess (id, classname) {
+document.getElementById(id).addEventListener('click', function(){
+  console.log(count++);
+  if(count%2 !== 0){
+    document.getElementById(id).value="Show less..";
+    Array.from(document.getElementsByClassName(classname)).forEach(
+      (element) => {
+        element.setAttribute("style", "display:block");
+      }
+    );
+  } else {
+    document.getElementById(id).value="Show more..";
+    Array.from(document.getElementsByClassName(classname)).forEach(
+      (element) => {
+        element.setAttribute("style", "display:none");
+      }
+    );
+  }
+});
+}
+
 // prikaz hotela u tom gradu
 
 let display = "";
 fetch(`/hotels/${id}`)
   .then(res => res.json())
   .then(res => {
+    console.log(res)
     res.forEach((element , i) => {
     let moreClass = i > 2 && "moreClass";
     display += `<li class="list-group-item list-group-item-primary mb-1 ${moreClass}">
@@ -130,7 +132,11 @@ fetch(`/attractions/${id}`)
     moreLess("moreBtn1", "moreClass1");
   });
 
-$(document).ready(function() {
+
+
+ $(document).ready(function() {
+  
+  
   $(".tab-item").click(function() {
     $(".collapse").collapse("hide");
   });

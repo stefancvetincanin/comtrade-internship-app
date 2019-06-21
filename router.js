@@ -48,16 +48,24 @@ module.exports = function(express, baza) {
   // nabavi spisak hotela u nekom gradu, gde je req.params id grada u kome se nalaze
   router.get('/hotels/*', function (req, res) {
     // console.log(req.params)
-    baza.execQuery(`SELECT * FROM hotel WHERE grad_id=${mysql.escape(req.params['0'])}`, function(results) {
+    baza.execQuery(`SELECT hotel.id, hotel.grad_id, hotel.ime, hotel.address, hotel.opis, hotel.latitude, hotel.longitude, hotel.url_booking, hotel.url_slike, AVG(feedback_hotel.rating) FROM hotel LEFT JOIN feedback_hotel ON hotel.id = feedback_hotel.hotel_id WHERE hotel.grad_id=
+    ${mysql.escape(req.params['0'])} GROUP BY hotel.id`, function(results) {
       // console.log(results)
       res.send(results)
     })
   })
+  // router.get('/hotels/*', function (req, res) {
+  //   // console.log(req.params)
+  //   baza.execQuery(`SELECT * FROM hotel WHERE grad_id=${mysql.escape(req.params['0'])}`, function(results) {
+  //     // console.log(results)
+  //     res.send(results)
+  //   })
+  // })
 
   // nabavi hotel gde je req.params id hotela
   router.get('/hotel/*', function (req, res) {
     // console.log(req.params)
-    baza.execQuery(`SELECT * FROM hotel WHERE hotel.id=${mysql.escape(req.params['0'])}`, function(results) {
+    baza.execQuery(`SELECT hotel.id, hotel.grad_id, hotel.ime, hotel.address, hotel.opis, hotel.latitude, hotel.longitude, hotel.url_booking, hotel.url_slike, AVG(feedback_hotel.rating) FROM hotel INNER JOIN feedback_hotel ON hotel.id = feedback_hotel.hotel_id WHERE hotel.id=${mysql.escape(req.params['0'])}`, function(results) {
       // console.log(results)
       res.send(results)
     })

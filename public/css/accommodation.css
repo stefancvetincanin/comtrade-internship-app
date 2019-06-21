@@ -1,6 +1,23 @@
+#city-name a {
+  color: navy;
+  text-decoration: underline;
+}
+
+#city-name a:hover {
+  color: rgb(59, 59, 168);
+  text-decoration: none;
+}
+
 .image-height {
   max-height: 350px !important;
   width: auto !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .image-height {
+    max-height: auto !important;
+    width: 100% !important;
+  }
 }
 
 .strelica-slider {
@@ -17,6 +34,10 @@
 
 .forma-comment {
   display: none;
+}
+
+.current-hotel-rating {
+  color: navy;
 }
 
 /* Rating zvezdice */
