@@ -1,8 +1,10 @@
 let idGrada = getParameter('grad-id');
 let idHotel = getParameter('hotel-id');
-let display = "";
+let display = '';
 let feedbackArray = []
 let rating = ''
+let mapiraniHoteli = []
+let showMore = false
 
 // funkcija za izvlacenje parametara iz adrese browsera
 function getParameter(paramName) {
@@ -25,10 +27,17 @@ function nabaviFeedback() {
   fetch(`/feedback-hotel/${idHotel}`)
   .then(res => res.json())
   .then(res => {
-    console.log(res)
     feedbackArray = res
     let feedbackDisplay = ''
     feedbackArray.forEach((feedback, index) => {
+      let rating = Math.round(feedback.rating)
+      let stringZvezdice = ''
+      while(rating > 0) {
+        stringZvezdice += `<i class="text-warning fa fa-star"></i>`
+        rating--
+      }
+      if(!stringZvezdice)
+        stringZvezdice = 'Nema ocena'
       feedbackDisplay += `
       <div class="carousel-item ${index === 0 ? "active" : null}">
         <div class="card col-lg-12 bg-light mb-4 px-4 py-3 mx-auto">
@@ -36,14 +45,10 @@ function nabaviFeedback() {
             <div class="col-md-4">
               <img src="${feedback.slika}" class="rounded-circle" height="75px" alt=""/>
             </div>
-            <div class="col-md-8">
-              <h4 class="text-center">${feedback.ime} ${feedback.prezime}</h4>
-              <div class="">
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
+            <div class="col-8">
+              <h4>Username</h4>
+              <div>
+                ${stringZvezdice}
               </div>
             </div>
           </div>
@@ -63,7 +68,6 @@ function nabaviFeedback() {
       </div>
       `
       })
-    // console.log(feedbackDisplay)
     document.getElementById('feedback-display').innerHTML = feedbackDisplay
     $('.prikazi-modal').on('click', function () {
       prikaziFeedbackModal($(this).attr('data-feedback-id'))
@@ -74,6 +78,14 @@ function nabaviFeedback() {
 // funkcija ispisuje feedback u modalu
 function prikaziFeedbackModal(id) {
   let filtriranFeedback = feedbackArray.filter(element => element.id === Number(id))
+  let rating = Math.round(filtriranFeedback[0].rating)
+      let stringZvezdice = ''
+      while(rating > 0) {
+        stringZvezdice += `<i class="text-warning fa fa-star"></i>`
+        rating--
+      }
+      if(!stringZvezdice)
+        stringZvezdice = 'Nema ocena'
   document.getElementById('modalFeedback').innerHTML = `
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -84,23 +96,7 @@ function prikaziFeedbackModal(id) {
             </div>
             <div class="col-8">
               <h4>${filtriranFeedback[0].ime} ${filtriranFeedback[0].prezime}</h4>
-              <div class="">
-                <span class=""
-                  ><i class="text-warning fa fa-star"></i
-                ></span>
-                <span class=""
-                  ><i class="text-warning fa fa-star"></i
-                ></span>
-                <span class=""
-                  ><i class="text-warning fa fa-star"></i
-                ></span>
-                <span class=""
-                  ><i class="text-warning fa fa-star"></i
-                ></span>
-                <span class=""
-                  ><i class="text-warning fa fa-star"></i
-                ></span>
-              </div>
+              <div>${stringZvezdice}</div>
               <small>${filtriranFeedback[0].datum.substring(0, 10)} ${filtriranFeedback[0].datum.substring(11, 19)}</small>
             </div>
           </div>
@@ -142,6 +138,7 @@ function prikaziFeedbackModal(id) {
     $('#forma-comment').slideToggle()
   })
 
+  // forma za ostavljanje komentara na feedback
   $('#forma-comment').on('submit', function(e){
     e.preventDefault()
     const commentBody = {
@@ -154,6 +151,7 @@ function prikaziFeedbackModal(id) {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(commentBody)
     }
+    $('#comment-on-feedback').val('')
     fetch('/post-comment-hotel', commentOptions)
       .then(res => res.json())
       .then(res => {
@@ -169,7 +167,6 @@ function nabaviSpisakKomentara(id) {
   fetch(`/komentar-hotel/${id}`)
   .then(res => res.json())
   .then(res => {
-    console.log(res)
     let displayComments = ''
     res.forEach(comment => {
       displayComments += `
@@ -197,6 +194,40 @@ function nabaviSpisakKomentara(id) {
   })
 }
 
+function izlistajHotele(mapiraniHoteli, limit) {
+  mapiraniHoteli = [...mapiraniHoteli]
+  mapiraniHoteli.length = limit
+  display = ''
+  mapiraniHoteli.forEach(element => {
+    let rating = Math.round(element['AVG(feedback_hotel.rating)'])
+    let stringZvezdice = ''
+    while(rating > 0) {
+      stringZvezdice += `<i class="text-warning fa fa-star"></i>`
+      rating--
+    }
+    if(!stringZvezdice)
+      stringZvezdice = 'Nema ocena'
+    display += 
+    `<li class="list-group-item list-group-item-primary mb-1">
+      <a href="accommodation.html?hotel-id=${element.id}&grad-id=${idGrada}">
+        <div class="row align-items-center text-center">
+          <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
+            <img class="d-block mx-auto" src="${element.url_slike}" height="100px" alt="${element.ime}">
+          </div>
+          <div class="col-lg-9 col-md-8 ml-3 col-sm-7">
+            <div class="clearfix pl-4">
+              <h1 id="nameAccomod" class="float-left">${element.ime}</h1>
+              <div id="starsAccomod" class="float-right align-items-center">${stringZvezdice}</div>
+            </div>
+            <p id="descriptionAccomod" class="text-left pl-4">${element.opis}</p>
+          </div> 
+        </div>
+      </a>
+    </li>`;
+    document.getElementById("topAccomodations").innerHTML = display;
+  });
+}
+
 // sakrivanje tabova
 $('.tab-item').click(function() {
   $('.collapse').collapse('hide');
@@ -207,23 +238,49 @@ $('.carousel').carousel({
   interval: 10000
 });
 
+// show more/show less hotels dugme
+// dugme proverava globalnu promenljivu showMore, i zavisno od stanja prikazuje vise ili manje hotela
+$('#show-more-hotels').on('click', function() {
+  if(!showMore) {
+    izlistajHotele(mapiraniHoteli, 10)
+    showMore = true
+    $(this).html('Show less...')
+  }
+  else {
+    izlistajHotele(mapiraniHoteli, 3)
+    showMore = false
+    $(this).html('Show more...')
+  }
+})
+
 nabaviFeedback()
 
 // prikazi ime grada
 fetch(`/city/${idGrada}`)
   .then(res => res.json())
-  .then(res => document.getElementById('city-name').innerHTML = `${res[0].ime}`);
+  .then(res => document.getElementById('city-name').innerHTML = `<a href="city.html?grad-id=${idGrada}">${res[0].ime}</a>`);
 
 // prikaz imena hotela i opisa pri load-u stranice
 fetch(`/hotel/${idHotel}`)
 .then(res => res.json())
 .then(
   res => {
+    console.log(res)
+    let rating = Math.round(res[0]['AVG(feedback_hotel.rating)'])
+      let stringZvezdice = ''
+      while(rating > 0) {
+        stringZvezdice += `<i class="fa fa-star"></i>`
+        rating--
+      }
+      if(!stringZvezdice)
+        stringZvezdice = 'Nema ocena'
     document.getElementById('hotel-description').innerHTML = 
     `<h1 class='h-25'>${res[0].ime}</h1>
-    <div id='starsAccomod' class='align-items-center'>*****</div>
-    <p class='h-75 pr-3'>${res[0].opis}</p>
-    <button class='btn btn-primary d-inline-block mb-3' type='button' data-toggle='modal' data-target='#addFeed'>Dodaj feed...</button>`;
+    <div class="current-hotel-rating">${stringZvezdice}</div>
+    <p class='h-75 pr-3 mb-1'>${res[0].opis}</p>
+    <address class="mb-1"><i>Address: ${res[0].address}</i></address>
+    <a href="${res[0].url_booking}" target="_blank">This hotel on booking.com</a><br>
+    <button class='btn btn-primary d-inline-block mb-3 mt-1' type='button' data-toggle='modal' data-target='#addFeed'>Dodaj feed...</button>`;
 
     document.getElementById('hotel-image-1').src = `${res[0].url_slike}`;
     document.getElementById('hotel-image-1').alt = `${res[0].ime}`;
@@ -237,7 +294,6 @@ fetch(`/hotel/${idHotel}`)
     .then(res => res.json())
     .then(
       res => {
-        console.log(res)
         document.getElementById('hotel-image-2').src = `${res[0].url_slike}`;   
         document.getElementById('hotel-image-3').src = `${res[1].url_slike}`;
         document.getElementById('hotel-image-4').src = `${res[2].url_slike}`;
@@ -251,28 +307,9 @@ fetch(`/hotel/${idHotel}`)
 fetch(`/hotels/${idGrada}`)
   .then(res => res.json())
   .then(res => {
-    let mapiraniHoteli = [...res];
-    mapiraniHoteli.length = 3;
-    mapiraniHoteli.forEach(element => {
-      display += 
-      `<li class="list-group-item list-group-item-primary mb-1">
-        <a href="accommodation.html?hotel-id=${element.id}&grad-id=${idGrada}">
-          <div class="row align-items-center text-center">
-            <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
-              <img class="d-block mx-auto" src="${element.url_slike}" height="100px" alt="${element.ime}">
-            </div>
-            <div class="col-lg-9 col-md-8 ml-3 col-sm-7">
-              <div class="clearfix pl-4">
-                <h1 id="nameAccomod" class="float-left">${element.ime}</h1>
-                <div id="starsAccomod" class="float-right align-items-center">*****</div>
-              </div>
-              <p id="descriptionAccomod" class="text-left pl-4">${element.opis}</p>
-            </div> 
-          </div>
-        </a>
-      </li>`;
-      document.getElementById("topAccomodations").innerHTML = display;
-    });
+    mapiraniHoteli = [...res];
+    // mapiraniHoteli.length = 3;
+    izlistajHotele(mapiraniHoteli, 3)
 });
 
 // Forma za ostavljanje feedbacka za hotel
@@ -294,7 +331,6 @@ $('#form-hotel-feedback').on('submit', function(e) {
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(feedbackBody)
   }
-  console.log(feedbackOptions)
   fetch('/post-feedback-hotel', feedbackOptions)
     .then(res => res.json())
     .then(res => {
