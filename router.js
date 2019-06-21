@@ -92,7 +92,7 @@ module.exports = function(express, baza) {
   // nabavi sav feedback za neki grad, gde je req.params id relevantnog grada
   router.get('/feedback-grad/*', function (req, res) {
     // console.log(req.params)
-    baza.execQuery(`SELECT korisnici.username, korisnici.ime, korisnici.prezime, korisnici.slika, feedback_grad.rating, feedback_grad.naziv, feedback_grad.opis, feedback_grad.datum FROM feedback_grad INNER JOIN korisnici on feedback_grad.korisnici_id = korisnici.id WHERE feedback_grad.grad_id = ${mysql.escape(req.params['0'])}`, function(results) {
+    baza.execQuery(`SELECT korisnici.username, korisnici.ime, korisnici.prezime, korisnici.slika, feedback_grad.id, feedback_grad.rating, feedback_grad.naziv, feedback_grad.opis, feedback_grad.datum FROM feedback_grad INNER JOIN korisnici on feedback_grad.korisnici_id = korisnici.id WHERE feedback_grad.grad_id = ${mysql.escape(req.params['0'])}`, function(results) {
       // console.log(results)
       res.send(results)
     })
