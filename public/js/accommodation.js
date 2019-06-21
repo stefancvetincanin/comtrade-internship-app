@@ -6,6 +6,38 @@ $('.carousel').carousel({
   interval: 10000
 });
 
+function nabaviSpisakKomentara(id) {
+  fetch(`/komentar-hotel/${id}`)
+  .then(res => res.json())
+  .then(res => {
+    console.log(res)
+    let displayComments = ''
+    res.forEach(comment => {
+      displayComments += `
+        <li class="list-group-item list-group-item-warning clearfix d-flex">
+          <div class="mr-3 align-self-center">
+            <img class="rounded-circle " src="${comment.slika}" alt="${comment.ime}" width="90px"/>
+          </div>
+          <div class="d-block w-100">
+            <div>
+              <div class="d-inline-block w-25 bg-primary text-white text-center mb-2 float-left">
+                ${comment.ime} ${comment.prezime}
+              </div>
+              <div class="float-right">
+                <small>${comment.datum.substring(0, 10)} ${comment.datum.substring(11, 19)}</small>
+              </div>
+            </div>
+            <div class="d-inline-block w-100 text-dark">
+              ${comment.text}
+            </div>
+          </div>
+        </li>
+      `
+    })
+    document.getElementById('commentList').innerHTML = displayComments
+  })
+}
+
 function getParameter(paramName) {
   let searchString = window.location.search.substring(1),
     i,
@@ -231,41 +263,10 @@ function prikaziFeedbackModal(id) {
       .then(res => res.json())
       .then(res => {
         if(res.poslato)
-        nabaviSpisakKomentara()
+        nabaviSpisakKomentara(id)
       })
   })
-  nabaviSpisakKomentara()
-  function nabaviSpisakKomentara() {
-    fetch(`/komentar-hotel/${id}`)
-    .then(res => res.json())
-    .then(res => {
-      console.log(res)
-      let displayComments = ''
-      res.forEach(comment => {
-        displayComments += `
-          <li class="list-group-item list-group-item-warning clearfix d-flex">
-            <div class="mr-3 align-self-center">
-              <img class="rounded-circle " src="${comment.slika}" alt="${comment.ime}" width="90px"/>
-            </div>
-            <div class="d-block w-100">
-              <div>
-                <div class="d-inline-block w-25 bg-primary text-white text-center mb-2 float-left">
-                  ${comment.ime} ${comment.prezime}
-                </div>
-                <div class="float-right">
-                  <small>${comment.datum.substring(0, 10)} ${comment.datum.substring(11, 19)}</small>
-                </div>
-              </div>
-              <div class="d-inline-block w-100 text-dark">
-                ${comment.text}
-              </div>
-            </div>
-          </li>
-        `
-      })
-      document.getElementById('commentList').innerHTML = displayComments
-    })
-  }
+  nabaviSpisakKomentara(id)
 }
 
 
