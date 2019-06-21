@@ -71,6 +71,7 @@ let display = "";
 fetch(`/hotels/${id}`)
   .then(res => res.json())
   .then(res => {
+    console.log(res)
     res.forEach((element , i) => {
     let moreClass = i > 2 && "moreClass";
     display += `<li class="list-group-item list-group-item-primary mb-1 ${moreClass}">
