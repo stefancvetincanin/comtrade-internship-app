@@ -31,13 +31,13 @@ function nabaviFeedback() {
     feedbackArray.forEach((feedback, index) => {
       feedbackDisplay += `
       <div class="carousel-item ${index === 0 ? "active" : null}">
-        <div class="card col-lg-12 bg-light mb-4 px-4 py-3">
+        <div class="card col-lg-12 bg-light mb-4 px-4 py-3 mx-auto">
           <div class="row card-body">
-            <div class="col-4">
+            <div class="col-md-4">
               <img src="${feedback.slika}" class="rounded-circle" height="75px" alt=""/>
             </div>
-            <div class="col-8">
-              <h4>Username</h4>
+            <div class="col-md-8">
+              <h4 class="text-center">${feedback.ime} ${feedback.prezime}</h4>
               <div class="">
                 <span class=""><i class="text-warning fa fa-star"></i></span>
                 <span class=""><i class="text-warning fa fa-star"></i></span>
