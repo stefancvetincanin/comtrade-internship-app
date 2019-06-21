@@ -13,6 +13,13 @@
   width: auto !important;
 }
 
+@media only screen and (max-width: 768px) {
+  .image-height {
+    max-height: auto !important;
+    width: 100% !important;
+  }
+}
+
 .strelica-slider {
   background-color: transparent;
 }
