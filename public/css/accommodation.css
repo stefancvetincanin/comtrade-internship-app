@@ -8,6 +8,17 @@
   text-decoration: none;
 }
 
+.bodyWrapper {
+  background-color: rgba(0,0,0,0.4);
+}
+
+#body {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 .image-height {
   max-height: 350px !important;
   width: auto !important;

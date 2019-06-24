@@ -266,7 +266,9 @@ fetch(`/hotel/${idHotel}`)
 .then(res => res.json())
 .then(
   res => {
-    console.log(res)
+    document.getElementById("body").style.backgroundImage = `url(${
+      res[0].url_slike
+    })`
     let rating = Math.round(res[0]['AVG(feedback_hotel.rating)'])
       let stringZvezdice = ''
       while(rating > 0) {
@@ -290,7 +292,7 @@ fetch(`/hotel/${idHotel}`)
     document.getElementById('hotel-image-4').alt = `${res[0].ime}`;
     document.getElementById('hotel-image-5').alt = `${res[0].ime}`;
     document.getElementById('hotel-image-6').alt = `${res[0].ime}`; 
-
+    
 
     document.getElementById('modalMapeHeader').innerHTML = `
         <div class="card-body">     
