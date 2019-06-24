@@ -43,3 +43,21 @@ Vraca sve komentare na neki feedback hotela, preko navedenog id-a feedbacka:
 <pre>
   fetch('/komentar-hotel/{id}')
 </pre>
+<h2>Post requests:</h2>
+<p>Za svaki fetch koji nije get zahtev, mora se poslati objekat u kome pise koji se metod koristi, koji tip sadrzaja prima, i telom requesta. Primer ovoga imate na accommodations.js stranici pod komentarom "Slanje feedbacka za hotel".</p>
+Okaci feedback za neki grad (sa requestom se mora poslati i telo requesta, sa obaveznim property-ima: gradId, korisniciId (id korisnika koji ostavlja feedback), rating, naziv, opis)
+<pre>
+  fetch('/post-feedback-city')
+</pre>
+Okaci komentar na feedback za neki grad (sa requestom se mora poslati i telo requesta, sa obaveznim property-ima: korisniciId (id korisnika koj ostavlja komentar), feedbackId (id feedbacka na koji se odnosi komentar), text)
+<pre>
+  fetch('/post-comment-city')
+</pre>
+Okaci feedback za neki hotel (sa requestom se mora poslati i telo requesta, sa obaveznim property-ima: hotelId, korisniciId (id korisnika koji ostavlja feedback), rating, naziv, opis)
+<pre>
+  fetch('/post-feedback-hotel')
+</pre>
+Okaci komentar na feedback za neki hotel (sa requestom se mora poslati i telo requesta, sa obaveznim property-ima: korisniciId (id korisnika koj ostavlja komentar), feedbackId (id feedbacka na koji se odnosi komentar), text)
+<pre>
+  fetch('/post-comment-hotel')
+</pre>
