@@ -89,6 +89,7 @@ module.exports = function(express, baza) {
     })
   })
 
+  // GETOVI ZA FEEDBACK
   // nabavi sav feedback za neki grad, gde je req.params id relevantnog grada
   router.get('/feedback-grad/*', function (req, res) {
     // console.log(req.params)
@@ -129,7 +130,8 @@ module.exports = function(express, baza) {
     })
   })
 
-  // okaci feedback za grad
+  // POSTOVI ZA FEEDBACK
+  // okaci feedback za hotel
   router.post('/post-feedback-hotel', function (req, res) {
     // console.log(req)
     baza.execQuery(`INSERT INTO feedback_hotel(hotel_id, korisnici_id, rating, naziv, opis) VALUES (${mysql.escape(req.body.hotelId)}, ${mysql.escape(req.body.korisniciId)}, ${mysql.escape(req.body.rating)},${mysql.escape(req.body.naziv)}, ${mysql.escape(req.body.opis)})`, function(results) {
@@ -137,9 +139,24 @@ module.exports = function(express, baza) {
     })
   })
 
-  // okaci komentar na feedback za grad
+  // okaci komentar na feedback za hotel
   router.post('/post-comment-hotel', function (req, res) {
     baza.execQuery(`INSERT INTO komentari_hotel(korisnici_id, feedback_hotel_id, text) VALUES (${mysql.escape(req.body.korisniciId)}, ${mysql.escape(req.body.feedbackId)}, ${mysql.escape(req.body.text)})`, function(results) {
+      res.send({poslato:true})
+    })
+  })
+
+  // okaci feedback za grad
+  router.post('/post-feedback-city', function (req, res) {
+    // console.log(req)
+    baza.execQuery(`INSERT INTO feedback_grad(grad_id, korisnici_id, rating, naziv, opis) VALUES (${mysql.escape(req.body.gradId)}, ${mysql.escape(req.body.korisniciId)}, ${mysql.escape(req.body.rating)},${mysql.escape(req.body.naziv)}, ${mysql.escape(req.body.opis)})`, function(results) {
+      res.send({poslato:true})
+    })
+  })
+
+  // okaci komentar na feedback za grad
+  router.post('/post-comment-city', function (req, res) {
+    baza.execQuery(`INSERT INTO komentari_grad(korisnici_id, feedback_grad_id, text) VALUES (${mysql.escape(req.body.korisniciId)}, ${mysql.escape(req.body.feedbackId)}, ${mysql.escape(req.body.text)})`, function(results) {
       res.send({poslato:true})
     })
   })

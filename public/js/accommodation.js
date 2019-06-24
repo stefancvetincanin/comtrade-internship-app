@@ -319,6 +319,7 @@ $('#form-hotel-feedback input[type=radio]').on('change', function() {
 
 $('#form-hotel-feedback').on('submit', function(e) {
   e.preventDefault()
+  // Slanje feedbacka za hotel:
   const feedbackBody = {
     hotelId: idHotel,
     korisniciId: Math.floor(Math.random() * (5 - 1)) + 1,
