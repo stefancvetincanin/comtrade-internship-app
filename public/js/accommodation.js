@@ -5,6 +5,7 @@ let feedbackArray = []
 let rating = ''
 let mapiraniHoteli = []
 let showMore = false
+let map;
 
 // funkcija za izvlacenje parametara iz adrese browsera
 function getParameter(paramName) {
@@ -278,7 +279,7 @@ fetch(`/hotel/${idHotel}`)
     `<h1 class='h-25'>${res[0].ime}</h1>
     <div class="current-hotel-rating">${stringZvezdice}</div>
     <p class='h-75 pr-3 mb-1'>${res[0].opis}</p>
-    <address class="mb-1"><i>Address: ${res[0].address}</i></address>
+    <a href="#" class="mb-1 d-block" data-toggle='modal' data-target='#modalZaMape'><i>Address: ${res[0].address}</i></a>
     <a href="${res[0].url_booking}" target="_blank">This hotel on booking.com</a><br>
     <button class='btn btn-primary d-inline-block mb-3 mt-1' type='button' data-toggle='modal' data-target='#addFeed'>Dodaj feed...</button>`;
 
@@ -288,7 +289,20 @@ fetch(`/hotel/${idHotel}`)
     document.getElementById('hotel-image-3').alt = `${res[0].ime}`;
     document.getElementById('hotel-image-4').alt = `${res[0].ime}`;
     document.getElementById('hotel-image-5').alt = `${res[0].ime}`;
-    document.getElementById('hotel-image-6').alt = `${res[0].ime}`;
+    document.getElementById('hotel-image-6').alt = `${res[0].ime}`; 
+
+
+    document.getElementById('modalMapeHeader').innerHTML = `
+        <div class="card-body">     
+            <h4>${res[0].ime}</h4>
+            <p>${res[0].address}</p>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    `
+
+    prikaziMapu(res[0].longitude, res[0].latitude) 
 
     fetch(`/hotel-images/${idHotel}`)
     .then(res => res.json())
@@ -340,4 +354,55 @@ $('#form-hotel-feedback').on('submit', function(e) {
         nabaviFeedback()
     })
 })
+
+function prikaziMapu(lng, lat) {
+  mapboxgl.accessToken = 'pk.eyJ1IjoibGF6YXJ2dHN0IiwiYSI6ImNqeGE0em1rbDB1djkzbnAzaXZqZGdxanYifQ.2E8B6mI5FO53BV1hGxJiTg';
+  map = new mapboxgl.Map({
+  container: 'map', 
+  style: 'mapbox://styles/mapbox/streets-v11',
+  center: [lng, lat], 
+  zoom: 15
+  });
+
+  map.addControl(new mapboxgl.NavigationControl());
+
+  var marker = new mapboxgl.Marker({color: '#ada074'});
+
+  marker.setLngLat([
+    lng,
+    lat
+  ]);
+
+  marker.addTo(map);
+
+  var layerList = document.getElementById('map-menu');
+  var inputs = layerList.getElementsByTagName('input');
+  
+  function switchLayer(layer) {
+  var layerId = layer.target.id;
+  map.setStyle('mapbox://styles/mapbox/' + layerId);
+  }
+  
+  for (var i = 0; i < inputs.length; i++) {
+  inputs[i].onclick = switchLayer;
+  }
+}
+
+function MapModal() {
+  $('#modalZaMape').modal();
+}
+  
+function MapResize() {
+  map.resize(); // We will use the map.resize() function, to resize the MapBox map  once the modal has finished loading.
+}
+  
+  // Given that your modal has the id #modal
+  // and your map is under the variable map. The ‘shown.bs.modal’ event handler is an in-built event handler for Bootstrap Modals.
+$('#modalZaMape').on('shown.bs.modal', function () {
+  map.resize();
+});
+
+
+
+
 

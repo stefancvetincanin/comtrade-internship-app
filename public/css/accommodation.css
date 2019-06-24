@@ -13,13 +13,6 @@
   width: auto !important;
 }
 
-@media only screen and (max-width: 768px) {
-  .image-height {
-    max-height: auto !important;
-    width: 100% !important;
-  }
-}
-
 .strelica-slider {
   background-color: transparent;
 }
@@ -78,3 +71,47 @@
 .rate > label:hover ~ input:checked ~ label {
   color: #c59b08;
 }
+
+#map {
+  position: relative;
+  z-index: 100;
+  width: 600px;
+  height: 450px;
+  margin: 0 auto;
+}
+
+.mapboxgl-canvas {
+  left: 0!important;
+}
+
+#map-menu {
+  position: absolute;
+  background: #fff;
+  padding: 10px;
+  font-family: 'Open Sans', sans-serif;
+  top: 7px;
+  left: 7px;
+  z-index: 1000; 
+  }
+
+  /* #map-menu input, label {
+        display: block;
+  } */
+
+  label {
+      margin-right: 5px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .image-height {
+      max-height: auto !important;
+      width: 100% !important;
+    }
+  }
+
+  @media only screen and (max-width: 992px) {
+    #map {
+      width: 400px;
+      height: 300px;
+    }
+  }
