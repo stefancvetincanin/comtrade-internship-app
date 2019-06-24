@@ -116,7 +116,7 @@ function prikaziFeedbackModal(id) {
             </button>
           </div>
           <div class="commentGroup">
-            <form class="w-100 p-0 mb-3 forma-comment" id="forma-comment">
+            <form class="w-100 p-0 mb-3 id="forma-comment">
               <div class="form-group justify-content-center">
                 <label for="comment">Message</label>
                 <textarea class="form-control" id="comment-on-feedback" rows="3" required minlength="20" maxlength="300"></textarea>
