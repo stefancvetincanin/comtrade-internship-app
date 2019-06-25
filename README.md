@@ -9,7 +9,7 @@ Business Trip Advisor - a Comtrade internship project<br>
  <li>https://github.com/toshew - Vladan Tošev</li>
  <li>https://github.com/PetrovicNatasa - Nataša Petrović</li>
 </ul>
-<h2 title="Should have used react">Built using</h2>
+<h2 title="We should have used react">Built using</h2>
 <ul>
  <li>Bootstrap and jQuery for the front-end</li>
  <li>Node.js and mySql for the server-side</li>
@@ -19,8 +19,8 @@ Business Trip Advisor - a Comtrade internship project<br>
   Application Business Trip Advisor should improve internal communication among employees who are traveling for business. In the first phase, the application provides information about accommodation and life in the city to Comtrade employees, and gives them the opportunity to share useful information with their colleagues for future trips to the same location.
 </p>
 <h2 title="You're holding it upside down">How to run it?</h2>
-<p>First, clone the repository (obviously:))</p>
-<p>Second, you need to have Xampp, or Wamp, or any other web server solution installed that can host a mySql database. Start the server and mySql services, create a new database called bta_baza using utf8_unicode_ci encoding, and import the bta_baza.sql file located in:</p>
+<p>Firstly, clone the repository to your pc (duh :))<br>
+Secondly, you need to have Xampp, or Wamp, or any other web server solution installed that can host a mySql database. Start the server and mySql services, create a new database called bta_baza using utf8_unicode_ci encoding, and import the bta_baza.sql file located in:</p>
 <pre>
  comtrade-internship-app/baza/bta_baza.sql
 </pre>
