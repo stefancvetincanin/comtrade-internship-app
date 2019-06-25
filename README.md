@@ -1,6 +1,14 @@
 # comtrade-internship-app
 Business Trip Advisor - a comtrade internship project<br>
-<br>
+<h2>Contributors</h2>
+<ul>
+ <li>https://github.com/stefancvetincanin - Stefan Cvetinčanin</li>
+ <li>https://github.com/marko83nbg - Marko</li>
+ <li>https://github.com/darkoradisavljevic - Darko Radisavljević</li>
+ <li>https://github.com/lazarvelickovic - Lazar Veličković</li>
+ <li>https://github.com/toshew - Vladan Tošev</li>
+ <li>https://github.com/PetrovicNatasa - Nataša Petrović</li>
+</ul>
 <h3>Git uputstvo</h3>
 git cheat sheet:<br>
 https://www.git-tower.com/blog/git-cheat-sheet<br>
