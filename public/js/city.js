@@ -373,7 +373,7 @@ function prikaziFeedbackModal(id) {
     }" class="rounded-circle" height="100px" alt="user">
             </div>
             <div class="col-8">
-              <h4>${filtriranFeedback[0].ime} ${filtriranFeedback[0].prezime}</h4>
+              <h5>${filtriranFeedback[0].ime} ${filtriranFeedback[0].prezime}</h5>
               <div class="">
                 ${stringZvezdice}
               </div>
@@ -386,6 +386,7 @@ function prikaziFeedbackModal(id) {
       </div>
       <div class="modal-body">
         <div class="row">
+          <h5 class="ml-2">${filtriranFeedback[0].naziv}</h5>
           <p class="filtriranFeedbackOpis">${filtriranFeedback[0].opis}</p>
         </div>
         <div class="clearfix mb-4">

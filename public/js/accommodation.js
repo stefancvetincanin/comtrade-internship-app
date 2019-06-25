@@ -97,7 +97,7 @@ function prikaziFeedbackModal(id) {
               <img src="${filtriranFeedback[0].slika}" class="rounded-circle" height="100px" alt="user"/>
             </div>
             <div class="col-8">
-              <h4>${filtriranFeedback[0].ime} ${filtriranFeedback[0].prezime}</h4>
+              <h5>${filtriranFeedback[0].ime} ${filtriranFeedback[0].prezime}</h5>
               <div>${stringZvezdice}</div>
               <small>${filtriranFeedback[0].datum.substring(0, 10)} ${filtriranFeedback[0].datum.substring(11, 19)}</small>
             </div>
@@ -108,9 +108,8 @@ function prikaziFeedbackModal(id) {
         </div>
         <div class="modal-body">
           <div class="row">
-            <p>
-            ${filtriranFeedback[0].opis}
-            </p>
+            <h5 class="ml-2">${filtriranFeedback[0].naziv}</h5>
+            <p class="ml-2">${filtriranFeedback[0].opis}</p>
           </div>
           <div class="clearfix mb-3">
             <button id="btnFooterToggle" type="button" class="btn btn-primary float-right">
