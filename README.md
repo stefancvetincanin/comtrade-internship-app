@@ -1,5 +1,5 @@
 # comtrade-internship-app
-Business Trip Advisor - a comtrade internship project<br>
+Business Trip Advisor - a Comtrade internship project<br>
 <h2>Contributors</h2>
 <ul>
  <li>https://github.com/stefancvetincanin - Stefan Cvetinčanin</li>
@@ -8,6 +8,11 @@ Business Trip Advisor - a comtrade internship project<br>
  <li>https://github.com/lazarvelickovic - Lazar Veličković</li>
  <li>https://github.com/toshew - Vladan Tošev</li>
  <li>https://github.com/PetrovicNatasa - Nataša Petrović</li>
+</ul>
+<h2>Built using</h2>
+<ul>
+ <li>Bootstrap and jQuery for the front-end</li>
+ <li>Node.js and mySql for the server-side</li>
 </ul>
 <h3>Git uputstvo</h3>
 git cheat sheet:<br>
