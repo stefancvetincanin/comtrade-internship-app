@@ -14,6 +14,10 @@ Business Trip Advisor - a Comtrade internship project<br>
  <li>Bootstrap and jQuery for the front-end</li>
  <li>Node.js and mySql for the server-side</li>
 </ul>
+<h2 title="Čemu ovo služi a pritom i ne radi?">What is this?</h2>
+<p>
+  Application Business Trip Advisor should improve internal communication among employees who are traveling for business. In the first phase, the application provides information about accommodation and life in the city to Comtrade employees, and gives them the opportunity to share useful information with their colleagues for future trips to the same location.
+</p>
 <h3>Git uputstvo</h3>
 git cheat sheet:<br>
 https://www.git-tower.com/blog/git-cheat-sheet<br>
