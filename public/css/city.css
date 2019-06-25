@@ -55,9 +55,17 @@
 }
 
 .userCityFeedback {
-  height: 50%;
+  height: 50px;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+.filtriranFeedbackOpis {
+  padding:10px;
+}
+
+#comment-on-feedback {
+  margin-bottom: 10px;
 }
 
 @media (min-width: 320px) {
@@ -98,6 +106,12 @@
     margin-bottom: 0px;
     margin-top: 7px;
 }
+
+.addFeedBtnCity {
+  width: 30%;
+  font-size: 12px;
+}
+
 }
 
 @media (min-width: 576px) {
@@ -114,6 +128,11 @@
     display: block;
     font-size: 14px;
   }
+
+  .addFeedBtnCity {
+    width: 21%;
+    font-size: 16px;
+  }
 }
 
 @media (min-width: 768px) {
@@ -123,6 +142,11 @@
   .cardBodyHeadline {
     font-size: 32px;
     margin-top: 0px;
+  }
+
+  .addFeedBtnCity {
+    width: 16%;
+    font-size: 18px;
   }
 }
 
@@ -139,6 +163,11 @@
   }
   #descriptionAccomod {
     font-size: 16px;
+  }
+
+  .addFeedBtnCity {
+    width: 13%;
+    font-size: 20px;
   }
 }
 
