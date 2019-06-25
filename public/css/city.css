@@ -54,6 +54,12 @@
   text-decoration: none;
 }
 
+.userCityFeedback {
+  height: 50%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 @media (min-width: 320px) {
   .cityHeadline {
     font-size: 20px;
