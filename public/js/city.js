@@ -1,5 +1,9 @@
 let feedbackArray = [];
 let id = getParameter("grad-id");
+let map;
+let idAtrakcija;
+
+
 
 function getParameter(paramName) {
   let searchString = window.location.search.substring(1),
@@ -112,6 +116,7 @@ fetch(`/attractions/${id}`)
     res.forEach((element, i) => {
       let moreClass1 = i > 2 && "moreClass1";
       displayAttr += `<li class="list-group-item list-group-item-primary mb-1 ${moreClass1}">
+        <a href="#" class="mb-1 d-block" data-id="${i}" data-toggle='modal' data-target='#modalZaMape'>
           <div class="row align-items-center text-center">
             <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
               <img class="d-block mx-auto" src="${
@@ -131,6 +136,21 @@ fetch(`/attractions/${id}`)
       </li>`;
       document.getElementById("cityAttractions").innerHTML = displayAttr;
     });
+    
+    $('#cityAttractions').on('click', 'a', function () {
+      let id = $(this)[0].dataset.id;
+      document.getElementById('modalMapeHeader').innerHTML = `
+        <div class="card-body">     
+            <h4>${res[id].naziv}</h4>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    `;
+
+    prikaziMapu(res[id].longitude, res[id].latitude)
+    });
+     
     moreLess("moreBtn1", "moreClass1");
   });
 
@@ -478,3 +498,53 @@ $("#form-city-feedback").on("submit", function(e) {
       feedbackGrad(id);
     });
 });
+
+
+
+function prikaziMapu(lng, lat) {
+  mapboxgl.accessToken = 'pk.eyJ1IjoibGF6YXJ2dHN0IiwiYSI6ImNqeGE0em1rbDB1djkzbnAzaXZqZGdxanYifQ.2E8B6mI5FO53BV1hGxJiTg';
+  map = new mapboxgl.Map({
+  container: 'map', 
+  style: 'mapbox://styles/mapbox/streets-v11',
+  center: [lng, lat], 
+  zoom: 15
+  });
+
+  map.addControl(new mapboxgl.NavigationControl());
+
+  var marker = new mapboxgl.Marker({color: '#ada074'});
+
+  marker.setLngLat([
+    lng,
+    lat
+  ]);
+
+  marker.addTo(map);
+
+  var layerList = document.getElementById('map-menu');
+  var inputs = layerList.getElementsByTagName('input');
+  
+  function switchLayer(layer) {
+  var layerId = layer.target.id;
+  map.setStyle('mapbox://styles/mapbox/' + layerId);
+  }
+  
+  for (var i = 0; i < inputs.length; i++) {
+  inputs[i].onclick = switchLayer;
+  }
+}
+
+function MapModal() {
+  $('#modalZaMape').modal();
+}
+  
+function MapResize() {
+  map.resize(); // We will use the map.resize() function, to resize the MapBox map  once the modal has finished loading.
+}
+  
+  // Given that your modal has the id #modal
+  // and your map is under the variable map. The ‘shown.bs.modal’ event handler is an in-built event handler for Bootstrap Modals.
+$('#modalZaMape').on('shown.bs.modal', function () {
+  map.resize();
+});
+
