@@ -361,7 +361,7 @@ function prikaziFeedbackModal(id) {
       </div>
       <div class="modal-body">
         <div class="row">
-          <p>${filtriranFeedback[0].opis}</p>
+          <p class="userCityFeedback">${filtriranFeedback[0].opis}</p>
         </div>
         <div class="clearfix mb-4">
           <button id="btnFooterToggle" type="button" class="btn btn-primary float-right">Show-hide comments</button>
