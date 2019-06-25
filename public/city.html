@@ -51,13 +51,15 @@
           </li>
         </ul>
 
-        <button id="btnLogin" type="button" class="btn btn-outline-warning ml-5 d-none" data-toggle="modal"
-          data-target="#loginModal">
-          Login
-        </button>
+        <a href="index.html">
+          <button id="btnLogin" type="button" class="btn btn-outline-warning ml-5 d-none" data-toggle="modal"
+            data-target="#loginModal">
+            Login
+          </button>
+        </a>
         <div id="btnLogout" class="text-warning pl-4">
-          Hi, <span id="loggedUser"></span>
-          <button type="button" class="btn btn-outline-warning ml-3">
+          <span id="loggedUser"></span>
+          <button type="button" class="btn btn-outline-warning ml-3" id="logout-button">
             Logout
           </button>
         </div>
@@ -65,7 +67,7 @@
     </div>
   </nav>
 
-  <div class="container">
+  <div class="container" id="glavni-container">
     <header id="main-header">
       <div style="min-height:300px" class="row no-gutters">
         <div style="height:100%" class="col-lg-12 align-items-stretch " id="city-img">

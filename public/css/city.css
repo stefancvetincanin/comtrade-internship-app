@@ -54,6 +54,10 @@
   text-decoration: none;
 }
 
+#login-obavestenje {
+  color: white;
+}
+
 @media (min-width: 320px) {
   .cityHeadline {
     font-size: 20px;

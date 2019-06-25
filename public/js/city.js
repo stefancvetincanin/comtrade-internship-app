@@ -397,7 +397,7 @@ function prikaziFeedbackModal(id) {
     const commentBody = {
       feedbackId: Number(id),
       text: $("#comment-text").val(),
-      korisniciId: Math.floor(Math.random() * (5 - 1)) + 1
+      korisniciId: user.id
     };
     const commentOptions = {
       method: "POST",
@@ -461,7 +461,7 @@ $("#form-city-feedback").on("submit", function(e) {
   // Slanje feedbacka za grad:
   const feedbackBody = {
     gradId: id,
-    korisniciId: Math.floor(Math.random() * (5 - 1)) + 1,
+    korisniciId: user.id,
     rating: rating,
     naziv: $("#naziv-feedback-city").val(),
     opis: $("#comment-feedback-city").val()
@@ -478,3 +478,28 @@ $("#form-city-feedback").on("submit", function(e) {
       feedbackGrad(id);
     });
 });
+
+// provera da li je korisnik ulogovan
+let user = JSON.parse(localStorage.getItem('loggedUser'));
+
+if (user) {
+  $('#loggedUser').text('Hi, '+user.ime);
+} else {
+  $('#btnLogin').removeClass('d-none')
+  $('#btnLogout').addClass('d-none')
+  setTimeout(function(){
+    document.getElementById('glavni-container').innerHTML = '<h2 id="login-obavestenje">You are not logged in, please log in</h2>'
+  }, 500)
+}
+
+// Logout funkcionalnost
+document.getElementById('logout-button').addEventListener('click', function () {
+  localStorage.removeItem('loggedUser')
+  $('#btnLogin').removeClass('d-none')
+  $('#btnLogout').addClass('d-none')
+  $('#loggedUser').text('')
+  fetch('/logout')
+  setTimeout(function(){
+    document.getElementById('glavni-container').innerHTML = '<h2 id="login-obavestenje">You are not logged in, please log in</h2>'
+  }, 500)
+})
