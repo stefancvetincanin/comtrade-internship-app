@@ -1,6 +1,6 @@
 #city-name a {
   color: navy;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 #city-name a:hover {

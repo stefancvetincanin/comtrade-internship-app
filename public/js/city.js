@@ -47,8 +47,9 @@ fetch(`/city/${id}`)
 
 // f-ja za show more-show less hoteli i atrakcije
 let count = 0;
+
 function moreLess(id, classname) {
-  document.getElementById(id).addEventListener("click", function() {
+  document.getElementById(id).addEventListener("click", function () {
     count++;
     if (count % 2 !== 0) {
       document.getElementById(id).value = "Show less..";
@@ -154,8 +155,8 @@ fetch(`/attractions/${id}`)
     moreLess("moreBtn1", "moreClass1");
   });
 
-$(document).ready(function() {
-  $(".tab-item").click(function() {
+$(document).ready(function () {
+  $(".tab-item").click(function () {
     $(".collapse").collapse("hide");
   });
 
@@ -165,11 +166,11 @@ $(document).ready(function() {
 
   $("body").on("load", $(".commentGroup").hide());
 
-  $("#btnFooterToggle").click(function() {
+  $("#btnFooterToggle").click(function () {
     $(".commentGroup").toggle();
   });
 
-  $("#addComment").click(function() {
+  $("#addComment").click(function () {
     $(".commentGroup").toggle();
   });
 });
@@ -190,20 +191,20 @@ function stringDate(currDate) {
 function minimizedElements() {
   let minimized_elements = $("#content");
 
-  minimized_elements.each(function() {
+  minimized_elements.each(function () {
     let t = $(this).text();
     if (t.length < 200) return;
 
     $(this).html(
       t.slice(0, 200) +
-        '<span>... </span><a href="#" class="more">More</a>' +
-        '<span style="display:none;">' +
-        t.slice(300, t.length) +
-        ' <a href="#" class="less">Less</a></span>'
+      '<span>... </span><a href="#" class="more">More</a>' +
+      '<span style="display:none;">' +
+      t.slice(300, t.length) +
+      ' <a href="#" class="less">Less</a></span>'
     );
   });
 
-  $("a.more", minimized_elements).click(function(event) {
+  $("a.more", minimized_elements).click(function (event) {
     event.preventDefault();
     $(this)
       .hide()
@@ -214,7 +215,7 @@ function minimizedElements() {
       .show();
   });
 
-  $("a.less", minimized_elements).click(function(event) {
+  $("a.less", minimized_elements).click(function (event) {
     event.preventDefault();
     $(this)
       .parent()
@@ -263,10 +264,10 @@ function getData() {
     .then(res => res.json())
     .then(res => {
       fetch(
-        `https://proxy-requests.herokuapp.com/https://www.metaweather.com/api/location/${
+          `https://proxy-requests.herokuapp.com/https://www.metaweather.com/api/location/${
           res[0].woeid
         }/`
-      )
+        )
         .then(res => res.json())
         .then(data => {
           print(data);
@@ -324,7 +325,7 @@ function feedbackGrad(id) {
         </div>
       </div>
       <div class="row">
-        <p>${comment.opis}</p>
+        <p class="userCityFeedback">${comment.opis}</p>
       </div>
       <div class="row justify-content-center">
         <div class="w-50">
@@ -339,7 +340,7 @@ function feedbackGrad(id) {
       document.getElementById(
         "commentListFeedbacka"
       ).innerHTML = displayComments;
-      $(".prikazi-modal").on("click", function() {
+      $(".prikazi-modal").on("click", function () {
         prikaziFeedbackModal($(this).attr("data-feedback-id"));
       });
     });
@@ -381,26 +382,27 @@ function prikaziFeedbackModal(id) {
       </div>
       <div class="modal-body">
         <div class="row">
-          <p class="userCityFeedback">${filtriranFeedback[0].opis}</p>
+          <p class="filtriranFeedbackOpis">${filtriranFeedback[0].opis}</p>
         </div>
         <div class="clearfix mb-4">
           <button id="btnFooterToggle" type="button" class="btn btn-primary float-right">Show-hide comments</button>
         </div>
         
         <div class="commentGroup">
-          <ul class="list-group mb-1" id="commentListKomentara">
-        
-          </ul>
           <form class="w-100 p-0" id="comment-on-feedback" >
             <div class="form-group justify-content-center">
-              <label for="comment">Message</label>
-              <textarea class="form-control" rows="3" id="comment-text"></textarea>
-            </div>
+            <label for="comment">Message</label>
+            <textarea class="form-control" rows="3" id="comment-text"></textarea>
+          </div>
 
             <div class="clearfix">
               <button type="submit" class="btn btn-primary float-right">Send comment</button>
             </div>
           </form>
+          <ul class="list-group mb-1" id="commentListKomentara">
+        
+          </ul>
+          
         </div>
       </div>
       
@@ -409,11 +411,11 @@ function prikaziFeedbackModal(id) {
     `;
   komentarFeedbackGrada(id);
 
-  $("#btnFooterToggle").on("click", function() {
+  $("#btnFooterToggle").on("click", function () {
     $("#comment-on-feedback").slideToggle();
   });
 
-  $("#comment-on-feedback").on("submit", function(e) {
+  $("#comment-on-feedback").on("submit", function (e) {
     e.preventDefault();
     const commentBody = {
       feedbackId: Number(id),
@@ -422,7 +424,9 @@ function prikaziFeedbackModal(id) {
     };
     const commentOptions = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify(commentBody)
     };
     $("#comment-text").val("");
@@ -473,11 +477,11 @@ function komentarFeedbackGrada(id) {
     });
 }
 
-$("#form-city-feedback input[type=radio]").on("change", function() {
+$("#form-city-feedback input[type=radio]").on("change", function () {
   rating = $("input[name=rate]:checked").val();
 });
 
-$("#form-city-feedback").on("submit", function(e) {
+$("#form-city-feedback").on("submit", function (e) {
   e.preventDefault();
   // Slanje feedbacka za grad:
   const feedbackBody = {
@@ -489,7 +493,9 @@ $("#form-city-feedback").on("submit", function(e) {
   };
   const feedbackOptions = {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify(feedbackBody)
   };
   fetch("/post-feedback-city", feedbackOptions)
@@ -498,6 +504,9 @@ $("#form-city-feedback").on("submit", function(e) {
       if (res.poslato) $("#addFeedCity").modal("hide");
       feedbackGrad(id);
     });
+
+});
+
 });
 
 
@@ -548,4 +557,5 @@ function MapResize() {
 $('#modalZaMape').on('shown.bs.modal', function () {
   map.resize();
 });
+
 
