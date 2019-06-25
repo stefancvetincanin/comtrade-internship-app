@@ -3,7 +3,7 @@ Business Trip Advisor - a Comtrade internship project<br>
 <h2 title="The Dirty Half-Dozen">Contributors</h2>
 <ul>
  <li>https://github.com/stefancvetincanin - Stefan Cvetinčanin</li>
- <li>https://github.com/marko83nbg - Marko</li>
+ <li>https://github.com/marko83nbg - Marko Tomašević</li>
  <li>https://github.com/darkoradisavljevic - Darko Radisavljević</li>
  <li>https://github.com/lazarvelickovic - Lazar Veličković</li>
  <li>https://github.com/toshew - Vladan Tošev</li>
