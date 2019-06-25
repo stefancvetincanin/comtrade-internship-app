@@ -34,13 +34,13 @@ function nabaviFeedback() {
       let rating = Math.round(feedback.rating)
       let stringZvezdice = ''
       while(rating > 0) {
-        stringZvezdice += `<i class="text-warning fa fa-star"></i>`
+        stringZvezdice += `<i class="fa fa-star"></i>`
         rating--
       }
       if(!stringZvezdice)
         stringZvezdice = 'Nema ocena'
         feedbackDisplay += `
-          <div class="carousel-item ${index === 0 ? "active" : null}">
+          <div class="carousel-item ${index === 0 ? "active" : null}  header-feedback">
             <div class="card col-lg-12 bg-light mb-4 px-4 py-3 mx-auto">
               <div class="row card-body">
                 <div class="col-md-4">
@@ -60,7 +60,7 @@ function nabaviFeedback() {
               </div>
               <div class="row justify-content-center">
                 <div class="w-50">
-                  <button class="prikazi-modal btn btn-warning btn-block text-white mt-1" data-feedback-id=${feedback.id} type="button" data-toggle="modal" data-target="#modalFeedback">
+                  <button class="prikazi-modal btn btn-block mt-1" data-feedback-id=${feedback.id} type="button" data-toggle="modal" data-target="#modalFeedback">
                     More
                   </button>
                 </div>
@@ -261,7 +261,7 @@ nabaviFeedback()
 fetch(`/city/${idGrada}`)
   .then(res => res.json())
   .then(res => document.getElementById('city-name').innerHTML = `<a href="city.html?grad-id=${idGrada}">${res[0].ime}</a>`)
-  .then(res => document.getElementById('city-name-header').innerHTML = `<a class="nav-link text-warning" href="city.html?grad-id=${idGrada}">City</a>`)
+  .then(res => document.getElementById('city-name-header').innerHTML = `<a class="nav-link" href="city.html?grad-id=${idGrada}">City</a>`)
 
 // prikaz imena hotela i opisa pri load-u stranice
 fetch(`/hotel/${idHotel}`)
@@ -282,10 +282,10 @@ fetch(`/hotel/${idHotel}`)
     document.getElementById('hotel-description').innerHTML = 
     `<h1 class='h-25'>${res[0].ime}</h1>
     <div class="current-hotel-rating">${stringZvezdice}</div>
-    <p class='h-75 pr-3 mb-1'>${res[0].opis}</p>
-    <a href="#" class="mb-1 d-block" data-toggle='modal' data-target='#modalZaMape'><i>Address: ${res[0].address}</i></a>
+    <p class='h-75 pr-3 my-3'>${res[0].opis}</p>
+    <a href="#" class="mb-3 d-block" data-toggle='modal' data-target='#modalZaMape'><i>Address: ${res[0].address}</i></a>
     <a href="${res[0].url_booking}" target="_blank">This hotel on booking.com</a><br>
-    <button class='btn btn-primary d-inline-block mb-3 mt-1' type='button' data-toggle='modal' data-target='#addFeed'>Dodaj feed...</button>`;
+    <button class='btn d-inline-block my-3 dodaj-feed' type='button' data-toggle='modal' data-target='#addFeed'>Dodaj feed...</button>`;
 
     document.getElementById('hotel-image-1').src = `${res[0].url_slike}`;
     document.getElementById('hotel-image-1').alt = `${res[0].ime}`;

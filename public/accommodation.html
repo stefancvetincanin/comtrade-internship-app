@@ -18,6 +18,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300i,400,700&display=swap" rel="stylesheet" />
     <!-- Our sources -->
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/city.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="./css/accommodation.css" />
     <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js"></script>
     <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css" rel="stylesheet" />
@@ -25,43 +26,45 @@
 
   <body id="body">
     <div class="bodyWrapper">
-    <nav class="navbar navbar-expand-md navbar-fixed-top bg-primary">
+    <nav class="navbar navbar-expand-md navbar-fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand my-auto text-warning font-weight-bold" href="./index.html">BTA</a>
+        <a class="navbar-brand my-auto font-weight-bold" href="./index.html" id="logo">BTA</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav nav nav-pills align-self-center text-uppercase ml-auto">
             <li class="nav-item ml-4">
-              <a class="nav-link text-warning" href="./index.html">Home</a>
+              <a class="nav-link" href="./index.html">Home</a>
             </li>
             <li class="nav-item ml-4" id="city-name-header">
-              <!-- <a class="nav-link text-warning" href="./city.html">City</a> -->
+              <!-- <a class="nav-link" href="./city.html">City</a> -->
             </li>
             <li class="nav-item ml-4 d-none">
-              <a class="nav-link text-warning" href="">Add Accomodation</a>
+              <a class="nav-link" href="">Add Accomodation</a>
             </li>
           </ul>
+
           <a href="index.html">
-            <button id="btnLogin" type="button" class="btn btn-outline-warning ml-5 d-none" data-toggle="modal" data-target="#loginModal">
+            <button id="btnLogin" type="button" class="btn ml-5 d-none" data-toggle="modal" data-target="#loginModal">
               Login
             </button>
           </a>
-          <div id="btnLogout" class="text-warning pl-4">
+          <div id="btnLogout" class="pl-4">
             <span id="loggedUser"></span>
-            <button type="button" class="btn btn-outline-warning ml-3" id="logout-button">
+            <button type="button" class="btn ml-3" id="logout-button">
               Logout
             </button>
+
           </div>
         </div>
       </div>
     </nav>
 
-    <div class="container" id="glavni-container">
+    <div class="container">
       <header id="main-header">
         <div style="min-height:300px" class="row no-gutters">
-          <div style="height:100%;background-color:#f5ba17;padding:15px 50px" class="justify-content-center">
+          <div class="justify-content-center header-style">
             <div class="row">
               <div>
                 <h3 id="city-name"></h3>
@@ -86,7 +89,7 @@
                 </div>
               </div>
 
-              <div style="background-color:#f5ba17; padding: 0px" class="w-100 col-lg-7 m-0 h-100 justify-content-center">
+              <div style="padding: 0px" class="w-100 col-lg-7 m-0 h-100 justify-content-center">
                 <div class="row mx-auto">
                   <div id="carouselExampleControls1" class="carousel slide w-100 h-100" data-ride="carousel">
                     <div class="carousel-inner">

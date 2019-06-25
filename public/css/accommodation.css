@@ -1,3 +1,84 @@
+nav {
+  background-image: linear-gradient(to top right, #d2bdf3, #1b7cdd);
+  color: #fff;
+}
+
+nav #logo {
+  color: #ff4b7b;
+}
+
+nav #logo:hover {
+  color: #f10c49;
+}
+
+nav  a {
+  color: #fff;
+}
+
+nav  a:hover {
+  color: rgb(245, 196, 196);
+}
+
+nav  button {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff!important;
+}
+
+nav  button:hover {
+  color: rgb(245, 196, 196);
+  border: 1px solid rgb(245, 196, 196)!important;
+}
+
+.header-style {
+  height:100%;
+  width: 100%;
+  background-color:#384867;
+  padding:15px 50px;
+  color: #e3e7ee;
+}
+
+.header-style h3 a {
+  color: #ff5c88!important;
+}
+
+.header-style  i.fa-star {
+  color: #ff5c88;
+}
+
+.header-style a {
+  color: #ff5c88;
+}
+
+.header-style .dodaj-feed {
+  background-color: #e3e7ee;
+  color: #ff5c88;
+}
+
+.header-style .dodaj-feed:hover {
+  color: #e3e7ee;
+  background-color: #ff5c88;
+}
+
+.header-style .header-feedback {
+  background-color: #e3e7ee;
+  color: #384867;
+}
+
+.header-style .header-feedback i.fa-star {
+  color: #ff5c88;
+}
+
+.header-style .header-feedback .prikazi-modal {
+  color: #ced2da;
+  background-color: #ff5c88;
+}
+
+.header-style .header-feedback .prikazi-modal:hover {
+  background-color: #d0d6e0;
+  color: #ff5c88;
+}
+
 #city-name a {
   color: navy;
   text-decoration: none;
