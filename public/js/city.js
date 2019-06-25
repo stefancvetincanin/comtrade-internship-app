@@ -243,7 +243,7 @@ const wind = document.getElementById("wind");
 const weatherTemplate = (element, index) => {
   return `<div class="carousel-item ${
     index === 0 ? "active" : null
-  } bg-info w-100">
+  } bg-info1 w-100">
   <div class="row px-2 justify-content-center align-items-center mb-1 pt-5 text-white">
     <div class="col-3"><img src="https://www.metaweather.com/static/img/weather/${
       element.weather_state_abbr
