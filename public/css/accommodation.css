@@ -36,12 +36,16 @@
   border-radius: 50%;
 }
 
-.forma-comment {
+#forma-comment {
   display: none;
 }
 
 .current-hotel-rating {
   color: navy;
+}
+
+#login-obavestenje {
+  color: white;
 }
 
 /* Rating zvezdice */
@@ -124,5 +128,12 @@
     #map {
       width: 400px;
       height: 300px;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    #map {
+      width: 300px;
+      height: 230px;
     }
   }

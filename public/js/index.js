@@ -1,62 +1,99 @@
 
-let user = JSON.parse(sessionStorage.getItem('loggedUser'));
+let user = JSON.parse(localStorage.getItem('loggedUser'));
 
 if (user) {
-    $('#btnLogin').addClass('d-none');
-    $('#btnLogout').addClass('d-inline-block');
-    $('#loggedUser').text(user[0].ime);
-    $('#loginModal').modal('hide');
-    $( "#search" ).prop( "disabled", false );
-    getCities();
+  checkLogin()
 }
 
 document.getElementById('loginBtn').addEventListener('click', login);
 document.getElementById('search').addEventListener('keyup', filterCities);
+// Logout funkcionalnost
+document.getElementById('logout-button').addEventListener('click', function () {
+  localStorage.removeItem('loggedUser')
+  $('#btnLogin').removeClass('d-none')
+  $('#btnLogout').removeClass('d-inline-block')
+  $("#search").prop("disabled", true)
+  $('#loggedUser').text('')
+  $('#loginModal').modal('show')
+  $('#cityList').html('')
+  fetch('/logout')
+})
 
-function login() {
-    const username = document.getElementById('user').value;
-    const password = document.getElementById('pass').value;
-    
-    fetch(`/login/${username}/${password}`)
-            .then(res => res.json())
-            .then(res => {
-                sessionStorage.setItem('loggedUser', JSON.stringify(res));
-                $('#btnLogin').addClass('d-none');
-                $('#btnLogout').addClass('d-inline-block');
-                $('#loggedUser').text(res[0].ime);
-                $( "#search" ).prop( "disabled", false );
-                getCities();
-            });
+function checkLogin() {
+  fetch('/check')
+    .then(res => res.json())
+    .then(res => {
+      if(res.loggedIn) {
+        $('#btnLogin').addClass('d-none');
+        $('#btnLogout').addClass('d-inline-block');
+        $('#loggedUser').text(user.ime);
+        $('#loginModal').modal('hide');
+        $("#search").prop("disabled", false);
+        getCities();
+      } else if(!res.loggedIn) {
+        localStorage.removeItem('loggedUser')
+      }
+    })
 }
 
+// function login() {
+//   const username = document.getElementById('user').value;
+//   const password = document.getElementById('pass').value;
+
+//   fetch(`/login/${username}/${password}`)
+//     .then(res => res.json())
+//     .then(res => {
+//       localStorage.setItem('loggedUser', JSON.stringify(res));
+//       $('#btnLogin').addClass('d-none');
+//       $('#btnLogout').addClass('d-inline-block');
+//       $('#loggedUser').text(res[0].ime);
+//       $("#search").prop("disabled", false);
+//       getCities();
+//     });
+// }
+
 // pocetak rada na bezbednom loginu preko tokena
-function postLogin () {
-    let loginBody = {
-        username: "superadmin",
-        password: "password"
-    }
-    let loginOptions = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(loginBody)
-    }
-    fetch('/login', loginOptions)
-        .then(res => res.json())
-        .then(res => console.log(res))
+function login() {
+  const user = document.getElementById('user').value;
+  const pass = document.getElementById('pass').value;
+  let loginBody = {
+    username: user,
+    password: pass
+  }
+  let loginOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(loginBody)
+  }
+  fetch('/login', loginOptions)
+    .then(res => res.json())
+    .then(res => {
+      console.log(res)
+      if (res.loggedIn) {
+        localStorage.setItem('loggedUser', JSON.stringify(res.user[0]))
+        $('#btnLogin').addClass('d-none');
+        $('#btnLogout').addClass('d-inline-block');
+        $('#loggedUser').text(res.user[0].ime);
+        $("#search").prop("disabled", false);
+        getCities();
+      } else if (!res.loggedIn) {
+        alert('Wrong username or password')
+      }
+    })
 }
 
 let cityArr;
 
 function getCities() {
-    fetch('/cities')
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            cityArr = data;
-            $('#cityList').html(data.map(cityTemplate).join(''));
-        });
+  fetch('/cities')
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      cityArr = data;
+      $('#cityList').html(data.map(cityTemplate).join(''));
+    });
 }
 
 const cityTemplate = element => `
@@ -73,10 +110,10 @@ const cityTemplate = element => `
         </div>   
     </a>     
 </li>`;
- 
+
 function filterCities(e) {
-    $('#cityList').html(cityArr
-            .filter(element => element.ime.toLowerCase().indexOf(e.target.value.toLowerCase()) > -1)
-            .map(cityTemplate)
-            .join(''));
+  $('#cityList').html(cityArr
+    .filter(element => element.ime.toLowerCase().indexOf(e.target.value.toLowerCase()) > -1)
+    .map(cityTemplate)
+    .join(''));
 }
