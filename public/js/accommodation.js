@@ -26,19 +26,19 @@ function getParameter(paramName) {
 // pocetno prikazivanje feedbacka na stranici
 function nabaviFeedback() {
   fetch(`/feedback-hotel/${idHotel}`)
-  .then(res => res.json())
-  .then(res => {
-    feedbackArray = res
-    let feedbackDisplay = ''
-    feedbackArray.forEach((feedback, index) => {
-      let rating = Math.round(feedback.rating)
-      let stringZvezdice = ''
-      while(rating > 0) {
-        stringZvezdice += `<i class="fa fa-star"></i>`
-        rating--
-      }
-      if(!stringZvezdice)
-        stringZvezdice = 'Nema ocena'
+    .then(res => res.json())
+    .then(res => {
+      feedbackArray = res
+      let feedbackDisplay = ''
+      feedbackArray.forEach((feedback, index) => {
+        let rating = Math.round(feedback.rating)
+        let stringZvezdice = ''
+        while (rating > 0) {
+          stringZvezdice += `<i class="fa fa-star"></i>`
+          rating--
+        }
+        if (!stringZvezdice)
+          stringZvezdice = 'Nema ocena'
         feedbackDisplay += `
           <div class="carousel-item ${index === 0 ? "active" : null}  header-feedback">
             <div class="card col-lg-12 bg-light mb-4 px-4 py-3 mx-auto">
@@ -70,24 +70,24 @@ function nabaviFeedback() {
           </div>
           `
       })
-    document.getElementById('feedback-display').innerHTML = feedbackDisplay
-    $('.prikazi-modal').on('click', function () {
-      prikaziFeedbackModal($(this).attr('data-feedback-id'))
+      document.getElementById('feedback-display').innerHTML = feedbackDisplay
+      $('.prikazi-modal').on('click', function () {
+        prikaziFeedbackModal($(this).attr('data-feedback-id'))
+      })
     })
-  })
 }
 
 // funkcija ispisuje feedback u modalu
 function prikaziFeedbackModal(id) {
   let filtriranFeedback = feedbackArray.filter(element => element.id === Number(id))
   let rating = Math.round(filtriranFeedback[0].rating)
-      let stringZvezdice = ''
-      while(rating > 0) {
-        stringZvezdice += `<i class="text-warning fa fa-star"></i>`
-        rating--
-      }
-      if(!stringZvezdice)
-        stringZvezdice = 'Nema ocena'
+  let stringZvezdice = ''
+  while (rating > 0) {
+    stringZvezdice += `<i class="text-warning fa fa-star"></i>`
+    rating--
+  }
+  if (!stringZvezdice)
+    stringZvezdice = 'Nema ocena'
   document.getElementById('modalFeedback').innerHTML = `
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -135,12 +135,12 @@ function prikaziFeedbackModal(id) {
       </div>
     </div>
     `
-  $('#btnFooterToggle').on('click', function() {
+  $('#btnFooterToggle').on('click', function () {
     $('#forma-comment').slideToggle()
   })
 
   // forma za ostavljanje komentara na feedback
-  $('#forma-comment').on('submit', function(e){
+  $('#forma-comment').on('submit', function (e) {
     e.preventDefault()
     const commentBody = {
       feedbackId: Number(id),
@@ -150,15 +150,15 @@ function prikaziFeedbackModal(id) {
     }
     const commentOptions = {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(commentBody)
     }
     $('#comment-on-feedback').val('')
     fetch('/post-comment-hotel', commentOptions)
       .then(res => res.json())
       .then(res => {
-        if(res.poslato)
-        nabaviSpisakKomentara(id)
+        if (res.poslato)
+          nabaviSpisakKomentara(id)
       })
   })
   nabaviSpisakKomentara(id)
@@ -167,11 +167,11 @@ function prikaziFeedbackModal(id) {
 // funkcija nabavlja spisak komentara iz baze i prikazuje ih u modalu
 function nabaviSpisakKomentara(id) {
   fetch(`/komentar-hotel/${id}`)
-  .then(res => res.json())
-  .then(res => {
-    let displayComments = ''
-    res.forEach(comment => {
-      displayComments += `
+    .then(res => res.json())
+    .then(res => {
+      let displayComments = ''
+      res.forEach(comment => {
+        displayComments += `
         <li class="list-group-item list-group-item-warning clearfix d-flex">
           <div class="mr-3 align-self-center">
             <img class="rounded-circle " src="${comment.slika}" alt="${comment.ime}" width="90px"/>
@@ -191,9 +191,9 @@ function nabaviSpisakKomentara(id) {
           </div>
         </li>
       `
+      })
+      document.getElementById('commentList').innerHTML = displayComments
     })
-    document.getElementById('commentList').innerHTML = displayComments
-  })
 }
 
 function izlistajHotele(mapiraniHoteli, limit) {
@@ -203,14 +203,14 @@ function izlistajHotele(mapiraniHoteli, limit) {
   mapiraniHoteli.forEach(element => {
     let rating = Math.round(element['AVG(feedback_hotel.rating)'])
     let stringZvezdice = ''
-    while(rating > 0) {
+    while (rating > 0) {
       stringZvezdice += `<i class="text-warning fa fa-star"></i>`
       rating--
     }
-    if(!stringZvezdice)
+    if (!stringZvezdice)
       stringZvezdice = 'Nema ocena'
-    display += 
-    `<li class="list-group-item list-group-item-primary mb-1">
+    display +=
+      `<li class="list-group-item list-group-item-primary mb-1">
       <a href="accommodation.html?hotel-id=${element.id}&grad-id=${idGrada}">
         <div class="row align-items-center text-center">
           <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
@@ -230,8 +230,67 @@ function izlistajHotele(mapiraniHoteli, limit) {
   });
 }
 
+// prikaz imena hotela i opisa pri load-u stranice
+function prikaziHotel() {
+  fetch(`/hotel/${idHotel}`)
+    .then(res => res.json())
+    .then(res => {
+      document.getElementById("body").style.backgroundImage = `url(${
+        res[0].url_slike
+        })`
+      let rating = Math.round(res[0]['AVG(feedback_hotel.rating)'])
+      let stringZvezdice = ''
+      while (rating > 0) {
+        stringZvezdice += `<i class="fa fa-star"></i>`
+        rating--
+      }
+      if (!stringZvezdice)
+        stringZvezdice = 'Nema ocena'
+      document.getElementById('hotel-description').innerHTML =
+        `<h1 class='h-25'>${res[0].ime}</h1>
+    <div class="current-hotel-rating">${stringZvezdice}</div>
+    <p class='h-75 pr-3 my-3'>${res[0].opis}</p>
+    <a href="#" class="mb-3 d-block" data-toggle='modal' data-target='#modalZaMape'><i>Address: ${res[0].address}</i></a>
+    <a href="${res[0].url_booking}" target="_blank">This hotel on booking.com</a><br>
+    <button class='btn d-inline-block my-3 dodaj-feed' type='button' data-toggle='modal' data-target='#addFeed'>Dodaj feed...</button>`;
+
+      document.getElementById('hotel-image-1').src = `${res[0].url_slike}`;
+      document.getElementById('hotel-image-1').alt = `${res[0].ime}`;
+      document.getElementById('hotel-image-2').alt = `${res[0].ime}`;
+      document.getElementById('hotel-image-3').alt = `${res[0].ime}`;
+      document.getElementById('hotel-image-4').alt = `${res[0].ime}`;
+      document.getElementById('hotel-image-5').alt = `${res[0].ime}`;
+      document.getElementById('hotel-image-6').alt = `${res[0].ime}`;
+
+
+      document.getElementById('modalMapeHeader').innerHTML = `
+        <div class="card-body">     
+            <h4>${res[0].ime}</h4>
+            <p>${res[0].address}</p>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    `
+
+      prikaziMapu(res[0].longitude, res[0].latitude)
+
+      fetch(`/hotel-images/${idHotel}`)
+        .then(res => res.json())
+        .then(
+          res => {
+            document.getElementById('hotel-image-2').src = `${res[0].url_slike}`;
+            document.getElementById('hotel-image-3').src = `${res[1].url_slike}`;
+            document.getElementById('hotel-image-4').src = `${res[2].url_slike}`;
+            document.getElementById('hotel-image-5').src = `${res[3].url_slike}`;
+            document.getElementById('hotel-image-6').src = `${res[4].url_slike}`;
+          })
+    }
+    );
+}
+
 // sakrivanje tabova
-$('.tab-item').click(function() {
+$('.tab-item').click(function () {
   $('.collapse').collapse('hide');
 });
 
@@ -240,10 +299,12 @@ $('.carousel').carousel({
   interval: 10000
 });
 
+prikaziHotel()
+
 // show more/show less hotels dugme
 // dugme proverava globalnu promenljivu showMore, i zavisno od stanja prikazuje vise ili manje hotela
-$('#show-more-hotels').on('click', function() {
-  if(!showMore) {
+$('#show-more-hotels').on('click', function () {
+  if (!showMore) {
     izlistajHotele(mapiraniHoteli, 10)
     showMore = true
     $(this).html('Show less...')
@@ -263,63 +324,6 @@ fetch(`/city/${idGrada}`)
   .then(res => document.getElementById('city-name').innerHTML = `<a href="city.html?grad-id=${idGrada}">${res[0].ime}</a>`)
   .then(res => document.getElementById('city-name-header').innerHTML = `<a class="nav-link" href="city.html?grad-id=${idGrada}">City</a>`)
 
-// prikaz imena hotela i opisa pri load-u stranice
-fetch(`/hotel/${idHotel}`)
-.then(res => res.json())
-.then(
-  res => {
-    document.getElementById("body").style.backgroundImage = `url(${
-      res[0].url_slike
-    })`
-    let rating = Math.round(res[0]['AVG(feedback_hotel.rating)'])
-      let stringZvezdice = ''
-      while(rating > 0) {
-        stringZvezdice += `<i class="fa fa-star"></i>`
-        rating--
-      }
-      if(!stringZvezdice)
-        stringZvezdice = 'Nema ocena'
-    document.getElementById('hotel-description').innerHTML = 
-    `<h1 class='h-25'>${res[0].ime}</h1>
-    <div class="current-hotel-rating">${stringZvezdice}</div>
-    <p class='h-75 pr-3 my-3'>${res[0].opis}</p>
-    <a href="#" class="mb-3 d-block" data-toggle='modal' data-target='#modalZaMape'><i>Address: ${res[0].address}</i></a>
-    <a href="${res[0].url_booking}" target="_blank">This hotel on booking.com</a><br>
-    <button class='btn d-inline-block my-3 dodaj-feed' type='button' data-toggle='modal' data-target='#addFeed'>Dodaj feed...</button>`;
-
-    document.getElementById('hotel-image-1').src = `${res[0].url_slike}`;
-    document.getElementById('hotel-image-1').alt = `${res[0].ime}`;
-    document.getElementById('hotel-image-2').alt = `${res[0].ime}`;
-    document.getElementById('hotel-image-3').alt = `${res[0].ime}`;
-    document.getElementById('hotel-image-4').alt = `${res[0].ime}`;
-    document.getElementById('hotel-image-5').alt = `${res[0].ime}`;
-    document.getElementById('hotel-image-6').alt = `${res[0].ime}`; 
-    
-
-    document.getElementById('modalMapeHeader').innerHTML = `
-        <div class="card-body">     
-            <h4>${res[0].ime}</h4>
-            <p>${res[0].address}</p>
-        </div>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-    `
-
-    prikaziMapu(res[0].longitude, res[0].latitude) 
-
-    fetch(`/hotel-images/${idHotel}`)
-    .then(res => res.json())
-    .then(
-      res => {
-        document.getElementById('hotel-image-2').src = `${res[0].url_slike}`;   
-        document.getElementById('hotel-image-3').src = `${res[1].url_slike}`;
-        document.getElementById('hotel-image-4').src = `${res[2].url_slike}`;
-        document.getElementById('hotel-image-5').src = `${res[3].url_slike}`;
-        document.getElementById('hotel-image-6').src = `${res[4].url_slike}`;
-      })
-  }
-);
 
 // prikaz hotela u tom gradu
 fetch(`/hotels/${idGrada}`)
@@ -328,14 +332,14 @@ fetch(`/hotels/${idGrada}`)
     mapiraniHoteli = [...res];
     // mapiraniHoteli.length = 3;
     izlistajHotele(mapiraniHoteli, 3)
-});
+  });
 
 // Forma za ostavljanje feedbacka za hotel
-$('#form-hotel-feedback input[type=radio]').on('change', function() {
+$('#form-hotel-feedback input[type=radio]').on('change', function () {
   rating = ($('input[name=rate]:checked').val())
 })
 
-$('#form-hotel-feedback').on('submit', function(e) {
+$('#form-hotel-feedback').on('submit', function (e) {
   e.preventDefault()
   // Slanje feedbacka za hotel:
   const feedbackBody = {
@@ -348,30 +352,31 @@ $('#form-hotel-feedback').on('submit', function(e) {
   }
   const feedbackOptions = {
     method: 'POST',
-    headers: {'Content-Type': 'application/json'},
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(feedbackBody)
   }
   fetch('/post-feedback-hotel', feedbackOptions)
     .then(res => res.json())
     .then(res => {
-      if(res.poslato)
+      if (res.poslato)
         $('#addFeed').modal('hide')
-        nabaviFeedback()
+      nabaviFeedback()
+      prikaziHotel()
     })
 })
 
 function prikaziMapu(lng, lat) {
   mapboxgl.accessToken = 'pk.eyJ1IjoibGF6YXJ2dHN0IiwiYSI6ImNqeGE0em1rbDB1djkzbnAzaXZqZGdxanYifQ.2E8B6mI5FO53BV1hGxJiTg';
   map = new mapboxgl.Map({
-  container: 'map', 
-  style: 'mapbox://styles/mapbox/streets-v11',
-  center: [lng, lat], 
-  zoom: 15
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [lng, lat],
+    zoom: 15
   });
 
   map.addControl(new mapboxgl.NavigationControl());
 
-  var marker = new mapboxgl.Marker({color: '#ada074'});
+  var marker = new mapboxgl.Marker({ color: '#ada074' });
 
   marker.setLngLat([
     lng,
@@ -382,27 +387,27 @@ function prikaziMapu(lng, lat) {
 
   var layerList = document.getElementById('map-menu');
   var inputs = layerList.getElementsByTagName('input');
-  
+
   function switchLayer(layer) {
-  var layerId = layer.target.id;
-  map.setStyle('mapbox://styles/mapbox/' + layerId);
+    var layerId = layer.target.id;
+    map.setStyle('mapbox://styles/mapbox/' + layerId);
   }
-  
+
   for (var i = 0; i < inputs.length; i++) {
-  inputs[i].onclick = switchLayer;
+    inputs[i].onclick = switchLayer;
   }
 }
 
 function MapModal() {
   $('#modalZaMape').modal();
 }
-  
+
 function MapResize() {
   map.resize(); // We will use the map.resize() function, to resize the MapBox map  once the modal has finished loading.
 }
-  
-  // Given that your modal has the id #modal
-  // and your map is under the variable map. The ‘shown.bs.modal’ event handler is an in-built event handler for Bootstrap Modals.
+
+// Given that your modal has the id #modal
+// and your map is under the variable map. The ‘shown.bs.modal’ event handler is an in-built event handler for Bootstrap Modals.
 $('#modalZaMape').on('shown.bs.modal', function () {
   map.resize();
 });
@@ -417,7 +422,7 @@ if (user) {
   $('#btnLogin').removeClass('d-none')
   $('#btnLogout').addClass('d-none')
   document.getElementById('user-img').src = ''
-  setTimeout(function(){
+  setTimeout(function () {
     document.getElementById('glavni-container').innerHTML = '<h2 id="login-obavestenje">You are not logged in, please log in.</h2>'
   }, 200)
 }
@@ -453,7 +458,7 @@ document.getElementById('logout-button').addEventListener('click', function () {
   document.getElementById('user-img').src = ''
   $('#loggedUser').text('')
   fetch('/logout')
-  setTimeout(function(){
+  setTimeout(function () {
     document.getElementById('glavni-container').innerHTML = '<h2 id="login-obavestenje">You are not logged in, please log in</h2>'
   }, 200)
 })
