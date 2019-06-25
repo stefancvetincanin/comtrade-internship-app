@@ -408,17 +408,39 @@ $('#modalZaMape').on('shown.bs.modal', function () {
   map.resize();
 });
 
-// provera da li je korisnik ulogovan
+// provera da li korisnik postoji u local storage, ako postoji, poziva se checkLogin funkcija koja proverava da li je logovan u bazi
 let user = JSON.parse(localStorage.getItem('loggedUser'));
-
 if (user) {
-  $('#loggedUser').text('Hi, '+user.ime);
+  checkLogin()
+  // $('#loggedUser').text('Hi, ' + user.ime)
+  // document.getElementById('user-img').src = user.slika
 } else {
   $('#btnLogin').removeClass('d-none')
   $('#btnLogout').addClass('d-none')
+  document.getElementById('user-img').src = ''
   setTimeout(function(){
     document.getElementById('glavni-container').innerHTML = '<h2 id="login-obavestenje">You are not logged in, please log in</h2>'
-  }, 500)
+  }, 200)
+}
+
+// provera u bazi da li je user logovan
+function checkLogin() {
+  fetch('/check')
+    .then(res => res.json())
+    .then(res => {
+      if (res.loggedIn) {
+        $('#loggedUser').text('Hi, ' + user.ime)
+        document.getElementById('user-img').src = user.slika
+      } else if (!res.loggedIn) {
+        localStorage.removeItem('loggedUser')
+        $('#btnLogin').removeClass('d-none')
+        $('#btnLogout').addClass('d-none')
+        document.getElementById('user-img').src = ''
+        setTimeout(function () {
+          document.getElementById('glavni-container').innerHTML = '<h2 id="login-obavestenje">You are not logged in, please log in</h2>'
+        }, 200)
+      }
+    })
 }
 
 // Logout funkcionalnost
@@ -426,11 +448,12 @@ document.getElementById('logout-button').addEventListener('click', function () {
   localStorage.removeItem('loggedUser')
   $('#btnLogin').removeClass('d-none')
   $('#btnLogout').addClass('d-none')
+  document.getElementById('user-img').src = ''
   $('#loggedUser').text('')
   fetch('/logout')
   setTimeout(function(){
     document.getElementById('glavni-container').innerHTML = '<h2 id="login-obavestenje">You are not logged in, please log in</h2>'
-  }, 500)
+  }, 200)
 })
 
 

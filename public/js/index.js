@@ -1,6 +1,5 @@
 
 let user = JSON.parse(localStorage.getItem('loggedUser'));
-
 if (user) {
   checkLogin()
 }
@@ -9,6 +8,10 @@ document.getElementById('loginBtn').addEventListener('click', login);
 document.getElementById('search').addEventListener('keyup', filterCities);
 // Logout funkcionalnost
 document.getElementById('logout-button').addEventListener('click', function () {
+  logout()
+})
+
+function logout() {
   localStorage.removeItem('loggedUser')
   $('#btnLogin').removeClass('d-none')
   $('#btnLogout').removeClass('d-inline-block')
@@ -16,8 +19,9 @@ document.getElementById('logout-button').addEventListener('click', function () {
   $('#loggedUser').text('')
   $('#loginModal').modal('show')
   $('#cityList').html('')
+  document.getElementById('user-img').src = ''
   fetch('/logout')
-})
+}
 
 function checkLogin() {
   fetch('/check')
@@ -29,6 +33,7 @@ function checkLogin() {
         $('#loggedUser').text(user.ime);
         $('#loginModal').modal('hide');
         $("#search").prop("disabled", false);
+        document.getElementById('user-img').src = user.slika
         getCities();
       } else if(!res.loggedIn) {
         localStorage.removeItem('loggedUser')
@@ -76,6 +81,7 @@ function login() {
         $('#btnLogin').addClass('d-none');
         $('#btnLogout').addClass('d-inline-block');
         $('#loggedUser').text(res.user[0].ime);
+        document.getElementById('user-img').src = res.user[0].slika
         $("#search").prop("disabled", false);
         getCities();
       } else if (!res.loggedIn) {
