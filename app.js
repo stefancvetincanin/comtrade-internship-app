@@ -2,13 +2,15 @@ const express = require('express')
 const path = require('path')
 const app = express()
 const port = 3000
+const cookieParser = require('cookie-parser');
 mysql = require('mysql')
-const cities = require('./baza/cities.json')
-const hotels = require('./baza/hotels.json')
+// const cities = require('./baza/cities.json')
+// const hotels = require('./baza/hotels.json')
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
+app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.listen(port, () => {
