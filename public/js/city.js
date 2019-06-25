@@ -243,7 +243,7 @@ const wind = document.getElementById("wind");
 const weatherTemplate = (element, index) => {
   return `<div class="carousel-item ${
     index === 0 ? "active" : null
-  } bg-info w-100">
+  } bg-info1 w-100">
   <div class="row px-2 justify-content-center align-items-center mb-1 pt-5 text-white">
     <div class="col-3"><img src="https://www.metaweather.com/static/img/weather/${
       element.weather_state_abbr
@@ -420,7 +420,7 @@ function prikaziFeedbackModal(id) {
     const commentBody = {
       feedbackId: Number(id),
       text: $("#comment-text").val(),
-      korisniciId: Math.floor(Math.random() * (5 - 1)) + 1
+      korisniciId: user.id
     };
     const commentOptions = {
       method: "POST",
@@ -486,7 +486,7 @@ $("#form-city-feedback").on("submit", function (e) {
   // Slanje feedbacka za grad:
   const feedbackBody = {
     gradId: id,
-    korisniciId: Math.floor(Math.random() * (5 - 1)) + 1,
+    korisniciId: user.id,
     rating: rating,
     naziv: $("#naziv-feedback-city").val(),
     opis: $("#comment-feedback-city").val()
@@ -506,6 +506,33 @@ $("#form-city-feedback").on("submit", function (e) {
     });
 
 });
+
+// provera da li je korisnik ulogovan
+let user = JSON.parse(localStorage.getItem('loggedUser'));
+
+if (user) {
+  $('#loggedUser').text('Hi, '+user.ime);
+} else {
+  $('#btnLogin').removeClass('d-none')
+  $('#btnLogout').addClass('d-none')
+  setTimeout(function(){
+    document.getElementById('glavni-container').innerHTML = '<h2 id="login-obavestenje">You are not logged in, please log in</h2>'
+  }, 500)
+}
+
+// Logout funkcionalnost
+document.getElementById('logout-button').addEventListener('click', function () {
+  localStorage.removeItem('loggedUser')
+  $('#btnLogin').removeClass('d-none')
+  $('#btnLogout').addClass('d-none')
+  $('#loggedUser').text('')
+  fetch('/logout')
+  setTimeout(function(){
+    document.getElementById('glavni-container').innerHTML = '<h2 id="login-obavestenje">You are not logged in, please log in</h2>'
+  }, 500)
+})
+
+
 
 function prikaziMapu(lng, lat) {
   mapboxgl.accessToken = 'pk.eyJ1IjoibGF6YXJ2dHN0IiwiYSI6ImNqeGE0em1rbDB1djkzbnAzaXZqZGdxanYifQ.2E8B6mI5FO53BV1hGxJiTg';

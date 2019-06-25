@@ -6,7 +6,7 @@
 }
 
 .bodyWrapper {
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(56,72,103,0.7);
 }
 
 #main-header img {
@@ -29,12 +29,38 @@
 }
 
 .dataDiv {
-  background-color: #f5ba17;
+  background-color:#384867;
+}
+
+.dataDiv h1{
+  color: #e3e7ee;
+}
+
+.dataDiv p{
+  color: #e3e7ee;
 }
 
 .divContentWraper {
   margin: 0px;
   margin: 0px;
+}
+
+.weatherWrapper {
+  background-color:#4c6491;
+  
+}
+
+#date {
+  color: #e3e7ee;
+  font-weight: bold;
+}
+
+.bg-info1 {
+  background-color: #ff5c88;
+}
+
+.weatherIconWrapper {
+  color: #e3e7ee;
 }
 
 #accomodation .card-body {
@@ -54,6 +80,9 @@
   text-decoration: none;
 }
 
+#login-obavestenje {
+  color: white;
+}
 .userCityFeedback {
   height: 50px;
   text-overflow: ellipsis;

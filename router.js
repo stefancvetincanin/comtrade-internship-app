@@ -1,7 +1,6 @@
 module.exports = function(express, baza) {
   const router = express.Router()
 
-  // json web token - jwt
   // login funkcija
   router.get('/login/*/*', function (req, res) {
     // console.log(req.params)
@@ -16,16 +15,34 @@ module.exports = function(express, baza) {
   router.post('/login', function (req, res) {
     baza.execQuery(`SELECT id, username, ime, prezime, admin, slika FROM korisnici WHERE username = ${mysql.escape(req.body.username)} AND password = ${mysql.escape(req.body.password)}`, function (results) {
       if(results.length > 0) {
-        res.send(results)
         const tokenRnd = Math.floor(Math.random() * (100000000 - 10000000)) + 10000000
         const token = String(tokenRnd) + results[0].username
-        baza.execQuery(`INSERT INTO login_tabela(korisnici_id, web_token) VALUES (${mysql.escape(results[0].id)}, ${mysql.escape(token)})`, function (results) {
-
+        res.cookie('loginCookie', token, { maxAge: new Date().getTime() + 30 * 24 * 60 * 60, httpOnly: true })
+        baza.execQuery(`INSERT INTO login_tabela(korisnici_id, web_token) VALUES (${mysql.escape(results[0].id)}, ${mysql.escape(token)})`, function (resultsUgnjezdeniLogin) {
+          if(resultsUgnjezdeniLogin.affectedRows === 1)
+            res.send({loggedIn: true, user: results});
         })
       }
       else {
-        res.send({'msg': 'User not found'})
+        res.send({loggedIn: false})
       }
+    })
+  })
+
+  // Provera logina
+  router.get('/check', function (req, res) {
+    baza.execQuery(`SELECT * FROM login_tabela WHERE web_token = ${mysql.escape(req.cookies.loginCookie)}`, function(results) {
+      if(results.length > 0) {
+        res.send({loggedIn: true})
+      } else
+        res.send({loggedIn: false})
+    })
+  })
+
+  // Logout funkcija
+  router.get('/logout', function (req, res) {
+    baza.execQuery(`DELETE FROM login_tabela WHERE web_token = ${mysql.escape(req.cookies.loginCookie)}`, function(results) {
+
     })
   })
 

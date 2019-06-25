@@ -47,13 +47,15 @@
           </li>
         </ul>
 
-        <button id="btnLogin" type="button" class="btn btn-outline-warning ml-5 d-none" data-toggle="modal"
-          data-target="#loginModal">
-          Login
-        </button>
+        <a href="index.html">
+          <button id="btnLogin" type="button" class="btn btn-outline-warning ml-5 d-none" data-toggle="modal"
+            data-target="#loginModal">
+            Login
+          </button>
+        </a>
         <div id="btnLogout" class="text-warning pl-4">
-          Hi, <span id="loggedUser"></span>
-          <button type="button" class="btn btn-outline-warning ml-3">
+          <span id="loggedUser"></span>
+          <button type="button" class="btn btn-outline-warning ml-3" id="logout-button">
             Logout
           </button>
         </div>
@@ -61,7 +63,7 @@
     </div>
   </nav>
 
-  <div class="container">
+  <div class="container" id="glavni-container">
     <header id="main-header">
       <div style="min-height:300px" class="row no-gutters">
         <div style="height:100%" class="col-lg-12 align-items-stretch " id="city-img">
@@ -75,20 +77,20 @@
                   
                 </div>
                 
-                <div style="background-color:#e0aa15" class="d-flex flex-column flex-row pt-2 col-lg-4 col-md-12h-100">
+                <div class="d-flex flex-column flex-row pt-2 col-lg-4 col-md-12 h-100 weatherWrapper">
                   <div class="row h-50">
                       <div class="container justify-content-center">
                         <div id="date" class="row justify-content-center lead mb-2">
                           
                         </div>
-                        <div style="font-size:2rem;" class="row justify-content-center w-50 mx-auto text-white bg-info rounded-top">
+                        <div style="font-size:2rem;" class="row justify-content-center w-50 mx-auto text-white  bg-info1 rounded-top">
                           <span id="stringWeather"></span>&#8451;				
                         </div>							
                         <div style="font-size:1.5rem;" id="description" 
-                        class="row text-white justify-content-center w-50 mb-3 mx-auto bg-info rounded-bottom">
+                        class="row text-white justify-content-center w-50 mb-3 mx-auto bg-info1 rounded-bottom">
                           			
                         </div>
-                        <div style="font-size:1.25rem;" class="row">
+                        <div style="font-size:1.25rem;" class="row weatherIconWrapper">
                           <div class="col-4 text-center d-flex flex-column py-2">
                               <i class="fas fa-umbrella d-inline-block"></i>
                           </div>
@@ -99,7 +101,7 @@
                             <i class="fas fa-wind d-inline-block"></i>
                           </div>				
                         </div>
-                        <div style="font-size:1.25rem;" class="row justify-content-center bg-info mx-0">
+                        <div style="font-size:1.25rem;" class="row justify-content-center bg-info1 mx-0">
                           <div id="humidity" class="col-4 text-center text-white font-weight-bold">
 
                           </div>

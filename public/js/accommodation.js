@@ -117,10 +117,10 @@ function prikaziFeedbackModal(id) {
             </button>
           </div>
           <div class="commentGroup">
-            <form class="w-100 p-0 mb-3 id="forma-comment">
+            <form class="w-100 p-0 mb-3" id="forma-comment">
               <div class="form-group justify-content-center">
-                <label for="comment">Message</label>
-                <textarea class="form-control" id="comment-on-feedback" rows="3" required minlength="20" maxlength="300"></textarea>
+                <label for="comment-on-feedback">Message</label>
+                <textarea class="form-control" id="comment-on-feedback" rows="3" required minlength="20" maxlength="300" placeholder="Your comment here..."></textarea>
               </div>
               <div class="clearfix">
                 <button type="submit" class="btn btn-primary float-right">
@@ -145,7 +145,8 @@ function prikaziFeedbackModal(id) {
     const commentBody = {
       feedbackId: Number(id),
       text: $('#comment-on-feedback').val(),
-      korisniciId: Math.floor(Math.random() * (5 - 1)) + 1
+      // korisniciId: Math.floor(Math.random() * (5 - 1)) + 1
+      korisniciId: user.id
     }
     const commentOptions = {
       method: 'POST',
@@ -339,7 +340,8 @@ $('#form-hotel-feedback').on('submit', function(e) {
   // Slanje feedbacka za hotel:
   const feedbackBody = {
     hotelId: idHotel,
-    korisniciId: Math.floor(Math.random() * (5 - 1)) + 1,
+    // korisniciId: Math.floor(Math.random() * (5 - 1)) + 1,
+    korisniciId: user.id,
     rating: rating,
     naziv: $('#naziv-feedback-hotel').val(),
     opis: $('#comment-feedback').val()
@@ -405,6 +407,30 @@ $('#modalZaMape').on('shown.bs.modal', function () {
   map.resize();
 });
 
+// provera da li je korisnik ulogovan
+let user = JSON.parse(localStorage.getItem('loggedUser'));
+
+if (user) {
+  $('#loggedUser').text('Hi, '+user.ime);
+} else {
+  $('#btnLogin').removeClass('d-none')
+  $('#btnLogout').addClass('d-none')
+  setTimeout(function(){
+    document.getElementById('glavni-container').innerHTML = '<h2 id="login-obavestenje">You are not logged in, please log in</h2>'
+  }, 500)
+}
+
+// Logout funkcionalnost
+document.getElementById('logout-button').addEventListener('click', function () {
+  localStorage.removeItem('loggedUser')
+  $('#btnLogin').removeClass('d-none')
+  $('#btnLogout').addClass('d-none')
+  $('#loggedUser').text('')
+  fetch('/logout')
+  setTimeout(function(){
+    document.getElementById('glavni-container').innerHTML = '<h2 id="login-obavestenje">You are not logged in, please log in</h2>'
+  }, 500)
+})
 
 
 
