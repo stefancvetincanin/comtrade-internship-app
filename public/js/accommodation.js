@@ -419,9 +419,12 @@ if (user) {
   $('#btnLogout').addClass('d-none')
   document.getElementById('user-img').src = ''
   setTimeout(function(){
-    document.getElementById('glavni-container').innerHTML = '<h2 id="login-obavestenje">You are not logged in, please log in</h2>'
+    document.getElementById('glavni-container').innerHTML = '<h2 id="login-obavestenje">You are not logged in, please log in.</h2>'
   }, 200)
 }
+
+// upisivanje imena korisnika u modal za dodavanje feedbacka
+$('#modal-add-feedback-username').html(user.ime + ' ' + user.prezime)
 
 // provera u bazi da li je user logovan
 function checkLogin() {
@@ -437,7 +440,7 @@ function checkLogin() {
         $('#btnLogout').addClass('d-none')
         document.getElementById('user-img').src = ''
         setTimeout(function () {
-          document.getElementById('glavni-container').innerHTML = '<h2 id="login-obavestenje">You are not logged in, please log in</h2>'
+          document.getElementById('glavni-container').innerHTML = '<h2 id="login-obavestenje">You are not logged in, please log in.</h2>'
         }, 200)
       }
     })

@@ -485,6 +485,10 @@ $("#form-city-feedback input[type=radio]").on("change", function () {
   rating = $("input[name=rate]:checked").val();
 });
 
+$('#button-add-feedback').on('click', function(){
+  $('#modal-add-feedback-username').html(user.ime + ' ' + user.prezime)
+})
+
 $("#form-city-feedback").on("submit", function (e) {
   e.preventDefault();
   // Slanje feedbacka za grad:
@@ -522,7 +526,7 @@ if (user) {
   $('#btnLogout').addClass('d-none')
   document.getElementById('user-img').src = ''
   setTimeout(function(){
-    document.getElementById('glavni-container').innerHTML = '<h2 id="login-obavestenje">You are not logged in, please log in</h2>'
+    document.getElementById('glavni-container').innerHTML = '<h2 id="login-obavestenje">You are not logged in, please log in.</h2>'
   }, 200)
 }
 
@@ -535,7 +539,7 @@ document.getElementById('logout-button').addEventListener('click', function () {
   $('#loggedUser').text('')
   fetch('/logout')
   setTimeout(function () {
-    document.getElementById('glavni-container').innerHTML = '<h2 id="login-obavestenje">You are not logged in, please log in</h2>'
+    document.getElementById('glavni-container').innerHTML = '<h2 id="login-obavestenje">You are not logged in, please log in.</h2>'
   }, 200)
 })
 
