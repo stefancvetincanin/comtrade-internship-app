@@ -1,6 +1,7 @@
 # comtrade-internship-app
 Business Trip Advisor - a comtrade internship project<br>
 <br>
+<h3>Git uputstvo</h3>
 git cheat sheet:<br>
 https://www.git-tower.com/blog/git-cheat-sheet<br>
 <br>
@@ -11,7 +12,7 @@ Na pocetku radnog dana uvek updateujemo lokalnu master granu sa remote verzijom:
  git checkout master
  git pull
 </pre>
-2. Preci na licnu granu, povuci najnoviju verziju nje i spojiti sa masterom:
+2. Preci na licnu granu, povuci najnoviju verziju nje i spojiti sa masterom (mozete raditi ovako radi jednostavnosti, ali preporucljivo je da kad god radite novi feature uvek napravite novu granu od mastera samo za taj feature, i obrisete je posto je spojite sa masterom):
 <pre>
  git checkout &lt;ime-grane&gt;
  git pull
