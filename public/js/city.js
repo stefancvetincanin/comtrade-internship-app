@@ -283,6 +283,13 @@ function feedbackGrad(id) {
       feedbackArray = res;
       let displayComments = "";
       res.forEach(comment => {
+        let rating = comment.rating;
+        let stringZvezdice = "";
+        while (rating > 0) {
+          stringZvezdice += `<i class="text-warning fa fa-star"></i>`;
+          rating--;
+        }
+        if (!stringZvezdice) stringZvezdice = "Nema ocena";
         displayComments += `
       <div class="card col-lg-4 col-md-6 col-sm-12 bg-light mb-4 px-4 py-3">
       <div class="row card-body">
@@ -293,13 +300,7 @@ function feedbackGrad(id) {
         </div>
         <div class="col-8">
           <h4>${comment.ime}</h4>
-          <div class="">
-            <span class=""><i class="text-warning fa fa-star"></i></span>
-            <span class=""><i class="text-warning fa fa-star"></i></span>
-            <span class=""><i class="text-warning fa fa-star"></i></span>
-            <span class=""><i class="text-warning fa fa-star"></i></span>
-            <span class=""><i class="text-warning fa fa-star"></i></span>
-          </div>
+          <div>${stringZvezdice}</div>
         </div>
       </div>
       <div class="row">
