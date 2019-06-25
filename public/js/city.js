@@ -1,5 +1,9 @@
 let feedbackArray = [];
 let id = getParameter("grad-id");
+let map;
+let idAtrakcija;
+
+
 
 function getParameter(paramName) {
   let searchString = window.location.search.substring(1),
@@ -43,8 +47,9 @@ fetch(`/city/${id}`)
 
 // f-ja za show more-show less hoteli i atrakcije
 let count = 0;
+
 function moreLess(id, classname) {
-  document.getElementById(id).addEventListener("click", function() {
+  document.getElementById(id).addEventListener("click", function () {
     count++;
     if (count % 2 !== 0) {
       document.getElementById(id).value = "Show less..";
@@ -112,6 +117,7 @@ fetch(`/attractions/${id}`)
     res.forEach((element, i) => {
       let moreClass1 = i > 2 && "moreClass1";
       displayAttr += `<li class="list-group-item list-group-item-primary mb-1 ${moreClass1}">
+        <a href="#" class="mb-1 d-block" data-id="${i}" data-toggle='modal' data-target='#modalZaMape'>
           <div class="row align-items-center text-center">
             <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
               <img class="d-block mx-auto" src="${
@@ -131,11 +137,26 @@ fetch(`/attractions/${id}`)
       </li>`;
       document.getElementById("cityAttractions").innerHTML = displayAttr;
     });
+    
+    $('#cityAttractions').on('click', 'a', function () {
+      let id = $(this)[0].dataset.id;
+      document.getElementById('modalMapeHeader').innerHTML = `
+        <div class="card-body">     
+            <h4>${res[id].naziv}</h4>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    `;
+
+    prikaziMapu(res[id].longitude, res[id].latitude)
+    });
+     
     moreLess("moreBtn1", "moreClass1");
   });
 
-$(document).ready(function() {
-  $(".tab-item").click(function() {
+$(document).ready(function () {
+  $(".tab-item").click(function () {
     $(".collapse").collapse("hide");
   });
 
@@ -145,11 +166,11 @@ $(document).ready(function() {
 
   $("body").on("load", $(".commentGroup").hide());
 
-  $("#btnFooterToggle").click(function() {
+  $("#btnFooterToggle").click(function () {
     $(".commentGroup").toggle();
   });
 
-  $("#addComment").click(function() {
+  $("#addComment").click(function () {
     $(".commentGroup").toggle();
   });
 });
@@ -170,20 +191,20 @@ function stringDate(currDate) {
 function minimizedElements() {
   let minimized_elements = $("#content");
 
-  minimized_elements.each(function() {
+  minimized_elements.each(function () {
     let t = $(this).text();
     if (t.length < 200) return;
 
     $(this).html(
       t.slice(0, 200) +
-        '<span>... </span><a href="#" class="more">More</a>' +
-        '<span style="display:none;">' +
-        t.slice(300, t.length) +
-        ' <a href="#" class="less">Less</a></span>'
+      '<span>... </span><a href="#" class="more">More</a>' +
+      '<span style="display:none;">' +
+      t.slice(300, t.length) +
+      ' <a href="#" class="less">Less</a></span>'
     );
   });
 
-  $("a.more", minimized_elements).click(function(event) {
+  $("a.more", minimized_elements).click(function (event) {
     event.preventDefault();
     $(this)
       .hide()
@@ -194,7 +215,7 @@ function minimizedElements() {
       .show();
   });
 
-  $("a.less", minimized_elements).click(function(event) {
+  $("a.less", minimized_elements).click(function (event) {
     event.preventDefault();
     $(this)
       .parent()
@@ -243,10 +264,10 @@ function getData() {
     .then(res => res.json())
     .then(res => {
       fetch(
-        `https://proxy-requests.herokuapp.com/https://www.metaweather.com/api/location/${
+          `https://proxy-requests.herokuapp.com/https://www.metaweather.com/api/location/${
           res[0].woeid
         }/`
-      )
+        )
         .then(res => res.json())
         .then(data => {
           print(data);
@@ -283,6 +304,13 @@ function feedbackGrad(id) {
       feedbackArray = res;
       let displayComments = "";
       res.forEach(comment => {
+        let rating = comment.rating;
+        let stringZvezdice = "";
+        while (rating > 0) {
+          stringZvezdice += `<i class="text-warning fa fa-star"></i>`;
+          rating--;
+        }
+        if (!stringZvezdice) stringZvezdice = "Nema ocena";
         displayComments += `
       <div class="card col-lg-4 col-md-6 col-sm-12 bg-light mb-4 px-4 py-3">
       <div class="row card-body">
@@ -293,17 +321,11 @@ function feedbackGrad(id) {
         </div>
         <div class="col-8">
           <h4>${comment.ime}</h4>
-          <div class="">
-            <span class=""><i class="text-warning fa fa-star"></i></span>
-            <span class=""><i class="text-warning fa fa-star"></i></span>
-            <span class=""><i class="text-warning fa fa-star"></i></span>
-            <span class=""><i class="text-warning fa fa-star"></i></span>
-            <span class=""><i class="text-warning fa fa-star"></i></span>
-          </div>
+          <div>${stringZvezdice}</div>
         </div>
       </div>
       <div class="row">
-        <p>${comment.opis}</p>
+        <p class="userCityFeedback">${comment.opis}</p>
       </div>
       <div class="row justify-content-center">
         <div class="w-50">
@@ -318,7 +340,7 @@ function feedbackGrad(id) {
       document.getElementById(
         "commentListFeedbacka"
       ).innerHTML = displayComments;
-      $(".prikazi-modal").on("click", function() {
+      $(".prikazi-modal").on("click", function () {
         prikaziFeedbackModal($(this).attr("data-feedback-id"));
       });
     });
@@ -360,26 +382,27 @@ function prikaziFeedbackModal(id) {
       </div>
       <div class="modal-body">
         <div class="row">
-          <p>${filtriranFeedback[0].opis}</p>
+          <p class="filtriranFeedbackOpis">${filtriranFeedback[0].opis}</p>
         </div>
         <div class="clearfix mb-4">
           <button id="btnFooterToggle" type="button" class="btn btn-primary float-right">Show-hide comments</button>
         </div>
         
         <div class="commentGroup">
-          <ul class="list-group mb-1" id="commentListKomentara">
-        
-          </ul>
           <form class="w-100 p-0" id="comment-on-feedback" >
             <div class="form-group justify-content-center">
-              <label for="comment">Message</label>
-              <textarea class="form-control" rows="3" id="comment-text"></textarea>
-            </div>
+            <label for="comment">Message</label>
+            <textarea class="form-control" rows="3" id="comment-text"></textarea>
+          </div>
 
             <div class="clearfix">
               <button type="submit" class="btn btn-primary float-right">Send comment</button>
             </div>
           </form>
+          <ul class="list-group mb-1" id="commentListKomentara">
+        
+          </ul>
+          
         </div>
       </div>
       
@@ -388,11 +411,11 @@ function prikaziFeedbackModal(id) {
     `;
   komentarFeedbackGrada(id);
 
-  $("#btnFooterToggle").on("click", function() {
+  $("#btnFooterToggle").on("click", function () {
     $("#comment-on-feedback").slideToggle();
   });
 
-  $("#comment-on-feedback").on("submit", function(e) {
+  $("#comment-on-feedback").on("submit", function (e) {
     e.preventDefault();
     const commentBody = {
       feedbackId: Number(id),
@@ -401,7 +424,9 @@ function prikaziFeedbackModal(id) {
     };
     const commentOptions = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify(commentBody)
     };
     $("#comment-text").val("");
@@ -452,11 +477,11 @@ function komentarFeedbackGrada(id) {
     });
 }
 
-$("#form-city-feedback input[type=radio]").on("change", function() {
+$("#form-city-feedback input[type=radio]").on("change", function () {
   rating = $("input[name=rate]:checked").val();
 });
 
-$("#form-city-feedback").on("submit", function(e) {
+$("#form-city-feedback").on("submit", function (e) {
   e.preventDefault();
   // Slanje feedbacka za grad:
   const feedbackBody = {
@@ -468,7 +493,9 @@ $("#form-city-feedback").on("submit", function(e) {
   };
   const feedbackOptions = {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify(feedbackBody)
   };
   fetch("/post-feedback-city", feedbackOptions)
@@ -477,6 +504,7 @@ $("#form-city-feedback").on("submit", function(e) {
       if (res.poslato) $("#addFeedCity").modal("hide");
       feedbackGrad(id);
     });
+
 });
 
 // provera da li je korisnik ulogovan
@@ -503,3 +531,54 @@ document.getElementById('logout-button').addEventListener('click', function () {
     document.getElementById('glavni-container').innerHTML = '<h2 id="login-obavestenje">You are not logged in, please log in</h2>'
   }, 500)
 })
+
+
+
+function prikaziMapu(lng, lat) {
+  mapboxgl.accessToken = 'pk.eyJ1IjoibGF6YXJ2dHN0IiwiYSI6ImNqeGE0em1rbDB1djkzbnAzaXZqZGdxanYifQ.2E8B6mI5FO53BV1hGxJiTg';
+  map = new mapboxgl.Map({
+  container: 'map', 
+  style: 'mapbox://styles/mapbox/streets-v11',
+  center: [lng, lat], 
+  zoom: 15
+  });
+
+  map.addControl(new mapboxgl.NavigationControl());
+
+  var marker = new mapboxgl.Marker({color: '#ada074'});
+
+  marker.setLngLat([
+    lng,
+    lat
+  ]);
+
+  marker.addTo(map);
+
+  var layerList = document.getElementById('map-menu');
+  var inputs = layerList.getElementsByTagName('input');
+  
+  function switchLayer(layer) {
+  var layerId = layer.target.id;
+  map.setStyle('mapbox://styles/mapbox/' + layerId);
+  }
+  
+  for (var i = 0; i < inputs.length; i++) {
+  inputs[i].onclick = switchLayer;
+  }
+}
+
+function MapModal() {
+  $('#modalZaMape').modal();
+}
+  
+function MapResize() {
+  map.resize(); // We will use the map.resize() function, to resize the MapBox map  once the modal has finished loading.
+}
+  
+  // Given that your modal has the id #modal
+  // and your map is under the variable map. The ‘shown.bs.modal’ event handler is an in-built event handler for Bootstrap Modals.
+$('#modalZaMape').on('shown.bs.modal', function () {
+  map.resize();
+});
+
+

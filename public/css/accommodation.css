@@ -1,6 +1,6 @@
 #city-name a {
   color: navy;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 #city-name a:hover {
@@ -128,5 +128,12 @@
     #map {
       width: 400px;
       height: 300px;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    #map {
+      width: 300px;
+      height: 230px;
     }
   }

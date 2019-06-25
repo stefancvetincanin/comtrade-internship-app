@@ -20,6 +20,8 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:300i,400,700&display=swap" rel="stylesheet">
   <!-- Our sources -->
   <link rel="stylesheet" type="text/css" media="screen" href="./css/city.css" />
+  <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js"></script>
+  <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css" rel="stylesheet" />
 
   
 </head>
@@ -39,12 +41,6 @@
         <ul class="navbar-nav nav nav-pills align-self-center text-uppercase ml-auto">
           <li class="nav-item ml-4">
             <a class="nav-link text-warning" href="./index.html">Home</a>
-          </li>
-          <li class="nav-item ml-4">
-            <a class="nav-link text-warning" href="./city.html">City</a>
-          </li>
-          <li class="nav-item ml-4">
-            <a class="nav-link text-warning" href="#">Accomodation</a>
           </li>
           <li class="nav-item ml-4 d-none">
             <a class="nav-link text-warning" href="">Add Accomodation</a>
@@ -190,7 +186,7 @@
     <div id="feedback" class="collapse">
       <div class="card card-body py-5">
         <h2 class="cardBodyHeadline">Feedback</h2>
-        <button class='btn btn-primary d-inline-block mb-3' type='button' data-toggle='modal' data-target='#addFeedCity'>Dodaj feed...</button>
+        <button class='btn btn-primary d-inline-block mb-3 addFeedBtnCity' type='button' data-toggle='modal' data-target='#addFeedCity'>Feedback</button>
 
   
     <div class="container">
@@ -261,6 +257,25 @@
 </div>
 
   </div>
+
+        <!-- Modal za mapu atrakcije -->
+        <div class="modal fade bd-example-modal-lg" id="modalZaMape" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content" >
+                <div class="modal-header" id="modalMapeHeader"></div>
+                <div class="modal-body">
+                  <div id="map">
+                    <div id="map-menu">
+                        <input id='streets-v11' type='radio' name='rtoggle' value='streets' checked='checked'>
+                        <label for='streets'>streets</label>
+                        <input id='satellite-v9' type='radio' name='rtoggle' value='satellite'>
+                        <label for='satellite'>satellite</label>
+                    </div> 
+                  </div> 
+                </div>
+              </div>
+            </div>
+          </div>
   
   <script src="./js/city.js"></script>
     

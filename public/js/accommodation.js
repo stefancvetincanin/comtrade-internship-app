@@ -260,7 +260,8 @@ nabaviFeedback()
 // prikazi ime grada
 fetch(`/city/${idGrada}`)
   .then(res => res.json())
-  .then(res => document.getElementById('city-name').innerHTML = `<a href="city.html?grad-id=${idGrada}">${res[0].ime}</a>`);
+  .then(res => document.getElementById('city-name').innerHTML = `<a href="city.html?grad-id=${idGrada}">${res[0].ime}</a>`)
+  .then(res => document.getElementById('city-name-header').innerHTML = `<a class="nav-link text-warning" href="city.html?grad-id=${idGrada}">City</a>`)
 
 // prikaz imena hotela i opisa pri load-u stranice
 fetch(`/hotel/${idHotel}`)

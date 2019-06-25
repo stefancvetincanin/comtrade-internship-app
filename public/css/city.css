@@ -6,7 +6,7 @@
 }
 
 .bodyWrapper {
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.7);
 }
 
 #main-header img {
@@ -57,6 +57,19 @@
 #login-obavestenje {
   color: white;
 }
+.userCityFeedback {
+  height: 50px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.filtriranFeedbackOpis {
+  padding:10px;
+}
+
+#comment-on-feedback {
+  margin-bottom: 10px;
+}
 
 @media (min-width: 320px) {
   .cityHeadline {
@@ -96,6 +109,12 @@
     margin-bottom: 0px;
     margin-top: 7px;
 }
+
+.addFeedBtnCity {
+  width: 30%;
+  font-size: 12px;
+}
+
 }
 
 @media (min-width: 576px) {
@@ -112,6 +131,11 @@
     display: block;
     font-size: 14px;
   }
+
+  .addFeedBtnCity {
+    width: 21%;
+    font-size: 16px;
+  }
 }
 
 @media (min-width: 768px) {
@@ -121,6 +145,11 @@
   .cardBodyHeadline {
     font-size: 32px;
     margin-top: 0px;
+  }
+
+  .addFeedBtnCity {
+    width: 16%;
+    font-size: 18px;
   }
 }
 
@@ -137,6 +166,11 @@
   }
   #descriptionAccomod {
     font-size: 16px;
+  }
+
+  .addFeedBtnCity {
+    width: 13%;
+    font-size: 20px;
   }
 }
 
@@ -194,3 +228,47 @@
   display: none;
 }
 
+
+#map {
+  position: relative;
+  z-index: 100;
+  width: 600px;
+  height: 450px;
+  margin: 0 auto;
+}
+
+.mapboxgl-canvas {
+  left: 0!important;
+}
+
+#map-menu {
+  position: absolute;
+  background: #fff;
+  padding: 10px;
+  font-family: 'Open Sans', sans-serif;
+  top: 7px;
+  left: 7px;
+  z-index: 1000; 
+  }
+
+  /* #map-menu input, label {
+        display: block;
+  } */
+
+  label {
+      margin-right: 5px;
+  }
+
+  @media only screen and (max-width: 992px) {
+    #map {
+      width: 400px;
+      height: 300px;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    #map {
+      width: 300px;
+      height: 230px;
+    }
+  }
