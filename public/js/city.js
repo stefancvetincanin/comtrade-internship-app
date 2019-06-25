@@ -507,10 +507,6 @@ $("#form-city-feedback").on("submit", function (e) {
 
 });
 
-});
-
-
-
 function prikaziMapu(lng, lat) {
   mapboxgl.accessToken = 'pk.eyJ1IjoibGF6YXJ2dHN0IiwiYSI6ImNqeGE0em1rbDB1djkzbnAzaXZqZGdxanYifQ.2E8B6mI5FO53BV1hGxJiTg';
   map = new mapboxgl.Map({
