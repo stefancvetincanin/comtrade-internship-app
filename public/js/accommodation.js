@@ -47,10 +47,11 @@ function nabaviFeedback() {
                   <img src="${feedback.slika}" class="rounded-circle" height="75px" alt=""/>
                 </div>
                 <div class="col-8">
-                  <h4>Username</h4>
+                  <h4>${feedback.ime} ${feedback.prezime}</h4>
                   <div>
                     ${stringZvezdice}
                   </div>
+                  <small>${feedback.datum.substring(0, 10)} ${feedback.datum.substring(11, 19)}</small>
                 </div>
               </div>
               <div>

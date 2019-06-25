@@ -320,8 +320,9 @@ function feedbackGrad(id) {
           }" class="rounded-circle" height="75px" alt="">
         </div>
         <div class="col-8">
-          <h4>${comment.ime}</h4>
+          <h4>${comment.ime} ${comment.prezime}</h4>
           <div>${stringZvezdice}</div>
+          <small>${comment.datum.substring(0, 10)} ${comment.datum.substring(11, 19)}</small>
         </div>
       </div>
       <div class="row">
@@ -354,7 +355,13 @@ function prikaziFeedbackModal(id) {
     element => element.id === Number(id)
   );
   console.log(id);
-
+  let rating = filtriranFeedback[0].rating;
+  let stringZvezdice = "";
+  while (rating > 0) {
+    stringZvezdice += `<i class="text-warning fa fa-star"></i>`;
+    rating--;
+  }
+  if (!stringZvezdice) stringZvezdice = "Nema ocena";
   document.getElementById("modalFeedback").innerHTML = `
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -366,14 +373,11 @@ function prikaziFeedbackModal(id) {
               }" class="rounded-circle" height="100px" alt="user">
             </div>
             <div class="col-8">
-              <h4>${filtriranFeedback[0].ime}</h4>
+              <h4>${filtriranFeedback[0].ime} ${filtriranFeedback[0].prezime}</h4>
               <div class="">
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
-                <span class=""><i class="text-warning fa fa-star"></i></span>
+                ${stringZvezdice}
               </div>
+              <small>${filtriranFeedback[0].datum.substring(0, 10)} ${filtriranFeedback[0].datum.substring(11, 19)}</small>
             </div>
           </div>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
