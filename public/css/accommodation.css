@@ -140,6 +140,7 @@ nav  button:hover {
 }
 .rate {
   height: 40px;
+  float: left;
 }
 .rate:not(:checked) > input {
   position:absolute;
