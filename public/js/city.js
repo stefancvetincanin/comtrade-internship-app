@@ -26,11 +26,11 @@ fetch(`/city/${id}`)
   .then(res => {
     document.getElementById("city-img").innerHTML = `<img src="${
       res[0].slika
-    }" class="ing-fluid" alt="${res[0].ime}">`;
+      }" class="ing-fluid" alt="${res[0].ime}">`;
 
     document.getElementById("body").style.backgroundImage = `url(${
       res[0].slika
-    })`;
+      })`;
   });
 
 // prikaz imena grada i opisa, sve se odnosi na jedan grad
@@ -41,7 +41,7 @@ fetch(`/city/${id}`)
       "city-description"
     ).innerHTML = `<h1 class="cityHeadline" >${
       res[0].ime
-    }</h1><p class="cityText pr-3"  id="content">${res[0].opis}</p>`;
+      }</h1><p class="cityText pr-3"  id="content">${res[0].opis}</p>`;
     minimizedElements();
   });
 
@@ -89,8 +89,8 @@ fetch(`/hotels/${id}`)
           <div class="row align-items-center text-center">
             <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
               <img class="d-block mx-auto" src="${
-                element.url_slike
-              }" height="100px" alt="${element.ime}">
+        element.url_slike
+        }" height="100px" alt="${element.ime}">
             </div>
             <div class="col-lg-9 col-md-8 ml-3 col-sm-7">
               <div class="clearfix pl-4">
@@ -98,8 +98,8 @@ fetch(`/hotels/${id}`)
                 <div id="starsAccomod" class="float-right align-items-center">${stringZvezdice}</div>
               </div>
               <p id="descriptionAccomod" class="text-left pl-4">${
-                element.opis
-              }</p>
+        element.opis
+        }</p>
             </div> 
           </div>
         </a>
@@ -121,23 +121,23 @@ fetch(`/attractions/${id}`)
           <div class="row align-items-center text-center">
             <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
               <img class="d-block mx-auto" src="${
-                element.slika
-              }" height="100px" alt="${element.naziv}">
+        element.slika
+        }" height="100px" alt="${element.naziv}">
             </div>
             <div class="col-lg-9 col-md-8 ml-3 col-sm-7">
               <div class="clearfix pl-4">
                 <h1 id="nameAccomod" class="float-left">${element.naziv}</h1>
               </div>
               <p id="descriptionAccomod" class="text-left pl-4">${
-                element.opis
-              }</p>
+        element.opis
+        }</p>
             </div> 
           </div>
         </a>
       </li>`;
       document.getElementById("cityAttractions").innerHTML = displayAttr;
     });
-    
+
     $('#cityAttractions').on('click', 'a', function () {
       let id = $(this)[0].dataset.id;
       document.getElementById('modalMapeHeader').innerHTML = `
@@ -149,9 +149,9 @@ fetch(`/attractions/${id}`)
         </button>
     `;
 
-    prikaziMapu(res[id].longitude, res[id].latitude)
+      prikaziMapu(res[id].longitude, res[id].latitude)
     });
-     
+
     moreLess("moreBtn1", "moreClass1");
   });
 
@@ -243,10 +243,10 @@ const wind = document.getElementById("wind");
 const weatherTemplate = (element, index) => {
   return `<div class="carousel-item ${
     index === 0 ? "active" : null
-  } bg-info1 w-100">
+    } bg-info1 w-100">
   <div class="row px-2 justify-content-center align-items-center mb-1 pt-5 text-white">
     <div class="col-3"><img src="https://www.metaweather.com/static/img/weather/${
-      element.weather_state_abbr
+    element.weather_state_abbr
     }.svg" width="40"></div>
     <div class="col-3 text-center">${element.weather_state_name}</div>
     <div class="col-3">${element.min_temp.toFixed(
@@ -255,7 +255,7 @@ const weatherTemplate = (element, index) => {
   </div>
   <div class="row justify-content-center align-middle mt-3"><p>${
     element.applicable_date
-  }<p></div>
+    }<p></div>
 </div>`;
 };
 
@@ -264,10 +264,10 @@ function getData() {
     .then(res => res.json())
     .then(res => {
       fetch(
-          `https://proxy-requests.herokuapp.com/https://www.metaweather.com/api/location/${
-          res[0].woeid
+        `https://proxy-requests.herokuapp.com/https://www.metaweather.com/api/location/${
+        res[0].woeid
         }/`
-        )
+      )
         .then(res => res.json())
         .then(data => {
           print(data);
@@ -316,7 +316,7 @@ function feedbackGrad(id) {
       <div class="row card-body">
         <div class="col-4">
           <img src="${
-            comment.slika
+          comment.slika
           }" class="rounded-circle" height="75px" alt="">
         </div>
         <div class="col-8">
@@ -331,7 +331,7 @@ function feedbackGrad(id) {
       <div class="row justify-content-center">
         <div class="w-50">
           <button class="btn btn-warning btn-block text-white prikazi-modal" type="button" data-toggle="modal" data-feedback-id=${
-            comment.id
+          comment.id
           } data-target="#modalFeedback">More</button>
         </div>
       </div>
@@ -369,8 +369,8 @@ function prikaziFeedbackModal(id) {
           <div class="row card-body">
             <div class="col-4">
               <img src="${
-                filtriranFeedback[0].slika
-              }" class="rounded-circle" height="100px" alt="user">
+    filtriranFeedback[0].slika
+    }" class="rounded-circle" height="100px" alt="user">
             </div>
             <div class="col-8">
               <h4>${filtriranFeedback[0].ime} ${filtriranFeedback[0].prezime}</h4>
@@ -455,7 +455,7 @@ function komentarFeedbackGrada(id) {
           <div class="mr-3 align-self-center">
             <img class="rounded-circle " src="${comment.slika}" alt="${
           comment.ime
-        }" width="90px"/>
+          }" width="90px"/>
           </div>
           <div class="d-block w-100">
             <div>
@@ -464,9 +464,9 @@ function komentarFeedbackGrada(id) {
               </div>
               <div class="float-right">
                 <small>${comment.datum.substring(
-                  0,
-                  10
-                )} ${comment.datum.substring(11, 19)}</small>
+            0,
+            10
+          )} ${comment.datum.substring(11, 19)}</small>
               </div>
             </div>
             <div class="d-inline-block w-100 text-dark">
@@ -511,17 +511,19 @@ $("#form-city-feedback").on("submit", function (e) {
 
 });
 
-// provera da li je korisnik ulogovan
+// provera da li korisnik postoji u local storage, ako postoji, poziva se checkLogin funkcija koja proverava da li je logovan u bazi
 let user = JSON.parse(localStorage.getItem('loggedUser'));
-
 if (user) {
-  $('#loggedUser').text('Hi, '+user.ime);
+  checkLogin()
+  // $('#loggedUser').text('Hi, ' + user.ime)
+  // document.getElementById('user-img').src = user.slika
 } else {
   $('#btnLogin').removeClass('d-none')
   $('#btnLogout').addClass('d-none')
+  document.getElementById('user-img').src = ''
   setTimeout(function(){
     document.getElementById('glavni-container').innerHTML = '<h2 id="login-obavestenje">You are not logged in, please log in</h2>'
-  }, 500)
+  }, 200)
 }
 
 // Logout funkcionalnost
@@ -529,27 +531,46 @@ document.getElementById('logout-button').addEventListener('click', function () {
   localStorage.removeItem('loggedUser')
   $('#btnLogin').removeClass('d-none')
   $('#btnLogout').addClass('d-none')
+  document.getElementById('user-img').src = ''
   $('#loggedUser').text('')
   fetch('/logout')
-  setTimeout(function(){
+  setTimeout(function () {
     document.getElementById('glavni-container').innerHTML = '<h2 id="login-obavestenje">You are not logged in, please log in</h2>'
-  }, 500)
+  }, 200)
 })
 
-
+// provera u bazi da li je user logovan
+function checkLogin() {
+  fetch('/check')
+    .then(res => res.json())
+    .then(res => {
+      if (res.loggedIn) {
+        $('#loggedUser').text('Hi, ' + user.ime)
+        document.getElementById('user-img').src = user.slika
+      } else if (!res.loggedIn) {
+        localStorage.removeItem('loggedUser')
+        $('#btnLogin').removeClass('d-none')
+        $('#btnLogout').addClass('d-none')
+        document.getElementById('user-img').src = ''
+        setTimeout(function () {
+          document.getElementById('glavni-container').innerHTML = '<h2 id="login-obavestenje">You are not logged in, please log in</h2>'
+        }, 200)
+      }
+    })
+}
 
 function prikaziMapu(lng, lat) {
   mapboxgl.accessToken = 'pk.eyJ1IjoibGF6YXJ2dHN0IiwiYSI6ImNqeGE0em1rbDB1djkzbnAzaXZqZGdxanYifQ.2E8B6mI5FO53BV1hGxJiTg';
   map = new mapboxgl.Map({
-  container: 'map', 
-  style: 'mapbox://styles/mapbox/streets-v11',
-  center: [lng, lat], 
-  zoom: 15
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [lng, lat],
+    zoom: 15
   });
 
   map.addControl(new mapboxgl.NavigationControl());
 
-  var marker = new mapboxgl.Marker({color: '#ada074'});
+  var marker = new mapboxgl.Marker({ color: '#ada074' });
 
   marker.setLngLat([
     lng,
@@ -560,27 +581,27 @@ function prikaziMapu(lng, lat) {
 
   var layerList = document.getElementById('map-menu');
   var inputs = layerList.getElementsByTagName('input');
-  
+
   function switchLayer(layer) {
-  var layerId = layer.target.id;
-  map.setStyle('mapbox://styles/mapbox/' + layerId);
+    var layerId = layer.target.id;
+    map.setStyle('mapbox://styles/mapbox/' + layerId);
   }
-  
+
   for (var i = 0; i < inputs.length; i++) {
-  inputs[i].onclick = switchLayer;
+    inputs[i].onclick = switchLayer;
   }
 }
 
 function MapModal() {
   $('#modalZaMape').modal();
 }
-  
+
 function MapResize() {
   map.resize(); // We will use the map.resize() function, to resize the MapBox map  once the modal has finished loading.
 }
-  
-  // Given that your modal has the id #modal
-  // and your map is under the variable map. The ‘shown.bs.modal’ event handler is an in-built event handler for Bootstrap Modals.
+
+// Given that your modal has the id #modal
+// and your map is under the variable map. The ‘shown.bs.modal’ event handler is an in-built event handler for Bootstrap Modals.
 $('#modalZaMape').on('shown.bs.modal', function () {
   map.resize();
 });

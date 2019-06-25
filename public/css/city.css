@@ -9,6 +9,10 @@
   background-color: rgba(56,72,103,0.7);
 }
 
+#user-img {
+  border-radius: 50%;
+}
+
 #main-header img {
   width: 100%;
   height: 100%;
