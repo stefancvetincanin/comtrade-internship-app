@@ -34,7 +34,7 @@ function nabaviFeedback() {
         let rating = Math.round(feedback.rating)
         let stringZvezdice = ''
         while (rating > 0) {
-          stringZvezdice += `<i class="fa fa-star"></i>`
+          stringZvezdice += `<i class="fa text-warning fa-star"></i>`
           rating--
         }
         if (!stringZvezdice)
@@ -61,7 +61,7 @@ function nabaviFeedback() {
               </div>
               <div class="row justify-content-center">
                 <div class="w-50">
-                  <button class="prikazi-modal btn btn-block mt-1" data-feedback-id=${feedback.id} type="button" data-toggle="modal" data-target="#modalFeedback">
+                  <button class="main-button btn btn-block mt-1" data-feedback-id=${feedback.id} type="button" data-toggle="modal" data-target="#modalFeedback">
                     More
                   </button>
                 </div>
@@ -83,7 +83,7 @@ function prikaziFeedbackModal(id) {
   let rating = Math.round(filtriranFeedback[0].rating)
   let stringZvezdice = ''
   while (rating > 0) {
-    stringZvezdice += `<i class="text-warning fa fa-star"></i>`
+    stringZvezdice += `<i class="text-warning fa text-warning fa-star"></i>`
     rating--
   }
   if (!stringZvezdice)
@@ -210,7 +210,7 @@ function izlistajHotele(mapiraniHoteli, limit) {
     if (!stringZvezdice)
       stringZvezdice = 'Nema ocena'
     display +=
-      `<li class="list-group-item list-group-item-primary mb-1">
+      `<li class="list-group-item accommodation-list-item mb-1">
       <a href="accommodation.html?hotel-id=${element.id}&grad-id=${idGrada}">
         <div class="row align-items-center text-center">
           <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
@@ -241,7 +241,7 @@ function prikaziHotel() {
       let rating = Math.round(res[0]['AVG(feedback_hotel.rating)'])
       let stringZvezdice = ''
       while (rating > 0) {
-        stringZvezdice += `<i class="fa fa-star"></i>`
+        stringZvezdice += `<i class="fa text-warning fa-star"></i>`
         rating--
       }
       if (!stringZvezdice)
