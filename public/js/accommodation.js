@@ -28,48 +28,54 @@ function nabaviFeedback() {
   fetch(`/feedback-hotel/${idHotel}`)
     .then(res => res.json())
     .then(res => {
-      feedbackArray = res
-      let feedbackDisplay = ''
-      feedbackArray.forEach((feedback, index) => {
-        let rating = Math.round(feedback.rating)
-        let stringZvezdice = ''
-        while (rating > 0) {
-          stringZvezdice += `<i class="fa fa-star"></i>`
-          rating--
-        }
-        if (!stringZvezdice)
-          stringZvezdice = 'Nema ocena'
-        feedbackDisplay += `
-          <div class="carousel-item ${index === 0 ? "active" : null}  header-feedback">
-            <div class="card col-lg-12 bg-light mb-4 px-4 py-3 mx-auto">
-              <div class="row card-body">
-                <div class="col-md-4">
-                  <img src="${feedback.slika}" class="rounded-circle" height="75px" alt=""/>
-                </div>
-                <div class="col-8">
-                  <h4>${feedback.ime} ${feedback.prezime}</h4>
-                  <div>
-                    ${stringZvezdice}
+      feedbackArray = res;
+      let feedbackDisplay = '';
+      if (feedbackArray.length > 0) {
+        feedbackArray.forEach((feedback, index) => {
+          let rating = Math.round(feedback.rating)
+          let stringZvezdice = ''
+          while (rating > 0) {
+            stringZvezdice += `<i class="fa fa-star"></i>`
+            rating--
+          }
+          if (!stringZvezdice)
+            stringZvezdice = 'Nema ocena'
+          feedbackDisplay += `
+            <div class="carousel-item ${index === 0 ? "active" : null}  header-feedback">
+              <div class="card col-lg-12 bg-light mb-4 px-4 py-3 mx-auto">
+                <div class="row card-body">
+                  <div class="col-md-4">
+                    <img src="${feedback.slika}" class="rounded-circle" height="75px" alt=""/>
                   </div>
-                  <small>${feedback.datum.substring(0, 10)} ${feedback.datum.substring(11, 19)}</small>
+                  <div class="col-8">
+                    <h4>${feedback.ime} ${feedback.prezime}</h4>
+                    <div>
+                      ${stringZvezdice}
+                    </div>
+                    <small>${feedback.datum.substring(0, 10)} ${feedback.datum.substring(11, 19)}</small>
+                  </div>
                 </div>
-              </div>
-              <div>
-                <p class="mb-0">
-                  ${feedback.opis}
-                </p>
-              </div>
-              <div class="row justify-content-center">
-                <div class="w-50">
-                  <button class="prikazi-modal btn btn-block mt-1" data-feedback-id=${feedback.id} type="button" data-toggle="modal" data-target="#modalFeedback">
-                    More
-                  </button>
+                <div>
+                  <p class="mb-0">
+                    ${feedback.opis}
+                  </p>
+                </div>
+                <div class="row justify-content-center">
+                  <div class="w-50">
+                    <button class="prikazi-modal btn btn-block mt-1" data-feedback-id=${feedback.id} type="button" data-toggle="modal" data-target="#modalFeedback">
+                      More
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          `
-      })
+            `
+        })
+      } else {
+        feedbackDisplay += `<div class="alert alert-info"><strong >Be the first to leave feedback</strong></div>`;
+        $('.feedback-display-control').addClass('d-none');
+      }
+      
       document.getElementById('feedback-display').innerHTML = feedbackDisplay
       $('.prikazi-modal').on('click', function () {
         prikaziFeedbackModal($(this).attr('data-feedback-id'))
