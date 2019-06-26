@@ -57,13 +57,13 @@ function nabaviFeedback() {
                 </div>
               </div>
               <div>
-                <p class="mb-0">
+                <p class="mb-0 ml-2">
                   ${feedback.opis}
                 </p>
               </div>
               <div class="row justify-content-center">
                 <div class="w-50">
-                  <button class="main-button prikazi-modal btn btn-block mt-1" data-feedback-id=${feedback.id} type="button" data-toggle="modal" data-target="#modalFeedback">
+                  <button class="main-button prikazi-modal btn btn-block mt-1 mb-2" data-feedback-id=${feedback.id} type="button" data-toggle="modal" data-target="#modalFeedback">
                     More
                   </button>
                 </div>
@@ -208,6 +208,7 @@ function nabaviSpisakKomentara(id) {
     })
 }
 
+// funkcija brise komentar po commentId, i refreshuje prikaz komentara u modalu
 function obrisiKomentar(commentId, event, feedbackId) {
   if(window.confirm('Are you sure you want to delete this comment?')){
     fetch('/delete-comment-hotel', {
