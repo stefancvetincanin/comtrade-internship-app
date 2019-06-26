@@ -28,30 +28,32 @@ function nabaviFeedback() {
   fetch(`/feedback-hotel/${idHotel}`)
     .then(res => res.json())
     .then(res => {
-      feedbackArray = res
-      let feedbackDisplay = ''
-      feedbackArray.forEach((feedback, index) => {
-        let rating = Math.round(feedback.rating)
-        let stringZvezdice = ''
-        while (rating > 0) {
-          stringZvezdice += `<i class="fa fa-star"></i>`
-          rating--
-        }
-        if (!stringZvezdice)
-          stringZvezdice = 'Nema ocena'
-        feedbackDisplay += `
-          <div class="carousel-item ${index === 0 ? "active" : null}  header-feedback">
-            <div class="card col-lg-12 bg-light mb-4 px-4 py-3 mx-auto">
-              <div class="row card-body">
-                <div class="col-md-4">
-                  <img src="${feedback.slika}" class="rounded-circle" height="75px" alt=""/>
-                </div>
-                <div class="col-8">
-                  <h4>${feedback.ime} ${feedback.prezime}</h4>
-                  <div>
-                    ${stringZvezdice}
+      feedbackArray = res;
+      let feedbackDisplay = '';
+      if (feedbackArray.length > 0) {
+        feedbackArray.forEach((feedback, index) => {
+          let rating = Math.round(feedback.rating)
+          let stringZvezdice = ''
+          while (rating > 0) {
+            stringZvezdice += `<i class="fa text-warning fa-star"></i>`
+            rating--
+          }
+          if (!stringZvezdice)
+            stringZvezdice = 'Nema ocena'
+          feedbackDisplay += `
+            <div class="carousel-item ${index === 0 ? "active" : null}  header-feedback">
+              <div class="card col-lg-12 bg-light mb-4 px-4 py-3 mx-auto">
+                <div class="row card-body">
+                  <div class="col-md-4">
+                    <img src="${feedback.slika}" class="rounded-circle" height="75px" alt=""/>
                   </div>
-                  <small>${feedback.datum.substring(0, 10)} ${feedback.datum.substring(11, 19)}</small>
+                  <div class="col-8">
+                    <h4>${feedback.ime} ${feedback.prezime}</h4>
+                    <div>
+                      ${stringZvezdice}
+                    </div>
+                    <small>${feedback.datum.substring(0, 10)} ${feedback.datum.substring(11, 19)}</small>
+                  </div>
                 </div>
               </div>
               <div>
@@ -61,15 +63,19 @@ function nabaviFeedback() {
               </div>
               <div class="row justify-content-center">
                 <div class="w-50">
-                  <button class="prikazi-modal btn btn-block mt-1" data-feedback-id=${feedback.id} type="button" data-toggle="modal" data-target="#modalFeedback">
+                  <button class="main-button prikazi-modal btn btn-block mt-1" data-feedback-id=${feedback.id} type="button" data-toggle="modal" data-target="#modalFeedback">
                     More
                   </button>
                 </div>
               </div>
             </div>
-          </div>
-          `
-      })
+            `
+        })
+      } else {
+        feedbackDisplay += `<div class="alert alert-info"><strong >Be the first to leave feedback</strong></div>`;
+        $('.feedback-display-control').addClass('d-none');
+      }
+      
       document.getElementById('feedback-display').innerHTML = feedbackDisplay
       $('.prikazi-modal').on('click', function () {
         prikaziFeedbackModal($(this).attr('data-feedback-id'))
@@ -83,7 +89,7 @@ function prikaziFeedbackModal(id) {
   let rating = Math.round(filtriranFeedback[0].rating)
   let stringZvezdice = ''
   while (rating > 0) {
-    stringZvezdice += `<i class="text-warning fa fa-star"></i>`
+    stringZvezdice += `<i class="text-warning fa text-warning fa-star"></i>`
     rating--
   }
   if (!stringZvezdice)
@@ -172,28 +178,48 @@ function nabaviSpisakKomentara(id) {
       let displayComments = ''
       res.forEach(comment => {
         displayComments += `
-        <li class="list-group-item list-group-item-warning clearfix d-flex">
-          <div class="mr-3 align-self-center">
-            <img class="rounded-circle " src="${comment.slika}" alt="${comment.ime}" width="90px"/>
-          </div>
-          <div class="d-block w-100">
-            <div>
-              <div class="d-inline-block w-25 bg-primary text-white text-center mb-2 float-left">
-                ${comment.ime} ${comment.prezime}
+          <li class="list-group-item list-group-item-warning clearfix d-flex">
+            <div class="mr-3 align-self-center">
+              <img class="rounded-circle " src="${comment.slika}" alt="${comment.ime}" width="90px"/>
+            </div>
+            <div class="d-block w-100">
+              <div>
+                <div class="d-inline-block w-25 bg-primary text-white text-center mb-2 float-left">
+                  ${comment.ime} ${comment.prezime}
+                </div>
+                <div class="float-right">
+                  <small>${comment.datum.substring(0, 10)} ${comment.datum.substring(11, 19)}</small>
+                </div>
               </div>
-              <div class="float-right">
-                <small>${comment.datum.substring(0, 10)} ${comment.datum.substring(11, 19)}</small>
+              <div class="d-inline-block w-100 text-dark">
+                ${comment.text}
+              </div>
+              <div class="delete-comment ${!user.admin && 'd-none'}" data-comment-id="${comment.id}">
+                <i class="far fa-trash-alt"></i>
               </div>
             </div>
-            <div class="d-inline-block w-100 text-dark">
-              ${comment.text}
-            </div>
-          </div>
-        </li>
-      `
+          </li>
+        `
       })
       document.getElementById('commentList').innerHTML = displayComments
+      $('.delete-comment').on('click', function(event){
+        obrisiKomentar($(this).attr('data-comment-id'), event, id)
+      })
     })
+}
+
+function obrisiKomentar(commentId, event, feedbackId) {
+  if(window.confirm('Are you sure you want to delete this comment?')){
+    fetch('/delete-comment-hotel', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({commentId: commentId})
+    })
+      .then(res => res.json())
+      .then(res => {
+        nabaviSpisakKomentara(feedbackId)
+      })
+  }
 }
 
 function izlistajHotele(mapiraniHoteli, limit) {
@@ -210,15 +236,15 @@ function izlistajHotele(mapiraniHoteli, limit) {
     if (!stringZvezdice)
       stringZvezdice = 'Nema ocena'
     display +=
-      `<li class="list-group-item list-group-item-primary mb-1">
+      `<li class="list-group-item accommodation-list-item mb-1">
       <a href="accommodation.html?hotel-id=${element.id}&grad-id=${idGrada}">
         <div class="row align-items-center text-center">
-          <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
+          <div class="col-lg-3 col-md-4 col-sm-5 mb-3">
             <img class="d-block mx-auto" src="${element.url_slike}" height="100px" alt="${element.ime}">
           </div>
-          <div class="col-lg-9 col-md-8 ml-3 col-sm-7">
+          <div class="col-lg-8 col-md-7 ml-3 col-sm-6">
             <div class="clearfix pl-4">
-              <h1 id="nameAccomod" class="float-left">${element.ime}</h1>
+              <h2 id="nameAccomod" class="float-left">${element.ime}</h2>
               <div id="starsAccomod" class="float-right align-items-center">${stringZvezdice}</div>
             </div>
             <p id="descriptionAccomod" class="text-left pl-4">${element.opis}</p>
@@ -241,7 +267,7 @@ function prikaziHotel() {
       let rating = Math.round(res[0]['AVG(feedback_hotel.rating)'])
       let stringZvezdice = ''
       while (rating > 0) {
-        stringZvezdice += `<i class="fa fa-star"></i>`
+        stringZvezdice += `<i class="fa text-warning fa-star"></i>`
         rating--
       }
       if (!stringZvezdice)
