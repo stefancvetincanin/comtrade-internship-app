@@ -103,8 +103,8 @@ function getCities() {
 }
 
 const cityTemplate = element => `
-<li class="list-group-item list-group-item-primary mb-1">
-    <a href="city.html?grad-id=${element.id}">
+<li class="list-group-item mb-1" style= " background-color: #e3e7ee">
+    <a href="city.html?grad-id=${element.id}" style = "color: #384867" class="mainCityLinks">
         <div class="row align-items-center text-center">
             <div class="col-lg-12">
                 <img class="cityMainImg" src="${element.slika}" height="100px" alt="${element.ime}">

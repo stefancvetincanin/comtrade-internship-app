@@ -81,6 +81,10 @@
   background-color: rgba(56, 72, 103, 0.5);
 }
 
+#addFeed .modal-content {
+  background-color: #e3e7ee;
+}
+
 #addFeed .modal-header {
   padding: 0!important;
 }
@@ -98,13 +102,17 @@
   border-bottom: 1px solid rgb(206, 207, 209);
 }
 
-/* #addFeed input[type="text"]:focus {
-  outline: 1px solid #ff5c88;
-} */
-
 #addFeed .close {
   margin-right: 1px!important;
   margin-top: 0px!important;
+}
+
+#modalFeedback .modal-content {
+  background-color: #e3e7ee;
+}
+
+.imeFedback {
+  background-color: #e3e7ee;
 }
 
 
