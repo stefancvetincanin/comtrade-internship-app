@@ -1,6 +1,6 @@
 # comtrade-internship-app
 Business Trip Advisor - a Comtrade internship project<br>
-<h2 title="The Dirty Half-Dozen">Contributors</h2>
+<h2 title="The Dirty Half-Dozen">The Team</h2>
 <ul>
  <li>https://github.com/stefancvetincanin - Stefan Cvetinčanin</li>
  <li>https://github.com/marko83nbg - Marko Tomašević</li>
