@@ -62,8 +62,8 @@
   border: none;
 }
 
-.accommodation-list-item h1 {
-  font-size: 1.9em;
+.accommodation-list-item h2 {
+  font-size: 1.6em;
 }
 
 .accommodation-list-item a {
@@ -77,6 +77,33 @@
 .bodyWrapper {
   background-color: rgba(56, 72, 103, 0.5);
 }
+
+#addFeed .modal-header {
+  padding: 0!important;
+}
+
+#addFeed h4 {
+  margin: 0;
+}
+
+#addFeed .modal-body {
+  padding-top: 10px!important;
+}
+
+#addFeed input[type="text"] {
+  border: none;
+  border-bottom: 1px solid rgb(206, 207, 209);
+}
+
+/* #addFeed input[type="text"]:focus {
+  outline: 1px solid #ff5c88;
+} */
+
+#addFeed .close {
+  margin-right: 1px!important;
+  margin-top: 0px!important;
+}
+
 
 #body {
   background-position: center;
