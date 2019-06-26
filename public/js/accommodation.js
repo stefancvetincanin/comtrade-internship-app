@@ -213,12 +213,12 @@ function izlistajHotele(mapiraniHoteli, limit) {
       `<li class="list-group-item list-group-item-primary mb-1">
       <a href="accommodation.html?hotel-id=${element.id}&grad-id=${idGrada}">
         <div class="row align-items-center text-center">
-          <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
+          <div class="col-lg-3 col-md-4 col-sm-5 mb-3">
             <img class="d-block mx-auto" src="${element.url_slike}" height="100px" alt="${element.ime}">
           </div>
-          <div class="col-lg-9 col-md-8 ml-3 col-sm-7">
+          <div class="col-lg-8 col-md-7 ml-3 col-sm-6">
             <div class="clearfix pl-4">
-              <h1 id="nameAccomod" class="float-left">${element.ime}</h1>
+              <h2 id="nameAccomod" class="float-left">${element.ime}</h2>
               <div id="starsAccomod" class="float-right align-items-center">${stringZvezdice}</div>
             </div>
             <p id="descriptionAccomod" class="text-left pl-4">${element.opis}</p>
