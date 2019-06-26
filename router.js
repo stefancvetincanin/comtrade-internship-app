@@ -1,7 +1,7 @@
 module.exports = function (express, baza) {
   const router = express.Router()
 
-  // login funkcija
+  // login funkcija, stari metod
   router.get('/login/*/*', function (req, res) {
     // console.log(req.params)
     baza.execQuery(`SELECT id, username, ime, prezime, admin, slika FROM korisnici WHERE username = ${mysql.escape(req.params['0'])} AND password = ${mysql.escape(req.params['1'])}`, function (results) {
@@ -11,7 +11,7 @@ module.exports = function (express, baza) {
     })
   })
 
-  // Work in Progress - login funkcija, pravilan metod
+  // Login funkcija, pravilan metod
   router.post('/login', function (req, res) {
     baza.execQuery(`SELECT id, username, ime, prezime, admin, slika FROM korisnici WHERE username = ${mysql.escape(req.body.username)} AND password = ${mysql.escape(req.body.password)}`, function (results) {
       if (results.length > 0) {
@@ -165,7 +165,7 @@ module.exports = function (express, baza) {
   router.get('/komentar-hotel/*', function (req, res) {
     baza.execQuery(`SELECT * FROM login_tabela WHERE web_token = ${mysql.escape(req.cookies.loginCookie)}`, function (results) {
       if (results.length > 0) {
-        baza.execQuery(`SELECT korisnici.username, korisnici.ime, korisnici.prezime, korisnici.slika, komentari_hotel.text, komentari_hotel.datum
+        baza.execQuery(`SELECT korisnici.username, korisnici.ime, korisnici.prezime, korisnici.slika, komentari_hotel.text, komentari_hotel.datum, komentari_hotel.id
         FROM komentari_hotel INNER JOIN korisnici on korisnici.id = komentari_hotel.korisnici_id 
         WHERE komentari_hotel.feedback_hotel_id = ${mysql.escape(req.params['0'])}`, function (results) {
           res.send(results)
@@ -221,6 +221,22 @@ module.exports = function (express, baza) {
         })
       } else
         res.send({ loggedIn: false })
+    })
+  })
+
+  // DELETE Zahtevi za feedback
+  // obrisi komentar za hotel po id-u
+  router.delete('/delete-comment-hotel', function (req, res) {
+    baza.execQuery(`SELECT * FROM korisnici INNER JOIN login_tabela on korisnici.id = login_tabela.korisnici_id where korisnici.admin = '1' AND login_tabela.web_token = ${mysql.escape(req.cookies.loginCookie)}`, function (results) {
+      if (results.length > 0) {
+        baza.execQuery(`DELETE FROM komentari_hotel WHERE id = ${mysql.escape(req.body.commentId)}`, function(deletionResults){
+          // if(deletionResults.length > 0)
+          res.send({msg: 'Comment deleted'})
+        })
+      } else {
+        res.send({msg: 'You do not have admin privileges'})
+        console.log('You do not have admin privileges')
+      }
     })
   })
 

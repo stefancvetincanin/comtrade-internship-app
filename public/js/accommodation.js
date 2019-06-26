@@ -178,28 +178,48 @@ function nabaviSpisakKomentara(id) {
       let displayComments = ''
       res.forEach(comment => {
         displayComments += `
-        <li class="list-group-item list-group-item-warning clearfix d-flex">
-          <div class="mr-3 align-self-center">
-            <img class="rounded-circle " src="${comment.slika}" alt="${comment.ime}" width="90px"/>
-          </div>
-          <div class="d-block w-100">
-            <div>
-              <div class="d-inline-block w-25 bg-primary text-white text-center mb-2 float-left">
-                ${comment.ime} ${comment.prezime}
+          <li class="list-group-item list-group-item-warning clearfix d-flex">
+            <div class="mr-3 align-self-center">
+              <img class="rounded-circle " src="${comment.slika}" alt="${comment.ime}" width="90px"/>
+            </div>
+            <div class="d-block w-100">
+              <div>
+                <div class="d-inline-block w-25 bg-primary text-white text-center mb-2 float-left">
+                  ${comment.ime} ${comment.prezime}
+                </div>
+                <div class="float-right">
+                  <small>${comment.datum.substring(0, 10)} ${comment.datum.substring(11, 19)}</small>
+                </div>
               </div>
-              <div class="float-right">
-                <small>${comment.datum.substring(0, 10)} ${comment.datum.substring(11, 19)}</small>
+              <div class="d-inline-block w-100 text-dark">
+                ${comment.text}
+              </div>
+              <div class="delete-comment ${!user.admin && 'd-none'}" data-comment-id="${comment.id}">
+                <i class="far fa-trash-alt"></i>
               </div>
             </div>
-            <div class="d-inline-block w-100 text-dark">
-              ${comment.text}
-            </div>
-          </div>
-        </li>
-      `
+          </li>
+        `
       })
       document.getElementById('commentList').innerHTML = displayComments
+      $('.delete-comment').on('click', function(event){
+        obrisiKomentar($(this).attr('data-comment-id'), event, id)
+      })
     })
+}
+
+function obrisiKomentar(commentId, event, feedbackId) {
+  if(window.confirm('Are you sure you want to delete this comment?')){
+    fetch('/delete-comment-hotel', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({commentId: commentId})
+    })
+      .then(res => res.json())
+      .then(res => {
+        nabaviSpisakKomentara(feedbackId)
+      })
+  }
 }
 
 function izlistajHotele(mapiraniHoteli, limit) {
