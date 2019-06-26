@@ -71,16 +71,46 @@
   color: #e3e7ee;
 }
 
+.accommodationTab {
+  background-color:#5a6f98;
+  color: #e3e7ee;
+}
+
+.citylifeTab {
+  background-color:#6977fc;
+  color: #e3e7ee;
+}
+
+.feedbackTab {
+  background-color:#00b8d9;
+  color: #e3e7ee;
+}
+
 #accomodation .card-body {
-  background-color: #b8daff;
+  background-color: #5a6f98;
+  color: #e3e7ee;
 }
 
 #lifeInCity .card-body {
-  background-color: #f5c6cb;
+  background-color: #6977fc;
+  color: #e3e7ee;
 }
 
 #feedback .card-body {
-  background-color: #ffeeba;
+  background-color: #00b8d9;
+  color: #e3e7ee;
+}
+
+#moreBtn1, #moreBtn {
+  background-color: #ff5c88;
+  border: 1px solid #ff5c88;
+  transition: 1s ease;
+}
+
+#moreBtn1:hover, #moreBtn:hover {
+  background-color: #e3e7ee;
+  border: 1px solid #e3e7ee;
+  color: #ff5c88;
 }
 
 #topAccomodations li a:link,
@@ -105,6 +135,52 @@
   margin-bottom: 10px;
 }
 
+.listBack {
+  background: transparent;
+  border: none;
+}
+
+.listContent {
+  color: #e3e7ee;
+  transition: 1s ease;
+}
+
+.listContent:hover {
+  color: #fff;
+}
+
+.listBack a:hover {
+  text-decoration: none;
+}
+
+.card {
+  background-color: #e3e7ee;
+}
+
+.feedbackUserName, .userCityFeedback {
+  color: #384867;
+}
+
+.card-body1 {
+  background: transparent !important;
+}
+
+.cityFeedbackModalContent {
+  background-color: #e3e7ee;
+}
+
+.prikazi-modal, .sendComment {
+  background-color: #ff5c88;
+  border: 1px solid #ff5c88;
+  transition: 1s ease;
+  color: #e3e7ee;
+}
+
+.prikazi-modal:hover, .sendComment:hover {
+  background-color: #e3e7ee;
+  border: 1px solid #ff5c88;
+  color: #ff5c88;
+}
 @media (min-width: 320px) {
   .cityHeadline {
     font-size: 20px;
@@ -147,6 +223,15 @@
 .addFeedBtnCity {
   width: 30%;
   font-size: 12px;
+  background-color: #ff5c88;
+  border: 1px solid #ff5c88;
+  transition: 1s ease;
+}
+
+.addFeedBtnCity:hover {
+  background-color: #e3e7ee;
+  border: 1px solid #e3e7ee;
+  color: #ff5c88;
 }
 
 }
@@ -191,6 +276,10 @@
   .cityHeadline {
     font-size: 30px;
   }
+
+  #nameAccomod {
+    font-size: 20px;
+}
 
   .cityText {
     font-size: 16px;

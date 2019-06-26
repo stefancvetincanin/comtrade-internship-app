@@ -84,7 +84,7 @@ fetch(`/hotels/${id}`)
         rating--;
       }
       if (!stringZvezdice) stringZvezdice = "Nema ocena";
-      display += `<li class="list-group-item list-group-item-primary mb-1 ${moreClass}">
+      display += `<li class="list-group-item list-group-item-primary mb-1 ${moreClass} listBack">
         <a href="accommodation.html?hotel-id=${element.id}&grad-id=${id}">
           <div class="row align-items-center text-center">
             <div class="col-lg-3 col-md-4 col-sm-5 mb-3">
@@ -92,7 +92,7 @@ fetch(`/hotels/${id}`)
         element.url_slike
         }" height="100px" alt="${element.ime}">
             </div>
-            <div class="col-lg-8 col-md-7 ml-3 col-sm-6">
+            <div class="col-lg-9 col-md-8 ml-3 col-sm-7 listContent">
               <div class="clearfix pl-4">
                 <h2 id="nameAccomod" class="float-left">${element.ime}</h2>
                 <div id="starsAccomod" class="float-right align-items-center">${stringZvezdice}</div>
@@ -116,7 +116,7 @@ fetch(`/attractions/${id}`)
   .then(res => {
     res.forEach((element, i) => {
       let moreClass1 = i > 2 && "moreClass1";
-      displayAttr += `<li class="list-group-item list-group-item-primary mb-1 ${moreClass1}">
+      displayAttr += `<li class="list-group-item list-group-item-primary mb-1 ${moreClass1} listBack">
         <a href="#" class="mb-1 d-block" data-id="${i}" data-toggle='modal' data-target='#modalZaMape'>
           <div class="row align-items-center text-center">
             <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
@@ -124,7 +124,7 @@ fetch(`/attractions/${id}`)
         element.slika
         }" height="100px" alt="${element.naziv}">
             </div>
-            <div class="col-lg-9 col-md-8 ml-3 col-sm-7">
+            <div class="col-lg-9 col-md-8 ml-3 col-sm-7 listContent">
               <div class="clearfix pl-4">
                 <h1 id="nameAccomod" class="float-left">${element.naziv}</h1>
               </div>
@@ -312,14 +312,14 @@ function feedbackGrad(id) {
         }
         if (!stringZvezdice) stringZvezdice = "Nema ocena";
         displayComments += `
-      <div class="card col-lg-4 col-md-6 col-sm-12 bg-light mb-4 px-4 py-3">
-      <div class="row card-body">
+      <div class="card col-lg-4 col-md-6 col-sm-12 mb-4 px-4 py-3">
+      <div class="row card-body card-body1">
         <div class="col-4">
           <img src="${
           comment.slika
           }" class="rounded-circle" height="75px" alt="">
         </div>
-        <div class="col-8">
+        <div class="col-8 feedbackUserName">
           <h4>${comment.ime} ${comment.prezime}</h4>
           <div>${stringZvezdice}</div>
           <small>${comment.datum.substring(0, 10)} ${comment.datum.substring(11, 19)}</small>
@@ -330,7 +330,7 @@ function feedbackGrad(id) {
       </div>
       <div class="row justify-content-center">
         <div class="w-50">
-          <button class="btn btn-warning btn-block text-white prikazi-modal" type="button" data-toggle="modal" data-feedback-id=${
+          <button class="btn btn-warning btn-block  prikazi-modal" type="button" data-toggle="modal" data-feedback-id=${
           comment.id
           } data-target="#modalFeedback">More</button>
         </div>
