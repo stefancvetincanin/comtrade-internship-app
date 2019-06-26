@@ -2,6 +2,16 @@
   border-radius: 50%;
 }
 
+.main-button {
+  color: #e3e7ee;
+  background-color: #ff5c88;
+}
+
+.main-button:hover {
+  background-color: #e3e7ee;
+  color: #ff5c88;
+}
+
 .header-style {
   height:100%;
   width: 100%;
@@ -10,12 +20,12 @@
   color: #e3e7ee;
 }
 
-.header-style h3 a {
-  color: #ff5c88!important;
+.header-style h1 {
+  font-size: 2em;
 }
 
-.header-style  i.fa-star {
-  color: #ff5c88;
+.header-style h3 a {
+  color: #ff5c88!important;
 }
 
 .header-style a {
@@ -41,28 +51,31 @@
   color: #ff5c88;
 }
 
-.header-style .header-feedback .prikazi-modal {
-  color: #ced2da;
-  background-color: #ff5c88;
+.accommodation-body {
+  background-color: #5a6f98;
+  color: #e3e7ee;
 }
 
-.header-style .header-feedback .prikazi-modal:hover {
-  background-color: #d0d6e0;
-  color: #ff5c88;
+.accommodation-list-item {
+  background-color: #5a6f98;
+  color: #e3e7ee;
+  border: none;
 }
 
-#city-name a {
-  color: navy;
-  text-decoration: none;
+.accommodation-list-item h1 {
+  font-size: 1.9em;
 }
 
-#city-name a:hover {
-  color: rgb(59, 59, 168);
-  text-decoration: none;
+.accommodation-list-item a {
+  color: #e3e7ee;
+}
+
+.accommodation-list-item a:hover {
+  color: #fff;
 }
 
 .bodyWrapper {
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(56, 72, 103, 0.5);
 }
 
 #body {
