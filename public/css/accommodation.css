@@ -1,35 +1,3 @@
-nav {
-  background-image: linear-gradient(to top right, #d2bdf3, #1b7cdd);
-  color: #fff;
-}
-
-nav #logo {
-  color: #ff4b7b;
-}
-
-nav #logo:hover {
-  color: #f10c49;
-}
-
-nav  a {
-  color: #fff;
-}
-
-nav  a:hover {
-  color: rgb(245, 196, 196);
-}
-
-nav  button {
-  background: transparent;
-  color: #fff;
-  border: 1px solid #fff!important;
-}
-
-nav  button:hover {
-  color: rgb(245, 196, 196);
-  border: 1px solid rgb(245, 196, 196)!important;
-}
-
 #user-img {
   border-radius: 50%;
 }
