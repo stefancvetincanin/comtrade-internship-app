@@ -25,34 +25,37 @@
 
   <body id="body">
     <div class="bodyWrapper">
-    <nav class="navbar navbar-expand-md navbar-fixed-top bg-primary">
+    <nav class="navbar navbar-expand-md navbar-fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand my-auto text-warning font-weight-bold" href="./index.html">BTA</a>
+        <a class="navbar-brand my-auto font-weight-bold" href="./index.html" id="logo">BTA</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav nav nav-pills align-self-center text-uppercase ml-auto">
             <li class="nav-item ml-4">
-              <a class="nav-link text-warning" href="./index.html">Home</a>
+              <a class="nav-link" href="./index.html">Home</a>
             </li>
             <li class="nav-item ml-4" id="city-name-header">
-              <!-- <a class="nav-link text-warning" href="./city.html">City</a> -->
+              <!-- <a class="nav-link" href="./city.html">City</a> -->
             </li>
             <li class="nav-item ml-4 d-none">
-              <a class="nav-link text-warning" href="">Add Accomodation</a>
+              <a class="nav-link" href="">Add Accomodation</a>
             </li>
           </ul>
+
           <a href="index.html">
-            <button id="btnLogin" type="button" class="btn btn-outline-warning ml-5 d-none" data-toggle="modal" data-target="#loginModal">
+            <button id="btnLogin" type="button" class="btn ml-5 d-none" data-toggle="modal" data-target="#loginModal">
               Login
             </button>
           </a>
-          <div id="btnLogout" class="text-warning pl-4">
+          <div id="btnLogout" class="pl-4">
             <span id="loggedUser"></span>
-            <button type="button" class="btn btn-outline-warning ml-3" id="logout-button">
+            <img id="user-img" src="" height='50'/>
+            <button type="button" class="btn ml-3" id="logout-button">
               Logout
             </button>
+
           </div>
         </div>
       </div>
@@ -61,7 +64,7 @@
     <div class="container" id="glavni-container">
       <header id="main-header">
         <div style="min-height:300px" class="row no-gutters">
-          <div style="height:100%;background-color:#f5ba17;padding:15px 50px" class="justify-content-center">
+          <div class="justify-content-center header-style">
             <div class="row">
               <div>
                 <h3 id="city-name"></h3>
@@ -86,7 +89,7 @@
                 </div>
               </div>
 
-              <div style="background-color:#f5ba17; padding: 0px" class="w-100 col-lg-7 m-0 h-100 justify-content-center">
+              <div style="padding: 0px" class="w-100 col-lg-7 m-0 h-100 justify-content-center">
                 <div class="row mx-auto">
                   <div id="carouselExampleControls1" class="carousel slide w-100 h-100" data-ride="carousel">
                     <div class="carousel-inner">
@@ -152,7 +155,7 @@
             <div class="modal-header">
               <div class="row card-body">
                 <div class="col-8">
-                  <h4>Username</h4>
+                  <h4 id="modal-add-feedback-username">Username</h4>
                 </div>
               </div>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -161,17 +164,19 @@
             </div>
             <div class="modal-body">
               <form class="w-100 p-0" id="form-hotel-feedback">
-                <div class="rate">
-                  <input type="radio" id="star5" name="rate" value="5" required/>
-                  <label for="star5" title="text">5 stars</label>
-                  <input type="radio" id="star4" name="rate" value="4" required/>
-                  <label for="star4" title="text">4 stars</label>
-                  <input type="radio" id="star3" name="rate" value="3" required/>
-                  <label for="star3" title="text">3 stars</label>
-                  <input type="radio" id="star2" name="rate" value="2" required/>
-                  <label for="star2" title="text">2 stars</label>
-                  <input type="radio" id="star1" name="rate" value="1" required/>
-                  <label for="star1" title="text">1 star</label>
+                <div class="clearfix">
+                  <div class="rate">
+                    <input type="radio" id="star5" name="rate" value="5" required/>
+                    <label for="star5" title="text">5 stars</label>
+                    <input type="radio" id="star4" name="rate" value="4" required/>
+                    <label for="star4" title="text">4 stars</label>
+                    <input type="radio" id="star3" name="rate" value="3" required/>
+                    <label for="star3" title="text">3 stars</label>
+                    <input type="radio" id="star2" name="rate" value="2" required/>
+                    <label for="star2" title="text">2 stars</label>
+                    <input type="radio" id="star1" name="rate" value="1" required/>
+                    <label for="star1" title="text">1 star</label>
+                  </div>
                 </div>
                 <div class="form-group justify-content-center">
                   <input type="text" id="naziv-feedback-hotel" class="mb-3" required placeholder="Title">

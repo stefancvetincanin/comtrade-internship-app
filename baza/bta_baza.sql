@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2019 at 01:23 PM
+-- Generation Time: Jun 25, 2019 at 09:41 PM
 -- Server version: 10.1.40-MariaDB
 -- PHP Version: 7.3.5
 
@@ -52,7 +52,15 @@ INSERT INTO `feedback_grad` (`id`, `grad_id`, `korisnici_id`, `rating`, `naziv`,
 (7, 20, 5, '5', 'Ut sollicitudin enim quam.', 'Vivamus faucibus nisi sed mi vehicula aliquet. Maecenas imperdiet sapien id pharetra efficitur. Nullam nisl sem, elementum vitae metus eu, pretium condimentum urna. In efficitur molestie consequat. Praesent congue viverra augue, quis euismod nisi cursus nec.', '2019-06-18 08:16:15'),
 (8, 21, 3, '5', 'The city of light.', 'Aenean elementum malesuada erat, condimentum pellentesque turpis condimentum non. Cras condimentum libero eget felis porttitor porta. Mauris tempor elit non elit tincidunt, a ultricies ex scelerisque. Pellentesque et nisi a erat pulvinar consectetur. Nam in gravida odio, non posuere diam. Nullam non dictum ante.', '2019-06-18 08:16:48'),
 (9, 22, 5, '3', 'Ut sollicitudin enim quam.', 'Aenean elementum malesuada erat, condimentum pellentesque turpis condimentum non. Cras condimentum libero eget felis porttitor porta. Mauris tempor elit non elit tincidunt, a ultricies ex scelerisque. Pellentesque et nisi a erat pulvinar consectetur. Nam in gravida odio, non posuere diam. Nullam non dictum ante. ', '2019-06-18 08:17:23'),
-(10, 23, 4, '4', 'Lorem ipsum text.', 'Aenean elementum malesuada erat, condimentum pellentesque turpis condimentum non. Cras condimentum libero eget felis porttitor porta. Mauris tempor elit non elit tincidunt, a ultricies ex scelerisque. Pellentesque et nisi a erat pulvinar consectetur. Nam in gravida odio, non posuere diam. Nullam non dictum ante. ', '2019-06-18 08:17:39');
+(10, 23, 4, '4', 'Lorem ipsum text.', 'Aenean elementum malesuada erat, condimentum pellentesque turpis condimentum non. Cras condimentum libero eget felis porttitor porta. Mauris tempor elit non elit tincidunt, a ultricies ex scelerisque. Pellentesque et nisi a erat pulvinar consectetur. Nam in gravida odio, non posuere diam. Nullam non dictum ante. ', '2019-06-18 08:17:39'),
+(11, 16, 4, '3', 'Lorem Ipsum', 'Lorem ipsum dolor est, gaudeamus igitur', '2019-06-24 07:40:39'),
+(12, 14, 5, '3', 'Novi feedback', 'Lorem ipsum dolor est. Lorem ipsum dolor est.', '2019-06-25 13:58:37'),
+(13, 20, 4, '4', 'Nov feedback', 'Lorem ipsum dolor est. Lorem ipsum dolor est.', '2019-06-25 16:29:01'),
+(14, 18, 2, '4', 'Novi feedback', 'Novi feedback. Novi feedback. Novi feedback. Novi feedback. ', '2019-06-25 16:53:05'),
+(15, 17, 2, '5', 'Samo barsa', 'Lorem ipsum dolor est.', '2019-06-25 17:21:29'),
+(16, 21, 2, '5', 'Paris, Paris', 'Duis volutpat euismod placerat. Suspendisse quis dolor non elit feugiat blandit eu et sapien. Nunc erat diam, tristique vitae mattis in, facilisis at leo. Fusce ac tempor ex, sed iaculis est.', '2019-06-25 18:00:56'),
+(17, 22, 4, '5', 'Novi feedback', 'Vivamus tristique aliquam ullamcorper. Phasellus facilisis congue odio. Pellentesque porta, risus at elementum luctus, tellus elit gravida lorem, in gravida velit justo in urna. Mauris mattis ut dolor nec ullamcorper. Phasellus efficitur semper massa, sit amet feugiat sapien vulputate vitae.', '2019-06-25 19:04:55'),
+(18, 23, 1, '5', 'Samo barsa', 'Phasellus facilisis congue odio. Pellentesque porta, risus at elementum luctus, tellus elit gravida lorem, in gravida velit justo in urna. Mauris mattis ut dolor nec ullamcorper. Phasellus efficitur semper massa, sit amet feugiat sapien vulputate vitae. Nunc efficitur vitae erat id congue.', '2019-06-25 19:39:46');
 
 -- --------------------------------------------------------
 
@@ -85,9 +93,21 @@ INSERT INTO `feedback_hotel` (`id`, `hotel_id`, `korisnici_id`, `rating`, `naziv
 (8, 6, 4, '4', 'Lorem ipsum.', 'Etiam bibendum commodo ligula sed tincidunt. Fusce commodo dignissim velit, et mollis augue facilisis non. Fusce lorem ipsum, faucibus vitae metus id, consequat elementum urna. Vestibulum tincidunt, neque nec eleifend lacinia, sem diam pretium tellus, eget ornare justo erat blandit arcu.', '2019-06-20 10:40:31'),
 (9, 10, 1, '4', 'Lorem ipsum.', 'Etiam bibendum commodo ligula sed tincidunt. Fusce commodo dignissim velit, et mollis augue facilisis non. Fusce lorem ipsum, faucibus vitae metus id, consequat elementum urna. Vestibulum tincidunt, neque nec eleifend lacinia, sem diam pretium tellus, eget ornare justo erat blandit arcu.', '2019-06-20 10:44:21'),
 (10, 10, 1, '1', 'Lorem.', 'Etiam bibendum commodo ligula sed tincidunt. Fusce commodo dignissim velit, et mollis augue facilisis non. Fusce lorem ipsum, faucibus vitae metus id, consequat elementum urna.', '2019-06-20 10:44:37'),
-(11, 21, 4, '4', 'Nas prvi feedback.', 'Phasellus mollis, ante et sagittis pretium, enim tortor lacinia tortor, id aliquam nibh mi hendrerit risus. Nam tempor est et neque ornare convallis. Suspendisse facilisis nisi eu justo tristique varius. Aliquam ac quam eros. Aenean est nibh, mollis interdum elit a, efficitur laoreet elit. Etiam scelerisque pulvinar nunc vel gravida.', '2019-06-20 11:23:48'),
-(12, 21, 4, '1', 'Sve je gotovo!', 'Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem.', '2019-06-20 11:36:49'),
-(13, 9, 3, '3', 'Lorem ipsum.', 'Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum.', '2019-06-21 08:05:05');
+(11, 42, 5, '3', 'Milicino misljenje', 'Lorem ipsum dolor est. Lorem ipsum dolor est. Lorem ipsum dolor est. ', '2019-06-25 14:15:54'),
+(12, 21, 5, '2', 'Lorem ipsum', 'Lorem ipsum. Lorem ipsum. Lorem ipsum.', '2019-06-25 16:10:59'),
+(13, 62, 4, '5', 'Mnogo dobro.', 'Lorem ipsum. Lorem ipsum. Lorem ipsum.', '2019-06-25 16:30:31'),
+(14, 31, 2, '4', 'Lorem ipsum', 'Lorem ipsum dolor est.', '2019-06-25 17:25:27'),
+(15, 32, 2, '5', 'Fairmont is pretty good.', 'As the title says, Fairmont is pretty good.', '2019-06-25 17:40:10'),
+(16, 43, 3, '4', 'Dobar dobar', 'Lorem ipsum dolor est.', '2019-06-25 17:42:03'),
+(17, 41, 3, '4', 'Lorem ipsum', 'Lorem ipsum dolor est. Lorem ipsum dolor est. ', '2019-06-25 17:43:24'),
+(18, 51, 3, '5', 'Lorem.', 'Lorem ipsum dolor est. Gaudeamus igitur, juvenes dum summus.', '2019-06-25 17:44:46'),
+(19, 61, 2, '4', 'Zemlja snova', 'Aenean pretium, orci at pretium condimentum, eros lorem pharetra ligula, ac gravida quam purus ac lectus. Suspendisse molestie augue eleifend auctor venenatis. Nam et ultricies purus, eu vestibulum purus. Phasellus semper enim neque, ac scelerisque diam rhoncus vitae.', '2019-06-25 17:56:33'),
+(20, 71, 2, '5', 'Lorem ipsum', 'Duis volutpat euismod placerat. Suspendisse quis dolor non elit feugiat blandit eu et sapien. Nunc erat diam, tristique vitae mattis in, facilisis at leo. Fusce ac tempor ex, sed iaculis est.', '2019-06-25 18:00:11'),
+(21, 63, 3, '2', 'Lorem ipsum', 'Phasellus vel eros rhoncus, placerat tellus in, hendrerit dolor. Cras a ultricies erat, sit amet tincidunt ligula. Praesent vitae iaculis nunc. Nam vitae auctor leo. Curabitur ac commodo mauris.', '2019-06-25 18:55:06'),
+(22, 81, 5, '5', 'Feedback', 'Phasellus vel eros rhoncus, placerat tellus in, hendrerit dolor. Cras a ultricies erat, sit amet tincidunt ligula. Praesent vitae iaculis nunc. Nam vitae auctor leo. Curabitur ac commodo mauris.', '2019-06-25 19:00:52'),
+(23, 81, 4, '1', 'Nista ne valja', 'Fusce volutpat metus vel urna vulputate, vel gravida libero vulputate. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam finibus, magna vel bibendum porttitor, augue nulla volutpat urna, in bibendum urna nunc auctor lectus. Praesent arcu eros.', '2019-06-25 19:30:55'),
+(24, 81, 4, '5', 'Lorem ipsum', 'Lorem ipsum. Lorem ipsum. Lorem ipsum.', '2019-06-25 19:35:47'),
+(25, 91, 1, '5', 'Dobar dobar', 'Mauris tempor elit non elit tincidunt, a ultricies ex scelerisque. Pellentesque et nisi a erat pulvinar consectetur. Pellentesque et nisi a erat pulvinar consectetur.', '2019-06-25 19:40:16');
 
 -- --------------------------------------------------------
 
@@ -274,7 +294,17 @@ INSERT INTO `komentari_grad` (`id`, `korisnici_id`, `feedback_grad_id`, `text`, 
 (7, 2, 7, 'Aenean elementum malesuada erat, condimentum pellentesque turpis condimentum non. Cras condimentum libero eget felis porttitor porta. Mauris tempor elit non elit tincidunt, a ultricies ex scelerisque.', '2019-06-18 08:26:15'),
 (8, 3, 8, 'Aenean elementum malesuada erat, condimentum pellentesque turpis condimentum non. Cras condimentum libero eget felis porttitor porta. Mauris tempor elit non elit tincidunt, a ultricies ex scelerisque.', '2019-06-18 08:26:21'),
 (9, 4, 9, 'Aenean elementum malesuada erat, condimentum pellentesque turpis condimentum non. Cras condimentum libero eget felis porttitor porta. Mauris tempor elit non elit tincidunt, a ultricies ex scelerisque.', '2019-06-18 08:26:28'),
-(10, 5, 10, 'Aenean elementum malesuada erat, condimentum pellentesque turpis condimentum non. Cras condimentum libero eget felis porttitor porta.', '2019-06-18 08:26:38');
+(10, 5, 10, 'Aenean elementum malesuada erat, condimentum pellentesque turpis condimentum non. Cras condimentum libero eget felis porttitor porta.', '2019-06-18 08:26:38'),
+(11, 3, 11, 'Lorem ipsum dolor est, gaudeamus igitur', '2019-06-24 07:43:47'),
+(12, 5, 5, 'Mauris tempor elit non elit tincidunt, a ultricies ex scelerisque.', '2019-06-25 15:02:04'),
+(13, 5, 12, 'Lorem ipsum dolor est. Lorem ipsum dolor est.', '2019-06-25 15:09:35'),
+(14, 4, 13, 'Lorem ipsum dolor est. Lorem ipsum dolor est. Lorem ipsum dolor est. Lorem ipsum dolor est.', '2019-06-25 16:29:10'),
+(15, 2, 14, 'Lorem ipsum dolor est.', '2019-06-25 16:53:16'),
+(16, 2, 5, 'Lorem ipsum dolor est.', '2019-06-25 16:53:34'),
+(17, 2, 8, 'Duis volutpat euismod placerat. Suspendisse quis dolor non elit feugiat blandit eu et sapien. Nunc erat diam, tristique vitae mattis in, facilisis at leo. Fusce ac tempor ex, sed iaculis est.', '2019-06-25 18:01:02'),
+(18, 3, 7, 'Maecenas imperdiet sapien id pharetra efficitur. Nullam nisl sem, elementum vitae metus eu, pretium condimentum urna. In efficitur molestie consequat.', '2019-06-25 18:53:29'),
+(19, 4, 17, 'Pellentesque porta, risus at elementum luctus, tellus elit gravida lorem, in gravida velit justo in urna. Mauris mattis ut dolor nec ullamcorper.', '2019-06-25 19:05:13'),
+(20, 1, 10, 'Mauris tempor elit non elit tincidunt, a ultricies ex scelerisque. Pellentesque et nisi a erat pulvinar consectetur.', '2019-06-25 19:39:55');
 
 -- --------------------------------------------------------
 
@@ -299,15 +329,12 @@ INSERT INTO `komentari_hotel` (`id`, `korisnici_id`, `feedback_hotel_id`, `text`
 (2, 1, 3, 'Ovo je nas prvi probni komentar.', '2019-06-20 11:13:46'),
 (3, 1, 3, 'U cast git slayera, drugi komentar.', '2019-06-20 11:14:19'),
 (4, 3, 4, 'Cemu ovo sluzi, a pritom i ne radi?', '2019-06-20 11:21:10'),
-(5, 4, 11, 'Nam tempor est et neque ornare convallis. Suspendisse facilisis nisi eu justo tristique varius. Aliquam ac quam eros. Aenean est nibh, mollis interdum elit a, efficitur laoreet elit. Etiam sce', '2019-06-20 11:23:58'),
-(6, 2, 13, 'Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum.', '2019-06-21 08:05:18'),
-(7, 3, 2, 'Nam sed nisl nec ex feugiat semper. Praesent neque est, semper et nisl sit amet, euismod tristique ipsum. Nulla finibus arcu id purus commodo egestas.', '2019-06-21 08:17:16'),
-(8, 3, 2, 'Nam sed nisl nec ex feugiat semper. Praesent neque est, semper et nisl sit amet, euismod tristique ipsum. Nulla finibus arcu id purus commodo egestas.', '2019-06-21 08:17:17'),
-(9, 3, 1, 'Suspendisse porttitor eleifend erat, quis viverra massa congue ac. Etiam ut nisi tortor. Nam ut pretium lectus.', '2019-06-21 08:19:30'),
-(10, 1, 4, 'In egestas at dolor eu pretium. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.', '2019-06-21 08:20:18'),
-(11, 1, 4, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.', '2019-06-21 08:21:18'),
-(12, 2, 5, 'In egestas at dolor eu pretium. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.', '2019-06-21 08:22:36'),
-(13, 3, 11, 'Suspendisse facilisis nisi eu justo tristique varius. Aliquam ac quam eros. Aenean est nibh, mollis interdum elit a, efficitur laoreet elit. Etiam scelerisque pulvinar nunc vel gravida.\n\n', '2019-06-21 08:39:09');
+(5, 5, 3, 'Lorem ipsum dolor est. Lorem ipsum dolor est.', '2019-06-25 15:03:28'),
+(6, 5, 12, 'My comment here. My comment here.', '2019-06-25 16:11:22'),
+(7, 3, 17, 'I zaboravih da kazem: Lorem ipsum dolor est. ', '2019-06-25 17:43:41'),
+(8, 3, 21, 'Cras a ultricies erat, sit amet tincidunt ligula. Praesent vitae iaculis nunc. Nam vitae auctor leo. Curabitur ac commodo mauris.', '2019-06-25 18:58:56'),
+(9, 5, 22, 'Cras a ultricies erat, sit amet tincidunt ligula. Praesent vitae iaculis nunc. Nam vitae auctor leo. Curabitur ac commodo mauris.', '2019-06-25 19:02:15'),
+(10, 4, 22, 'Odakle vam ova vatra, je\'li bre?', '2019-06-25 19:14:22');
 
 -- --------------------------------------------------------
 
@@ -345,15 +372,9 @@ INSERT INTO `korisnici` (`id`, `username`, `password`, `ime`, `prezime`, `admin`
 CREATE TABLE `login_tabela` (
   `id` int(11) NOT NULL,
   `korisnici_id` int(11) NOT NULL,
-  `web_token` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `web_token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `datum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `login_tabela`
---
-
-INSERT INTO `login_tabela` (`id`, `korisnici_id`, `web_token`) VALUES
-(1, 1, '32106340superadmin');
 
 -- --------------------------------------------------------
 
@@ -1040,13 +1061,13 @@ ALTER TABLE `znamenitosti`
 -- AUTO_INCREMENT for table `feedback_grad`
 --
 ALTER TABLE `feedback_grad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `feedback_hotel`
 --
 ALTER TABLE `feedback_hotel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `grad`
@@ -1058,13 +1079,13 @@ ALTER TABLE `grad`
 -- AUTO_INCREMENT for table `komentari_grad`
 --
 ALTER TABLE `komentari_grad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `komentari_hotel`
 --
 ALTER TABLE `komentari_hotel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `korisnici`
@@ -1076,7 +1097,7 @@ ALTER TABLE `korisnici`
 -- AUTO_INCREMENT for table `login_tabela`
 --
 ALTER TABLE `login_tabela`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `znamenitosti`
