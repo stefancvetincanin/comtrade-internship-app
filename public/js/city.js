@@ -364,8 +364,8 @@ function prikaziFeedbackModal(id) {
   }
   if (!stringZvezdice) stringZvezdice = "Nema ocena";
   document.getElementById("modalFeedback").innerHTML = `
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
+  <div class="modal-dialog modal-lg ">
+    <div class="modal-content modalFeedbackContent">
       <div class="modal-header">
           <div class="row card-body">
             <div class="col-4">
@@ -381,7 +381,7 @@ function prikaziFeedbackModal(id) {
               <small>${filtriranFeedback[0].datum.substring(0, 10)} ${filtriranFeedback[0].datum.substring(11, 19)}</small>
             </div>
           </div>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close " data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -402,7 +402,7 @@ function prikaziFeedbackModal(id) {
           </div>
 
             <div class="clearfix">
-              <button type="submit" class="btn btn-primary float-right">Send comment</button>
+              <button type="submit" class="btn btn-primary float-right btnSubmit">Send comment</button>
             </div>
           </form>
           <ul class="list-group mb-1" id="commentListKomentara">
@@ -453,7 +453,7 @@ function komentarFeedbackGrada(id) {
       let displayComments = "";
       res.forEach(comment => {
         displayComments += `
-      <li class="list-group-item list-group-item-warning clearfix d-flex">
+      <li class="list-group-item  clearfix d-flex">
           <div class="mr-3 align-self-center">
             <img class="rounded-circle " src="${comment.slika}" alt="${
           comment.ime
@@ -461,7 +461,7 @@ function komentarFeedbackGrada(id) {
           </div>
           <div class="d-block w-100">
             <div>
-              <div class="d-inline-block w-25 bg-primary text-white text-center mb-2 float-left">
+              <div class="d-inline-block w-25 text-center mb-2 float-left nameUserComment">
                 ${comment.ime} ${comment.prezime}
               </div>
               <div class="float-right">

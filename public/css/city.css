@@ -169,18 +169,27 @@
   background-color: #e3e7ee;
 }
 
-.prikazi-modal, .sendComment {
+.prikazi-modal, .sendComment, #btnFooterToggle, .btnSubmit {
   background-color: #ff5c88;
   border: 1px solid #ff5c88;
   transition: 1s ease;
   color: #e3e7ee;
 }
 
-.prikazi-modal:hover, .sendComment:hover {
+.prikazi-modal:hover, .sendComment:hover, #btnFooterToggle:hover, .btnSubmit:hover {
   background-color: #e3e7ee;
   border: 1px solid #ff5c88;
   color: #ff5c88;
 }
+
+.modalFeedbackContent, .nameUserComment {
+  background-color: #e3e7ee;
+}
+
+.nameUserComment {
+  color: #384867;
+}
+
 @media (min-width: 320px) {
   .cityHeadline {
     font-size: 20px;

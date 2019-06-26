@@ -5,11 +5,13 @@
 .main-button {
   color: #e3e7ee;
   background-color: #ff5c88;
+  transition: 1s ease all;
 }
 
 .main-button:hover {
   background-color: #e3e7ee;
   color: #ff5c88;
+  border: 1px solid #ff5c88;
 }
 
 .header-style {
@@ -72,6 +74,7 @@
 
 .accommodation-list-item a:hover {
   color: #fff;
+  text-decoration: none;
 }
 
 .bodyWrapper {
