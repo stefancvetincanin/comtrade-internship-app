@@ -2,6 +2,7 @@ let feedbackArray = [];
 let id = getParameter("grad-id");
 let map;
 let idAtrakcija;
+let tempFeedId = id
 
 
 
@@ -117,7 +118,7 @@ fetch(`/attractions/${id}`)
   .then(res => {
     res.forEach((element, i) => {
       let moreClass1 = i > 2 && "moreClass1";
-      displayAttr += `<li class="list-group-item list-group-item-primary mb-1 ${moreClass1} listBack">
+      displayAttr += `<li class="list-group-item list-group-item-primary mb-1 ${moreClass1} listBack znamenje-hover">
         <a href="#" class="mb-1 d-block" data-id="${i}" data-toggle='modal' data-target='#modalZaMape'>
           <div class="row align-items-center text-center">
             <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
@@ -378,7 +379,10 @@ function prikaziFeedbackModal(id) {
               <div class="">
                 ${stringZvezdice}
               </div>
-              <small>${filtriranFeedback[0].datum.substring(0, 10)} ${filtriranFeedback[0].datum.substring(11, 19)}</small>
+              <small>${filtriranFeedback[0].datum.substring(0, 10)} ${filtriranFeedback[0].datum.substring(11, 19)}</small><br>
+              <div class="delete-feedback ${!user.admin && 'd-none'}" data-feedback-id="${filtriranFeedback[0].id}" id="delete-feedback">
+                <i class="far fa-trash-alt"></i>
+              </div>
             </div>
           </div>
         <button type="button" class="close " data-dismiss="modal" aria-label="Close">
@@ -415,6 +419,9 @@ function prikaziFeedbackModal(id) {
     </div>
   </div>
     `;
+  $('#delete-feedback').on('click', function() {
+    deleteFeedback($(this).attr('data-feedback-id'))
+  })
   komentarFeedbackGrada(id);
 
   $("#btnFooterToggle").on("click", function () {
@@ -443,6 +450,22 @@ function prikaziFeedbackModal(id) {
       });
   });
   komentarFeedbackGrada(id);
+}
+
+// funkcija brise feedback i komentare vezane za njega po id-u feedbacka
+function deleteFeedback(feedbackId) {
+  if(window.confirm('Are you sure you want to delete this feedback? It will also remove all the related comments!')){
+    fetch('/delete-feedback-grad', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({feedbackId: feedbackId})
+    })
+      .then(res => res.json())
+      .then(res => {
+        $('#modalFeedback').modal('toggle')
+        feedbackGrad(tempFeedId)
+      })
+  }
 }
 
 function komentarFeedbackGrada(id) {

@@ -255,5 +255,37 @@ module.exports = function (express, baza) {
     })
   })
 
+  // obrisi feedback za hotel
+  router.delete('/delete-feedback-hotel', function (req, res) {
+    baza.execQuery(`SELECT * FROM korisnici INNER JOIN login_tabela on korisnici.id = login_tabela.korisnici_id where korisnici.admin = '1' AND login_tabela.web_token = ${mysql.escape(req.cookies.loginCookie)}`, function (results) {
+      if (results.length > 0) {
+        baza.execQuery(`DELETE FROM komentari_hotel WHERE feedback_hotel_id = ${mysql.escape(req.body.feedbackId)}`, function(results) {
+          baza.execQuery(`DELETE FROM feedback_hotel WHERE id = ${mysql.escape(req.body.feedbackId)}`, function(results) {
+            res.send({msg: 'Obrisani feedback i komentari'})
+          })
+        })
+      } else {
+        res.send({msg: 'You do not have admin privileges'})
+        console.log('You do not have admin privileges')
+      }
+    })
+  })
+
+  // obrisi feedback za grad
+  router.delete('/delete-feedback-grad', function (req, res) {
+    baza.execQuery(`SELECT * FROM korisnici INNER JOIN login_tabela on korisnici.id = login_tabela.korisnici_id where korisnici.admin = '1' AND login_tabela.web_token = ${mysql.escape(req.cookies.loginCookie)}`, function (results) {
+      if (results.length > 0) {
+        baza.execQuery(`DELETE FROM komentari_grad WHERE feedback_grad_id = ${mysql.escape(req.body.feedbackId)}`, function(results) {
+          baza.execQuery(`DELETE FROM feedback_grad WHERE id = ${mysql.escape(req.body.feedbackId)}`, function(results) {
+            res.send({msg: 'Obrisani feedback i komentari'})
+          })
+        })
+      } else {
+        res.send({msg: 'You do not have admin privileges'})
+        console.log('You do not have admin privileges')
+      }
+    })
+  })
+
   return router
 }
