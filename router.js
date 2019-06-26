@@ -138,7 +138,7 @@ module.exports = function (express, baza) {
   router.get('/komentar-grad/*', function (req, res) {
     baza.execQuery(`SELECT * FROM login_tabela WHERE web_token = ${mysql.escape(req.cookies.loginCookie)}`, function (results) {
       if (results.length > 0) {
-        baza.execQuery(`SELECT korisnici.username, korisnici.ime, korisnici.prezime, korisnici.slika, komentari_grad.text, komentari_grad.datum
+        baza.execQuery(`SELECT korisnici.username, korisnici.ime, korisnici.prezime, korisnici.slika, komentari_grad.text, komentari_grad.datum, komentari_grad.id 
         FROM komentari_grad INNER JOIN korisnici on korisnici.id = komentari_grad.korisnici_id 
         WHERE komentari_grad.feedback_grad_id = ${mysql.escape(req.params['0'])}`, function (results) {
         res.send(results)
@@ -230,6 +230,21 @@ module.exports = function (express, baza) {
     baza.execQuery(`SELECT * FROM korisnici INNER JOIN login_tabela on korisnici.id = login_tabela.korisnici_id where korisnici.admin = '1' AND login_tabela.web_token = ${mysql.escape(req.cookies.loginCookie)}`, function (results) {
       if (results.length > 0) {
         baza.execQuery(`DELETE FROM komentari_hotel WHERE id = ${mysql.escape(req.body.commentId)}`, function(deletionResults){
+          // if(deletionResults.length > 0)
+          res.send({msg: 'Comment deleted'})
+        })
+      } else {
+        res.send({msg: 'You do not have admin privileges'})
+        console.log('You do not have admin privileges')
+      }
+    })
+  })
+
+  // obrisi komentar za grad po id-u
+  router.delete('/delete-comment-city', function (req, res) {
+    baza.execQuery(`SELECT * FROM korisnici INNER JOIN login_tabela on korisnici.id = login_tabela.korisnici_id where korisnici.admin = '1' AND login_tabela.web_token = ${mysql.escape(req.cookies.loginCookie)}`, function (results) {
+      if (results.length > 0) {
+        baza.execQuery(`DELETE FROM komentari_grad WHERE id = ${mysql.escape(req.body.commentId)}`, function(deletionResults){
           // if(deletionResults.length > 0)
           res.send({msg: 'Comment deleted'})
         })

@@ -92,11 +92,8 @@ fetch(`/hotels/${id}`)
         element.url_slike
         }" height="100px" alt="${element.ime}">
             </div>
-<<<<<<< HEAD
-            <div class="col-lg-9 col-md-8 ml-3 col-sm-7 listContent">
-=======
-            <div class="col-lg-8 col-md-7 ml-3 col-sm-6">
->>>>>>> master
+
+            <div class="col-lg-8 col-md-7 ml-3 col-sm-6 listContent">
               <div class="clearfix pl-4">
                 <h2 id="nameAccomod" class="float-left">${element.ime}</h2>
                 <div id="starsAccomod" class="float-right align-items-center">${stringZvezdice}</div>
@@ -477,13 +474,34 @@ function komentarFeedbackGrada(id) {
             <div class="d-inline-block w-100 text-dark">
               ${comment.text}
             </div>
+            <div class="delete-comment ${!user.admin && 'd-none'}" data-comment-id="${comment.id}">
+              <i class="far fa-trash-alt"></i>
+            </div>
           </div>
         </li>`;
       });
       document.getElementById(
         "commentListKomentara"
       ).innerHTML = displayComments;
+      $('.delete-comment').on('click', function(event){
+        obrisiKomentar($(this).attr('data-comment-id'), event, id)
+      })
     });
+}
+
+// funkcija brise komentar po commentId, i refreshuje prikaz komentara u modalu
+function obrisiKomentar(commentId, event, feedbackId) {
+  if(window.confirm('Are you sure you want to delete this comment?')){
+    fetch('/delete-comment-city', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({commentId: commentId})
+    })
+      .then(res => res.json())
+      .then(res => {
+        komentarFeedbackGrada(feedbackId)
+      })
+  }
 }
 
 $("#form-city-feedback input[type=radio]").on("change", function () {
