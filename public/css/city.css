@@ -60,7 +60,11 @@
 }
 
 .bg-info1 {
-  background-color: #ff5c88;
+  background-color: #4c6491;
+}
+
+.temp, .temp span {
+  color: #ff5c88;
 }
 
 .weatherIconWrapper {
