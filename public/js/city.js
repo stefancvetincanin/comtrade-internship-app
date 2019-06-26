@@ -312,14 +312,14 @@ function feedbackGrad(id) {
         }
         if (!stringZvezdice) stringZvezdice = "Nema ocena";
         displayComments += `
-      <div class="card col-lg-4 col-md-6 col-sm-12 bg-light mb-4 px-4 py-3">
-      <div class="row card-body">
+      <div class="card col-lg-4 col-md-6 col-sm-12 mb-4 px-4 py-3">
+      <div class="row card-body card-body1">
         <div class="col-4">
           <img src="${
           comment.slika
           }" class="rounded-circle" height="75px" alt="">
         </div>
-        <div class="col-8">
+        <div class="col-8 feedbackUserName">
           <h4>${comment.ime} ${comment.prezime}</h4>
           <div>${stringZvezdice}</div>
           <small>${comment.datum.substring(0, 10)} ${comment.datum.substring(11, 19)}</small>
@@ -330,7 +330,7 @@ function feedbackGrad(id) {
       </div>
       <div class="row justify-content-center">
         <div class="w-50">
-          <button class="btn btn-warning btn-block text-white prikazi-modal" type="button" data-toggle="modal" data-feedback-id=${
+          <button class="btn btn-warning btn-block  prikazi-modal" type="button" data-toggle="modal" data-feedback-id=${
           comment.id
           } data-target="#modalFeedback">More</button>
         </div>
