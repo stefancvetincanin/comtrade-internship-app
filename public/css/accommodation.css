@@ -20,6 +20,10 @@
   color: #e3e7ee;
 }
 
+.header-style h1 {
+  font-size: 2em;
+}
+
 .header-style h3 a {
   color: #ff5c88!important;
 }
@@ -55,20 +59,19 @@
 .accommodation-list-item {
   background-color: #5a6f98;
   color: #e3e7ee;
+  border: none;
+}
+
+.accommodation-list-item h1 {
+  font-size: 1.9em;
 }
 
 .accommodation-list-item a {
   color: #e3e7ee;
 }
 
-#city-name a {
-  color: navy;
-  text-decoration: none;
-}
-
-#city-name a:hover {
-  color: rgb(59, 59, 168);
-  text-decoration: none;
+.accommodation-list-item a:hover {
+  color: #fff;
 }
 
 .bodyWrapper {

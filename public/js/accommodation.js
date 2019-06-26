@@ -61,7 +61,7 @@ function nabaviFeedback() {
               </div>
               <div class="row justify-content-center">
                 <div class="w-50">
-                  <button class="main-button btn btn-block mt-1" data-feedback-id=${feedback.id} type="button" data-toggle="modal" data-target="#modalFeedback">
+                  <button class="main-button prikazi-modal btn btn-block mt-1" data-feedback-id=${feedback.id} type="button" data-toggle="modal" data-target="#modalFeedback">
                     More
                   </button>
                 </div>
