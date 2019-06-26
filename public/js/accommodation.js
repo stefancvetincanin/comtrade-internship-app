@@ -121,7 +121,7 @@ function prikaziFeedbackModal(id) {
             <p class="ml-2">${filtriranFeedback[0].opis}</p>
           </div>
           <div class="clearfix mb-3">
-            <button id="btnFooterToggle" type="button" class="btn btn-primary float-right">
+            <button id="btnFooterToggle" type="button" class="btn main-button float-right">
               Toggle comment
             </button>
           </div>
@@ -132,7 +132,7 @@ function prikaziFeedbackModal(id) {
                 <textarea class="form-control" id="comment-on-feedback" rows="3" required minlength="20" maxlength="300" placeholder="Your comment here..."></textarea>
               </div>
               <div class="clearfix">
-                <button type="submit" class="btn btn-primary float-right">
+                <button type="submit" class="btn main-button float-right">
                   Send comment
                 </button>
               </div>
@@ -202,13 +202,13 @@ function nabaviSpisakKomentara(id) {
       let displayComments = ''
       res.forEach(comment => {
         displayComments += `
-          <li class="list-group-item list-group-item-warning clearfix d-flex">
+          <li class="list-group-item clearfix d-flex">
             <div class="mr-3 align-self-center">
               <img class="rounded-circle " src="${comment.slika}" alt="${comment.ime}" width="90px"/>
             </div>
             <div class="d-block w-100">
               <div>
-                <div class="d-inline-block w-25 bg-primary text-white text-center mb-2 float-left">
+                <div class="d-inline-block w-25 imeFedback text-center mb-2 float-left">
                   ${comment.ime} ${comment.prezime}
                 </div>
                 <div class="float-right">

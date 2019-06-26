@@ -390,7 +390,7 @@ function prikaziFeedbackModal(id) {
         </button>
       </div>
       <div class="modal-body">
-        <div class="row">
+        <div>
           <h5 class="ml-2">${filtriranFeedback[0].naziv}</h5>
           <p class="filtriranFeedbackOpis">${filtriranFeedback[0].opis}</p>
         </div>

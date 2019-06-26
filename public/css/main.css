@@ -46,3 +46,7 @@ nav  button:hover {
   color: #ff4b7b;
   border: 1px solid #ff4b7b!important;
 }
+
+.mainCityLinks:hover {
+  color: #080b13!important;
+}
