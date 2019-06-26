@@ -114,6 +114,12 @@
   font-size: 1.2em;
 }
 
+.delete-feedback {
+  cursor: pointer;
+  font-size: 1.2em;
+  display: inline-block;
+}
+
 .current-hotel-rating {
   color: navy;
 }

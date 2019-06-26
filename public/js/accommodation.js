@@ -105,7 +105,10 @@ function prikaziFeedbackModal(id) {
             <div class="col-8">
               <h5>${filtriranFeedback[0].ime} ${filtriranFeedback[0].prezime}</h5>
               <div>${stringZvezdice}</div>
-              <small>${filtriranFeedback[0].datum.substring(0, 10)} ${filtriranFeedback[0].datum.substring(11, 19)}</small>
+              <small>${filtriranFeedback[0].datum.substring(0, 10)} ${filtriranFeedback[0].datum.substring(11, 19)}</small><br>
+              <div class="delete-feedback ${!user.admin && 'd-none'}" data-feedback-id="${filtriranFeedback[0].id}" id="delete-feedback">
+                <i class="far fa-trash-alt"></i>
+              </div>
             </div>
           </div>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -145,6 +148,11 @@ function prikaziFeedbackModal(id) {
     $('#forma-comment').slideToggle()
   })
 
+  // event za brisanje feedbacka hotela
+  $('#delete-feedback').on('click', function() {
+    deleteFeedback($(this).attr('data-feedback-id'))
+  })
+
   // forma za ostavljanje komentara na feedback
   $('#forma-comment').on('submit', function (e) {
     e.preventDefault()
@@ -168,6 +176,22 @@ function prikaziFeedbackModal(id) {
       })
   })
   nabaviSpisakKomentara(id)
+}
+
+// funkcija brise feedback i komentare vezane za njega po id-u feedbacka
+function deleteFeedback(feedbackId) {
+  if(window.confirm('Are you sure you want to delete this feedback? It will also remove all the related comments!')){
+    fetch('/delete-feedback-hotel', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({feedbackId: feedbackId})
+    })
+      .then(res => res.json())
+      .then(res => {
+        $('#modalFeedback').modal('toggle')
+        nabaviFeedback()
+      })
+  }
 }
 
 // funkcija nabavlja spisak komentara iz baze i prikazuje ih u modalu

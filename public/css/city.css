@@ -161,8 +161,19 @@
   color: #384867;
 }
 
+.znamenje-hover:hover {
+  cursor: pointer;
+  background-color: teal;
+}
+
 .card-body1 {
   background: transparent !important;
+}
+
+.delete-feedback {
+  cursor: pointer;
+  font-size: 1.2em;
+  display: inline-block;
 }
 
 .cityFeedbackModalContent {
