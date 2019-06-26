@@ -84,7 +84,7 @@ fetch(`/hotels/${id}`)
         rating--;
       }
       if (!stringZvezdice) stringZvezdice = "Nema ocena";
-      display += `<li class="list-group-item list-group-item-primary mb-1 ${moreClass}">
+      display += `<li class="list-group-item list-group-item-primary mb-1 ${moreClass} listBack">
         <a href="accommodation.html?hotel-id=${element.id}&grad-id=${id}">
           <div class="row align-items-center text-center">
             <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
@@ -92,7 +92,7 @@ fetch(`/hotels/${id}`)
         element.url_slike
         }" height="100px" alt="${element.ime}">
             </div>
-            <div class="col-lg-9 col-md-8 ml-3 col-sm-7">
+            <div class="col-lg-9 col-md-8 ml-3 col-sm-7 listContent">
               <div class="clearfix pl-4">
                 <h1 id="nameAccomod" class="float-left">${element.ime}</h1>
                 <div id="starsAccomod" class="float-right align-items-center">${stringZvezdice}</div>
@@ -116,7 +116,7 @@ fetch(`/attractions/${id}`)
   .then(res => {
     res.forEach((element, i) => {
       let moreClass1 = i > 2 && "moreClass1";
-      displayAttr += `<li class="list-group-item list-group-item-primary mb-1 ${moreClass1}">
+      displayAttr += `<li class="list-group-item list-group-item-primary mb-1 ${moreClass1} listBack">
         <a href="#" class="mb-1 d-block" data-id="${i}" data-toggle='modal' data-target='#modalZaMape'>
           <div class="row align-items-center text-center">
             <div class="col-lg-2 col-md-3 col-sm-4 mb-3">
@@ -124,7 +124,7 @@ fetch(`/attractions/${id}`)
         element.slika
         }" height="100px" alt="${element.naziv}">
             </div>
-            <div class="col-lg-9 col-md-8 ml-3 col-sm-7">
+            <div class="col-lg-9 col-md-8 ml-3 col-sm-7 listContent">
               <div class="clearfix pl-4">
                 <h1 id="nameAccomod" class="float-left">${element.naziv}</h1>
               </div>
